@@ -6,9 +6,16 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/zmail-user/pom.xml" />
         <option value="$PROJECT_DIR$/zmail-parent/pom.xml" />
         <option value="$PROJECT_DIR$/zmail-api/pom.xml" />
+        <option value="$PROJECT_DIR$/zmail-common-util/pom.xml" />
+        <option value="$PROJECT_DIR$/zmail-service-util/pom.xml" />
+        <option value="$PROJECT_DIR$/zmail-web-util/pom.xml" />
+        <option value="$PROJECT_DIR$/zmail-user/pom.xml" />
+        <option value="$PROJECT_DIR$/zmail-user-service/pom.xml" />
+        <option value="$PROJECT_DIR$/zmail-user-web/pom.xml" />
+        <option value="$PROJECT_DIR$/zmail-manage-web/pom.xml" />
+        <option value="$PROJECT_DIR$/zmail-manage-service/pom.xml" />
       </list>
     </option>
   </component>

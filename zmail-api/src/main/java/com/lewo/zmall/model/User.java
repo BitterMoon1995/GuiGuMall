@@ -4,9 +4,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 @Table(name = "ums_member")
-public class User {
+public class User implements Serializable {
     @Id//通用mapper注解，表示这个是主键
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     /* JPA提供的四种标准用法为TABLE,SEQUENCE,IDENTITY,AUTO. 

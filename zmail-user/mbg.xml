@@ -36,7 +36,7 @@
         </sqlMapGenerator>
         <!-- mapper接口的生成 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.lewo.zmail.user.dao" targetProject=".\zmail-user\src/main/java">
+                             targetPackage="com.lewo.zmail.user.com.lewo.zmail.manage.dao" targetProject=".\zmail-user\src/main/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         <!-- 指定逆向分析哪些表，根据表创建JavaBean

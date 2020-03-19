@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
-    <file url="file://$PROJECT_DIR$/zmail-parent/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/zmail-parent/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zmail-common-util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zmail-manage-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zmail-manage-web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zmail-service-util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zmail-user-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zmail-user-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zmail-user/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zmail-web-util/src/main/java" charset="UTF-8" />
   </component>
 </project>

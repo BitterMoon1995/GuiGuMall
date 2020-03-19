@@ -7,13 +7,27 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="zmail-user" />
+        <module name="zmail-manage-web" />
+        <module name="zmail-manage-service" />
+        <module name="zmail-service-util" />
+        <module name="zmail-user-service" />
+        <module name="zmail-common-util" />
+        <module name="zmail-user-web" />
+        <module name="zmail-web-util" />
         <module name="zmail-api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
-      <module name="zmail-api" target="8" />
+      <module name="zmail-api" target="1.8" />
+      <module name="zmail-common-util" target="1.8" />
+      <module name="zmail-manage-service" target="1.8" />
+      <module name="zmail-manage-web" target="1.8" />
       <module name="zmail-parent" target="1.8" />
+      <module name="zmail-service-util" target="1.8" />
       <module name="zmail-user" target="1.8" />
+      <module name="zmail-user-service" target="1.8" />
+      <module name="zmail-user-web" target="1.8" />
+      <module name="zmail-web-util" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
