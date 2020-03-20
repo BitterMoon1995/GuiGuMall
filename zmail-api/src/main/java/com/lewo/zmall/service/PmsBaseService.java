@@ -1,9 +1,6 @@
 package com.lewo.zmall.service;
 
-import com.lewo.zmall.model.PmsBaseAttrInfo;
-import com.lewo.zmall.model.PmsBaseCatalog1;
-import com.lewo.zmall.model.PmsBaseCatalog2;
-import com.lewo.zmall.model.PmsBaseCatalog3;
+import com.lewo.zmall.model.*;
 
 import java.util.List;
 
@@ -13,7 +10,7 @@ import java.util.List;
  * @author makejava
  * @since 2020-03-19 10:47:30
  */
-public interface PmsSpuService {
+public interface PmsBaseService {
 
     public List<PmsBaseCatalog1> getCatalog1();
     public List<PmsBaseCatalog2> getCatalog2(String id);
@@ -21,4 +18,7 @@ public interface PmsSpuService {
 
 
     public List<PmsBaseAttrInfo> spuList(String id);
+    public String saveAttrInfo(PmsBaseAttrInfo attrInfo);
+
+    List<PmsBaseAttrValue> getAttrValueList(String infoId);
 }

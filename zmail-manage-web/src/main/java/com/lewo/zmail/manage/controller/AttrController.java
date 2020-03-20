@@ -2,11 +2,9 @@ package com.lewo.zmail.manage.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.lewo.zmall.model.PmsBaseAttrInfo;
-import com.lewo.zmall.service.PmsSpuService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.lewo.zmall.model.PmsBaseAttrValue;
+import com.lewo.zmall.service.PmsBaseService;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,9 +12,19 @@ import java.util.List;
 @RestController
 public class AttrController {
     @Reference
-    PmsSpuService pmsSpuService;
+    PmsBaseService PmsBaseService;
     @RequestMapping("/attrInfoList")
     public List<PmsBaseAttrInfo> spuList(String id){
-        return pmsSpuService.spuList(id);
+        return PmsBaseService.spuList(id);
     }
+    @RequestMapping("/saveAttrInfo")
+    public String saveAttrInfo(@RequestBody PmsBaseAttrInfo attrInfo){
+        return PmsBaseService.saveAttrInfo(attrInfo);
+    }
+    @RequestMapping("/getAttrValueList")
+    public List<PmsBaseAttrValue> getAttrValueList(@RequestParam("attrId") String infoId){
+        //请求参数和方法参数名不一样时，@RequestParam内指定要绑定的请求参数
+        return PmsBaseService.getAttrValueList(infoId);
+    }
+
 }
