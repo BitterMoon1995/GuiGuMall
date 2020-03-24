@@ -6,18 +6,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="zmail-user" />
+        <module name="fastdfs-client-java" />
         <module name="zmail-manage-web" />
         <module name="zmail-manage-service" />
         <module name="zmail-service-util" />
         <module name="zmail-user-service" />
         <module name="zmail-common-util" />
-        <module name="zmail-user-web" />
+        <module name="zmail-user" />
         <module name="zmail-web-util" />
         <module name="zmail-api" />
+        <module name="zmail-user-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
+      <module name="fastdfs-client-java" target="1.6" />
       <module name="zmail-api" target="1.8" />
       <module name="zmail-common-util" target="1.8" />
       <module name="zmail-manage-service" target="1.8" />
