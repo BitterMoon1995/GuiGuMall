@@ -47,7 +47,7 @@
     <orderEntry type="library" name="Maven: tk.mybatis:mapper-spring:1.1.5" level="project" />
     <orderEntry type="library" name="Maven: tk.mybatis:mapper-extra:1.1.5" level="project" />
     <orderEntry type="library" name="Maven: tk.mybatis:mapper-spring-boot-autoconfigure:2.1.5" level="project" />
-    <orderEntry type="module" module-name="zmail-service-util" />
+    <orderEntry type="library" name="Maven: com.lewo:zmail-service-util:1.0-SNAPSHOT" level="project" />
     <orderEntry type="module" module-name="zmail-common-util" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.46" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-test:1.5.22.RELEASE" level="project" />

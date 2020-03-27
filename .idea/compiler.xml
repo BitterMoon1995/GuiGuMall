@@ -19,7 +19,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
-      <module name="fastdfs-client-java" target="1.6" />
+      <module name="fastdfs-client-java" target="1.8" />
       <module name="zmail-api" target="1.8" />
       <module name="zmail-common-util" target="1.8" />
       <module name="zmail-manage-service" target="1.8" />

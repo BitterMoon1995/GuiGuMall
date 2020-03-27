@@ -1,14 +1,8 @@
 package com.lewo.zmail.manage.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.lewo.zmail.manage.dao.PmsBaseSaleAttrMapper;
-import com.lewo.zmail.manage.dao.PmsProductSaleAttrValueMapper;
-import com.lewo.zmail.manage.dao.ProductInfoMapper;
-import com.lewo.zmail.manage.dao.ProductSaleAttrMapper;
-import com.lewo.zmall.model.PmsBaseSaleAttr;
-import com.lewo.zmall.model.PmsProductInfo;
-import com.lewo.zmall.model.PmsProductSaleAttr;
-import com.lewo.zmall.model.PmsProductSaleAttrValue;
+import com.lewo.zmail.manage.dao.*;
+import com.lewo.zmall.model.*;
 import com.lewo.zmall.service.SpuService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,6 +17,8 @@ public class SpuServiceImpl implements SpuService {
     PmsBaseSaleAttrMapper baseSaleAttrMapper;
     @Autowired
     PmsProductSaleAttrValueMapper attrValueMapper;
+    @Autowired
+    PmsProductImageMapper imageMapper;
 
     @Override
     public List<PmsProductInfo> spuList(String catalog3Id) {
@@ -40,6 +36,7 @@ public class SpuServiceImpl implements SpuService {
     public String saveSpuInfo(PmsProductInfo pmsProductInfo) {
         productInfoMapper.insertSelective(pmsProductInfo);
         String productId = pmsProductInfo.getId();
+
         List<PmsProductSaleAttr> spuSaleAttrList = pmsProductInfo.getSpuSaleAttrList();
         for (PmsProductSaleAttr saleAttr : spuSaleAttrList) {
             saleAttr.setProductId(productId);
@@ -50,6 +47,12 @@ public class SpuServiceImpl implements SpuService {
                 saleAttrValue.setProductId(productId);
                 attrValueMapper.insertSelective(saleAttrValue);
             }
+        }
+
+        List<PmsProductImage> imageList = pmsProductInfo.getSpuImageList();
+        for (PmsProductImage productImage : imageList) {
+            productImage.setProductId(productId);
+            imageMapper.insertSelective(productImage);
         }
         return "周神！";
     }

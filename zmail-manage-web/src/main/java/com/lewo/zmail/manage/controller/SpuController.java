@@ -1,6 +1,7 @@
 package com.lewo.zmail.manage.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.lewo.webUtils.FileUploadUtil;
 import com.lewo.zmall.model.PmsBaseSaleAttr;
 import com.lewo.zmall.model.PmsProductInfo;
 import com.lewo.zmall.service.SpuService;
@@ -27,13 +28,13 @@ public class SpuController {
 
     @RequestMapping("/saveSpuInfo")
     public String saveSpuInfo(@RequestBody PmsProductInfo pmsProductInfo){
-        System.out.print(pmsProductInfo.getProductName());
         return spuService.saveSpuInfo(pmsProductInfo);
     }
 
     @RequestMapping("fileUpload")
     public String fileUpload(@RequestParam("file") MultipartFile multipartFile){
-
-        return "嘻嘻，哈哈";
+        String imageUrl = FileUploadUtil.uploadImage(multipartFile);
+        System.out.println(imageUrl);
+        return imageUrl;
     }
 }

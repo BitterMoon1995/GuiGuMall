@@ -13,4 +13,5 @@ public interface SpuService {
     List<PmsBaseSaleAttr> baseSaleAttrList();
 
     String saveSpuInfo(PmsProductInfo pmsProductInfo);
+
 }
