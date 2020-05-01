@@ -35,7 +35,6 @@ public class FileUploadUtil {
         try {
             byte[] fileBytes = file.getBytes();
             String filename = file.getOriginalFilename();
-            System.out.println(filename);
             String extName = filename.substring(filename.lastIndexOf(".") + 1);
             uploadInfo = storageClient.upload_file(fileBytes, extName, null);
         } catch (IOException | MyException e) {

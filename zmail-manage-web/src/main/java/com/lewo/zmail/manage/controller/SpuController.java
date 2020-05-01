@@ -31,7 +31,7 @@ public class SpuController {
         return spuService.saveSpuInfo(pmsProductInfo);
     }
 
-    @RequestMapping("fileUpload")
+    @RequestMapping("/fileUpload")
     public String fileUpload(@RequestParam("file") MultipartFile multipartFile){
         String imageUrl = FileUploadUtil.uploadImage(multipartFile);
         System.out.println(imageUrl);
