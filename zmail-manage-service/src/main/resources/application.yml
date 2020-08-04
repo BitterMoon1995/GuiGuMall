@@ -1,0 +1,26 @@
+server:
+  port: 2011
+  address: 0.0.0.0
+
+logging:
+  level: info
+
+
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost/zmail?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+
+  dubbo:
+    application: manage-service
+    registry:
+      address: 192.168.156.128:2181
+    base-package: com.lewo.zmail
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.lewo.zmall.model

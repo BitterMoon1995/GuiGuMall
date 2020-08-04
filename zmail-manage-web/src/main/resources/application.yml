@@ -1,0 +1,16 @@
+server:
+  port: 2010
+  address: 0.0.0.0
+
+logging:
+  level: info
+
+spring:
+  dubbo:
+    application: manage-web
+    registry:
+      address: 192.168.156.128:2181
+    base-package: com.lewo.zmail.manage.controller
+
+#    Dubbo 使用RPC通信标准化规范:
+#    编写接口 —> 提供者将实现接口的service将服务注册到zookeeper注册中心 —> 消费者在服务中心引用提供者实现的接口

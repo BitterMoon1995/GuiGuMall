@@ -1,6 +1,5 @@
 package com.lewo.zmall.model;
 
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;

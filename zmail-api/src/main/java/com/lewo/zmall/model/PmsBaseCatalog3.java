@@ -1,12 +1,11 @@
 package com.lewo.zmall.model;
 
-import javax.persistence.*;
+import javax.persistence.Id;
 import java.io.Serializable;
-@Table(name = "pms_base_catalog3")
+
 public class PmsBaseCatalog3 implements Serializable {
+
     @Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String name;
     private String catalog2Id;

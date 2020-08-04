@@ -20,7 +20,9 @@ public class CatalogController {
         return PmsBaseService.getCatalog1();
     }
     @RequestMapping("/getCatalog2")
-    public List<PmsBaseCatalog2> getCatalog2(@RequestParam("catalog1Id") String id){return PmsBaseService.getCatalog2(id);}
+    public List<PmsBaseCatalog2> getCatalog2(@RequestParam("catalog1Id") String id){
+        return PmsBaseService.getCatalog2(id); }
     @RequestMapping("/getCatalog3")
-    public List<PmsBaseCatalog3> getCatalog3(@RequestParam("catalog2Id") String id){return PmsBaseService.getCatalog3(id);}
+    public List<PmsBaseCatalog3> getCatalog3(@RequestParam("catalog2Id") String id){
+        return PmsBaseService.getCatalog3(id);}
 }

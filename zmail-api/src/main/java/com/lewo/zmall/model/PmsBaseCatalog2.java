@@ -1,6 +1,5 @@
 package com.lewo.zmall.model;
 
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -9,7 +8,6 @@ import java.util.List;
  * @param
  * @return
  */
-@Table(name = "pms_base_catalog2")
 public class PmsBaseCatalog2 implements Serializable {
     @Id
     @Column
