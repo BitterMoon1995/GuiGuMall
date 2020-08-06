@@ -17,7 +17,7 @@ public interface PmsBaseService {
     public List<PmsBaseCatalog3> getCatalog3(String id);
 
 
-    public List<PmsBaseAttrInfo> spuList(String id);
+    public List<PmsBaseAttrInfo> getAttrList(String id);
     public String saveAttrInfo(PmsBaseAttrInfo attrInfo);
 
     List<PmsBaseAttrValue> getAttrValueList(String infoId);

@@ -38,7 +38,7 @@ public class PmsBaseServiceImpl implements PmsBaseService {
     @Override
     public List<PmsBaseCatalog2> getCatalog2(String id) {
         Example example = new Example(PmsBaseCatalog2.class);
-        example.createCriteria().andEqualTo("catalog1Id",id);
+        example.createCriteria().andEqualTo("catalog1Id", id);
         return pmsBaseCatalog2Dao.selectByExample(example);
     }
 
@@ -50,16 +50,23 @@ public class PmsBaseServiceImpl implements PmsBaseService {
     }
 
     @Override
-    public List<PmsBaseAttrInfo> spuList(String id) {
+    public List<PmsBaseAttrInfo> getAttrList(String id) {
         PmsBaseAttrInfo pmsBaseAttrInfo = new PmsBaseAttrInfo();
         pmsBaseAttrInfo.setCatalog3Id(id);
-        return attrInfoMapper.select(pmsBaseAttrInfo);
+        List<PmsBaseAttrInfo> attrInfos = attrInfoMapper.select(pmsBaseAttrInfo);
+        attrInfos.forEach(info -> {
+            PmsBaseAttrValue value = new PmsBaseAttrValue();
+            value.setAttrId(info.getId());
+            List<PmsBaseAttrValue> values = attrValueMapper.select(value);
+            info.setAttrValueList(values);
+        });
+        return attrInfos;
     }
 
     @Override
     public String saveAttrInfo(PmsBaseAttrInfo attrInfo) {
         boolean blank = StringUtils.isBlank(attrInfo.getId());
-        if (blank){
+        if (blank) {
             //插入属性名
             attrInfoMapper.insertSelective(attrInfo);
             //批量插入属性值
@@ -67,8 +74,7 @@ public class PmsBaseServiceImpl implements PmsBaseService {
             for (PmsBaseAttrValue pmsBaseAttrValue : attrValueList) {
                 attrValueMapper.insertSelective(pmsBaseAttrValue);
             }
-        }
-        else {
+        } else {
             //先改属性名
             attrInfoMapper.updateByPrimaryKeySelective(attrInfo);
             //再删该属性名对应的旧属性值

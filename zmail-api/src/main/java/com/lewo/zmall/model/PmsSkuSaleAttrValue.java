@@ -18,16 +18,16 @@ public class PmsSkuSaleAttrValue implements Serializable {
     String skuId;
 
     @Column
-    String saleAttrId;
+    String saleAttrId;//spu销售属性ID   1,2,3,4
 
     @Column
-    String saleAttrValueId;
+    String saleAttrValueId;//spu销售属性值ID
 
     @Column
-    String saleAttrName;
+    String saleAttrName;//spu销售属性名  颜色，尺寸，版本，容量
 
     @Column
-    String saleAttrValueName;
+    String saleAttrValueName;//spu销售属性值
 
     public String getId() {
         return id;

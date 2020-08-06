@@ -14,8 +14,8 @@ public class AttrController {
     @Reference
     PmsBaseService PmsBaseService;
     @RequestMapping("/attrInfoList")
-    public List<PmsBaseAttrInfo> spuList(String id){
-        return PmsBaseService.spuList(id);
+    public List<PmsBaseAttrInfo> getAttrList(String id){
+        return PmsBaseService.getAttrList(id);
     }
     @RequestMapping("/saveAttrInfo")
     public String saveAttrInfo(@RequestBody PmsBaseAttrInfo attrInfo){
