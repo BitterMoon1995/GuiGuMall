@@ -24,6 +24,24 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+<!--        可以取消thymeleaf严格模式的依赖-->
+        <dependency>
+            <groupId>net.sourceforge.nekohtml</groupId>
+            <artifactId>nekohtml</artifactId>
+            <version>1.9.22</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/xml-apis/xml-apis -->
+        <dependency>
+            <groupId>xml-apis</groupId>
+            <artifactId>xml-apis</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.xmlgraphics/batik-ext -->
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-ext</artifactId>
+            <version>1.13</version>
+        </dependency>
 
         <dependency>
             <groupId>org.csource</groupId>

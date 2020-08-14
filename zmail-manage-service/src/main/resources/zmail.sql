@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 06/08/2020 18:59:06
+ Date: 14/08/2020 18:29:28
 */
 
 SET NAMES utf8mb4;
@@ -248,7 +248,7 @@ CREATE TABLE `pms_base_attr_info`  (
   `catalog3_id` bigint(0) NULL DEFAULT NULL,
   `is_enabled` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '启用：1 停用：0',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 46 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '属性表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 45 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '属性表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_base_attr_info
@@ -281,7 +281,7 @@ CREATE TABLE `pms_base_attr_value`  (
   `attr_id` bigint(0) NULL DEFAULT NULL COMMENT '属性id',
   `is_enabled` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '启用：1 停用：0 1',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 129 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '属性值表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 128 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '属性值表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_base_attr_value
@@ -358,7 +358,7 @@ CREATE TABLE `pms_base_catalog1`  (
   `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '编号',
   `name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '分类名称',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '一级分类表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '一级分类表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_base_catalog1
@@ -394,7 +394,7 @@ CREATE TABLE `pms_base_catalog2`  (
   `name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '二级分类名称',
   `catalog1_id` int(0) NULL DEFAULT NULL COMMENT '一级分类编号',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 144 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 143 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_base_catalog2
@@ -552,7 +552,7 @@ CREATE TABLE `pms_base_catalog3`  (
   `name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '三级分类名称',
   `catalog2_id` bigint(0) NULL DEFAULT NULL COMMENT '二级分类编号',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1260 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1259 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_base_catalog3
@@ -1924,7 +1924,7 @@ CREATE TABLE `pms_product_image`  (
   `img_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图片名称',
   `img_url` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图片路径',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 175 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品图片表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 174 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品图片表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_product_image
@@ -2077,7 +2077,7 @@ CREATE TABLE `pms_product_info`  (
   `catalog3_id` bigint(0) NULL DEFAULT NULL COMMENT '三级分类id',
   `tm_id` bigint(0) NULL DEFAULT NULL COMMENT '品牌id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 81 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 80 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_product_info
@@ -2463,7 +2463,7 @@ CREATE TABLE `pms_sku_attr_value`  (
   `value_id` bigint(0) NULL DEFAULT NULL COMMENT '属性值id',
   `sku_id` bigint(0) NULL DEFAULT NULL COMMENT 'skuid',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 836 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'sku平台属性值关联表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 981 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'sku平台属性值关联表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_sku_attr_value
@@ -3074,6 +3074,57 @@ INSERT INTO `pms_sku_attr_value` VALUES (918, 38, 89, 110);
 INSERT INTO `pms_sku_attr_value` VALUES (919, 40, 93, 110);
 INSERT INTO `pms_sku_attr_value` VALUES (920, 41, 95, 110);
 INSERT INTO `pms_sku_attr_value` VALUES (921, 42, 98, 110);
+INSERT INTO `pms_sku_attr_value` VALUES (931, 12, 49, 113);
+INSERT INTO `pms_sku_attr_value` VALUES (932, 13, 53, 113);
+INSERT INTO `pms_sku_attr_value` VALUES (933, 25, 42, 113);
+INSERT INTO `pms_sku_attr_value` VALUES (934, 26, 47, 113);
+INSERT INTO `pms_sku_attr_value` VALUES (935, 27, 55, 113);
+INSERT INTO `pms_sku_attr_value` VALUES (936, 28, 61, 113);
+INSERT INTO `pms_sku_attr_value` VALUES (937, 29, 63, 113);
+INSERT INTO `pms_sku_attr_value` VALUES (938, 31, 68, 113);
+INSERT INTO `pms_sku_attr_value` VALUES (939, 33, 73, 113);
+INSERT INTO `pms_sku_attr_value` VALUES (940, 34, 76, 113);
+INSERT INTO `pms_sku_attr_value` VALUES (941, 35, 80, 113);
+INSERT INTO `pms_sku_attr_value` VALUES (942, 36, 83, 113);
+INSERT INTO `pms_sku_attr_value` VALUES (943, 37, 86, 113);
+INSERT INTO `pms_sku_attr_value` VALUES (944, 38, 88, 113);
+INSERT INTO `pms_sku_attr_value` VALUES (945, 40, 93, 113);
+INSERT INTO `pms_sku_attr_value` VALUES (946, 41, 94, 113);
+INSERT INTO `pms_sku_attr_value` VALUES (947, 42, 98, 113);
+INSERT INTO `pms_sku_attr_value` VALUES (948, 12, 49, 114);
+INSERT INTO `pms_sku_attr_value` VALUES (949, 13, 53, 114);
+INSERT INTO `pms_sku_attr_value` VALUES (950, 25, 42, 114);
+INSERT INTO `pms_sku_attr_value` VALUES (951, 26, 47, 114);
+INSERT INTO `pms_sku_attr_value` VALUES (952, 27, 55, 114);
+INSERT INTO `pms_sku_attr_value` VALUES (953, 28, 61, 114);
+INSERT INTO `pms_sku_attr_value` VALUES (954, 29, 63, 114);
+INSERT INTO `pms_sku_attr_value` VALUES (955, 31, 68, 114);
+INSERT INTO `pms_sku_attr_value` VALUES (956, 33, 73, 114);
+INSERT INTO `pms_sku_attr_value` VALUES (957, 34, 76, 114);
+INSERT INTO `pms_sku_attr_value` VALUES (958, 35, 80, 114);
+INSERT INTO `pms_sku_attr_value` VALUES (959, 36, 83, 114);
+INSERT INTO `pms_sku_attr_value` VALUES (960, 37, 86, 114);
+INSERT INTO `pms_sku_attr_value` VALUES (961, 38, 88, 114);
+INSERT INTO `pms_sku_attr_value` VALUES (962, 40, 93, 114);
+INSERT INTO `pms_sku_attr_value` VALUES (963, 41, 94, 114);
+INSERT INTO `pms_sku_attr_value` VALUES (964, 42, 98, 114);
+INSERT INTO `pms_sku_attr_value` VALUES (965, 12, 49, 115);
+INSERT INTO `pms_sku_attr_value` VALUES (966, 13, 52, 115);
+INSERT INTO `pms_sku_attr_value` VALUES (967, 25, 42, 115);
+INSERT INTO `pms_sku_attr_value` VALUES (968, 26, 47, 115);
+INSERT INTO `pms_sku_attr_value` VALUES (969, 27, 55, 115);
+INSERT INTO `pms_sku_attr_value` VALUES (970, 28, 61, 115);
+INSERT INTO `pms_sku_attr_value` VALUES (971, 29, 63, 115);
+INSERT INTO `pms_sku_attr_value` VALUES (972, 31, 68, 115);
+INSERT INTO `pms_sku_attr_value` VALUES (973, 33, 73, 115);
+INSERT INTO `pms_sku_attr_value` VALUES (974, 34, 76, 115);
+INSERT INTO `pms_sku_attr_value` VALUES (975, 35, 80, 115);
+INSERT INTO `pms_sku_attr_value` VALUES (976, 36, 83, 115);
+INSERT INTO `pms_sku_attr_value` VALUES (977, 37, 86, 115);
+INSERT INTO `pms_sku_attr_value` VALUES (978, 38, 88, 115);
+INSERT INTO `pms_sku_attr_value` VALUES (979, 40, 93, 115);
+INSERT INTO `pms_sku_attr_value` VALUES (980, 41, 94, 115);
+INSERT INTO `pms_sku_attr_value` VALUES (981, 42, 98, 115);
 
 -- ----------------------------
 -- Table structure for pms_sku_image
@@ -3087,7 +3138,7 @@ CREATE TABLE `pms_sku_image`  (
   `spu_img_id` bigint(0) NULL DEFAULT NULL COMMENT '商品图片id',
   `is_default` varchar(4000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '是否默认',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1006 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '库存单元图片表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1047 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '库存单元图片表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_sku_image
@@ -3710,6 +3761,21 @@ INSERT INTO `pms_sku_image` VALUES (1018, 110, '液态天河2.jpg', 'http://192.
 INSERT INTO `pms_sku_image` VALUES (1019, 110, '液态天河3.jpg', 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAS0WYAALn1jN-eNo532.jpg', 172, '0');
 INSERT INTO `pms_sku_image` VALUES (1020, 110, '液态天河4.jpg', 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAM9LkAAOAyOK9gRY394.jpg', 173, '0');
 INSERT INTO `pms_sku_image` VALUES (1021, 110, '液态天河5.jpg', 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAHhFOAAQSKy6GZ8w049.jpg', 174, '0');
+INSERT INTO `pms_sku_image` VALUES (1032, 113, '琥珀醇.jpg', 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAFNypAASABMNKcnU638.jpg', 166, '1');
+INSERT INTO `pms_sku_image` VALUES (1033, 113, '琥珀醇2.jpg', 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAUu9iAAGTTS5Fsz4197.jpg', 160, '0');
+INSERT INTO `pms_sku_image` VALUES (1034, 113, '琥珀醇4.jpg', 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmANmTHAAOBmvf9Mik889.jpg', 161, '0');
+INSERT INTO `pms_sku_image` VALUES (1035, 113, '琥珀醇3.jpg', 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAKBLLAAMLUQLHsIk209.jpg', 162, '0');
+INSERT INTO `pms_sku_image` VALUES (1036, 113, '琥珀醇5.jpg', 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmALb9IAAQdgBIQRSo840.jpg', 163, '0');
+INSERT INTO `pms_sku_image` VALUES (1037, 114, '液态天河2.jpg', 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAdh8vAAF--21Be5o351.jpg', 171, '0');
+INSERT INTO `pms_sku_image` VALUES (1038, 114, '液态天河3.jpg', 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAS0WYAALn1jN-eNo532.jpg', 172, '0');
+INSERT INTO `pms_sku_image` VALUES (1039, 114, '液态天河4.jpg', 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAM9LkAAOAyOK9gRY394.jpg', 173, '0');
+INSERT INTO `pms_sku_image` VALUES (1040, 114, '液态天河5.jpg', 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAHhFOAAQSKy6GZ8w049.jpg', 174, '0');
+INSERT INTO `pms_sku_image` VALUES (1041, 114, '液态天河.jpg', 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAUtNXAARWFLs5Gsw808.jpg', 170, '1');
+INSERT INTO `pms_sku_image` VALUES (1042, 115, '琥珀醇2.jpg', 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAUu9iAAGTTS5Fsz4197.jpg', 160, '0');
+INSERT INTO `pms_sku_image` VALUES (1043, 115, '琥珀醇4.jpg', 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmANmTHAAOBmvf9Mik889.jpg', 161, '0');
+INSERT INTO `pms_sku_image` VALUES (1044, 115, '琥珀醇3.jpg', 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAKBLLAAMLUQLHsIk209.jpg', 162, '0');
+INSERT INTO `pms_sku_image` VALUES (1045, 115, '琥珀醇5.jpg', 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmALb9IAAQdgBIQRSo840.jpg', 163, '0');
+INSERT INTO `pms_sku_image` VALUES (1046, 115, '琥珀醇.jpg', 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAFNypAASABMNKcnU638.jpg', 166, '1');
 
 -- ----------------------------
 -- Table structure for pms_sku_info
@@ -3727,7 +3793,7 @@ CREATE TABLE `pms_sku_info`  (
   `sku_default_img` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '默认显示图片(冗余)',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_sku_info_sku_name`(`sku_name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 105 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '库存单元表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 116 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '库存单元表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_sku_info
@@ -3828,6 +3894,9 @@ INSERT INTO `pms_sku_info` VALUES (103, 65, 10001, '黑鲨游戏手机Gmall1015�
 INSERT INTO `pms_sku_info` VALUES (104, 65, 5000, '黑鲨游戏手机Gmall1015系列纪念版1T存储', '黑鲨游戏手机Gmall1015系列低配双核版黑鲨游戏手机Gmall1015系列低配双核版黑鲨游戏手机Gmall1015系列低配双核版黑鲨游戏手机Gmall1015系列低配双核版黑鲨游戏手机Gmall1015系列低配双核版', 10, NULL, 61, 'http://192.168.222.20/group1/M00/00/01/wKjeFFx_M_iAHVayAAAqaC4JyRU135.jpg');
 INSERT INTO `pms_sku_info` VALUES (105, 65, 2000, '黑鲨游戏手机Gmall1015系列加长版大硬盘5T', '黑鲨游戏手机Gmall1015系列低配双核版黑鲨游戏手机Gmall1015系列低配双核版黑鲨游戏手机Gmall1015系列低配双核版黑鲨游戏手机Gmall1015系列低配双核版黑鲨游戏手机Gmall1015系列低配双核版', 10, NULL, 61, 'http://192.168.222.20/group1/M00/00/01/wKjeFFx_M_iAcDhdAABGOuGpu5s589.jpg');
 INSERT INTO `pms_sku_info` VALUES (110, 80, 4998, 'vivo NEX 3S 5G 8GB+256GB 液态天河 骁龙865 无界瀑布屏 6400万超高像素 双模5G全网通手机', '主体\n入网型号\nV1950A\n品牌\nvivo\n产品名称\nNEX 3S\n上市年份\n2020年\n首销日期\n以官网信息为准\n上市月份\n3月\n基本信息\n机身长度（mm）\n167.44\n机身重量（g）\n219.5\n机身材质工艺\n其他\n机身宽度（mm）\n76.14\n机身材质分类\n玻璃后盖\n机身厚度（mm）\n9.4\n运营商标志或内容\n无\n输入方式\n触控\n主芯片\nCPU品牌\n高通(Qualcomm)\n屏幕\n屏幕像素密度（ppi）\n363\n屏幕材质类型\nAMOLED\n屏幕刷新率\n其他\n主屏幕尺寸（英寸）\n6.89英寸\n后置摄像头\n后摄3摄像素\n1300万像素\n后摄2摄像素\n1300万像素\n后摄主摄光圈\nf/1.8\n拍照特点\n自动对焦；超广角；美颜；连拍；智能拍照；全景；滤镜；动态萌拍；HDR\n闪光灯\n其他闪光灯\n前置摄像头\n前摄主摄光圈\n其他\n拍照特点\n美颜；连拍；全景；动态萌拍；滤镜\n电池信息\n电池是否可拆卸\n电池不可拆卸\n充电器\n11V/4A\n无线充电\n不支持无线充电\n网络支持\n最大支持SIM卡数量\n2个\n网络频率（2G/3G）\n2G：GSM 850/900/1800/1900；以官网信息为准\n5G网络\n移动5G；联通5G；电信5G\n4G网络\n4G FDD-LTE(联通)；4G TD-LTE(移动)；4G FDD-LTE(联通、电信)\n双卡机类型\n双卡双待\n3G/2G网络\n3G TD-SCDMA(移动)；3G WCDMA(联通)；3G CDMA2000(电信)\nSIM卡类型\nNano SIM\n数据接口\n数据传输接口\n蓝牙\n耳机接口类型\n3.5mm\n充电接口类型\nType-C\nNFC/NFC模式\n支持（点对点模式）；支持（读卡器模式）\n辅助功能\n常用功能\n便签；录音；重力感应\n包装清单\n主机（内置电池）*1、充电器*1、数据线*1、耳机*1、保护壳*1、取卡针*1、快速入门指南*1、重要信息和保修卡*1', 0.725, NULL, 61, 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAUtNXAARWFLs5Gsw808.jpg');
+INSERT INTO `pms_sku_info` VALUES (113, 80, 5298, 'vivo NEX 3S 5G 12GB+256GB 琥珀醇 骁龙865 无界瀑布屏 6400万超高像素 双模5G全网通手机', '商品名称：vivoNEX 3S商品编号：100011512632商品毛重：0.735kg商品产地：中国大陆CPU型号：其他运行内存：12GB机身存储：256GB存储卡：不支持存储卡摄像头数量：后置三摄后摄主摄像素：6400万像素前摄主摄像素：1600万像素主屏幕尺寸（英寸）：6.89英寸分辨率：其它分辨率屏幕比例：其它屏幕比例屏幕前摄组合：弹出式摄像头充电器：11V/4A热点：快速充电，NFC，屏幕指纹，5G，超高屏占比，弹出式摄像头充电功率：40-49W操作系统：Android(安卓)游戏配置：游戏性能模式', 0.735, NULL, 61, 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAFNypAASABMNKcnU638.jpg');
+INSERT INTO `pms_sku_info` VALUES (114, 80, 5298, 'vivo NEX 3S 5G 12GB+256GB 液态天河 骁龙865 无界瀑布屏 6400万超高像素 双模5G全网通手机', '商品名称：vivoNEX 3S商品编号：100011512630商品毛重：0.73kg商品产地：中国大陆CPU型号：其他运行内存：12GB机身存储：256GB存储卡：不支持存储卡摄像头数量：后置三摄后摄主摄像素：6400万像素前摄主摄像素：1600万像素主屏幕尺寸（英寸）：6.89英寸分辨率：其它分辨率屏幕比例：其它屏幕比例屏幕前摄组合：弹出式摄像头充电器：11V/4A热点：快速充电，NFC，屏幕指纹，5G，超高屏占比，弹出式摄像头充电功率：40-49W操作系统：Android(安卓)游戏配置：游戏性能模式', 0.73, NULL, 61, 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAUtNXAARWFLs5Gsw808.jpg');
+INSERT INTO `pms_sku_info` VALUES (115, 80, 4998, 'vivo NEX 3S 5G 8GB+256GB 琥珀醇 骁龙865 无界瀑布屏 6400万超高像素 双模5G全网通手机', '商品名称：vivoNEX 3S商品编号：100011512628商品毛重：0.735kg商品产地：中国大陆CPU型号：骁龙865运行内存：8GB机身存储：256GB存储卡：不支持存储卡摄像头数量：后置三摄后摄主摄像素：6400万像素前摄主摄像素：1600万像素主屏幕尺寸（英寸）：6.89英寸分辨率：其它分辨率屏幕比例：其它屏幕比例屏幕前摄组合：弹出式摄像头充电器：11V/4A热点：快速充电，NFC，屏幕指纹，5G，超高屏占比，弹出式摄像头充电功率：40-49W操作系统：Android(安卓)游戏配置：游戏性能模式', 0.735, NULL, 61, 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAFNypAASABMNKcnU638.jpg');
 
 -- ----------------------------
 -- Table structure for pms_sku_sale_attr_value
@@ -3841,7 +3910,7 @@ CREATE TABLE `pms_sku_sale_attr_value`  (
   `sale_attr_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售属性名称(冗余)',
   `sale_attr_value_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售属性值名称(冗余)',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 463 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'sku销售属性值' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 480 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'sku销售属性值' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_sku_sale_attr_value
@@ -4159,6 +4228,12 @@ INSERT INTO `pms_sku_sale_attr_value` VALUES (462, 105, 1, 235, '颜色', '变�
 INSERT INTO `pms_sku_sale_attr_value` VALUES (463, 105, 4, 237, '容量', '3T');
 INSERT INTO `pms_sku_sale_attr_value` VALUES (472, 110, 1, 261, '颜色', '液态天河');
 INSERT INTO `pms_sku_sale_attr_value` VALUES (473, 110, 3, 263, '版本', '8+256GB');
+INSERT INTO `pms_sku_sale_attr_value` VALUES (474, 113, 1, 262, '颜色', '琥珀醇');
+INSERT INTO `pms_sku_sale_attr_value` VALUES (475, 113, 3, 264, '版本', '12+256GB');
+INSERT INTO `pms_sku_sale_attr_value` VALUES (476, 114, 1, 261, '颜色', '液态天河');
+INSERT INTO `pms_sku_sale_attr_value` VALUES (477, 114, 3, 264, '版本', '12+256GB');
+INSERT INTO `pms_sku_sale_attr_value` VALUES (478, 115, 1, 262, '颜色', '琥珀醇');
+INSERT INTO `pms_sku_sale_attr_value` VALUES (479, 115, 3, 263, '版本', '8+256GB');
 
 -- ----------------------------
 -- Table structure for ums_member

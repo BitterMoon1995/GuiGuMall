@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>啊这</title>
+</head>
+<body>
+爆笑了家人们
+<br>
+<br/>
+取值：<h3 th:text="${str}">缺省值</h3>
+<br>
+循环：<p th:each="s:${list}" th:text="${s}"></p>
+判断：习近平是皇帝吗？<h1 th:if="1==1">是</h1>
+你支持习近平当皇帝吗？<h1 th:text="('2'=='2')?'非常支持':'完全支持'"></h1>
+
+<button onclick="a()">整麻了</button>
+<br>
+页面引入：
+<div th:include="hello"></div>
+部分页面引入：
+<div th:include="hello::nigger"></div>
+
+</body>
+
+<script>
+    function a() {
+        console.log("麻了")
+    }
+</script>
+</html>

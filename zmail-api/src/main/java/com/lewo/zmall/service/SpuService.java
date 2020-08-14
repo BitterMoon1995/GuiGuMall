@@ -1,9 +1,6 @@
 package com.lewo.zmall.service;
 
-import com.lewo.zmall.model.PmsBaseSaleAttr;
-import com.lewo.zmall.model.PmsProductImage;
-import com.lewo.zmall.model.PmsProductInfo;
-import com.lewo.zmall.model.PmsProductSaleAttr;
+import com.lewo.zmall.model.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,4 +17,8 @@ public interface SpuService {
     List<PmsProductSaleAttr> spuSaleAttrList(String spuId);
 
     List<PmsProductImage> spuImageList(String spuId);
+
+    List<PmsProductSaleAttr> getSaleAttr(String spuId,String skuId);
+
+    List<PmsProductSaleAttr> getCheckedSaleAttr(String spuId,String skuId);
 }

@@ -20,7 +20,7 @@ public class PmsProductSaleAttrValue implements Serializable {
     String saleAttrValueName;
 
     @Transient
-    String isChecked;
+    String isChecked;//进入SKU详情页时，被选中的属性值
 
     public String getId() {
         return id;

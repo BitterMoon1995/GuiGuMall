@@ -57,4 +57,34 @@ public class SkuServiceImpl implements SkuService {
             skuImageMapper.insert(img);
         });
     }
+
+    @Override
+    public PmsSkuInfo getById(String skuId) {
+        PmsSkuInfo skuInfo = skuInfoMapper.selectByPrimaryKey(skuId);
+
+        PmsSkuImage skuImage = new PmsSkuImage();
+        skuImage.setSkuId(skuId);
+        List<PmsSkuImage> skuImages = skuImageMapper.select(skuImage);
+        skuInfo.setSkuImageList(skuImages);
+
+        return skuInfo;
+    }
+
+    @Override
+    public void delSku(String skuId) {
+        skuInfoMapper.deleteByPrimaryKey(skuId);
+
+        PmsSkuImage skuImage = new PmsSkuImage();
+        skuImage.setSkuId(skuId);
+        skuImageMapper.delete(skuImage);
+
+        PmsSkuAttrValue baseAttr = new PmsSkuAttrValue();
+        baseAttr.setSkuId(skuId);
+        baseAttrValueMapper.delete(baseAttr);
+
+        PmsSkuSaleAttrValue saleAttr = new PmsSkuSaleAttrValue();
+        saleAttr.setSkuId(skuId);
+        saleAttrValueMapper.delete(saleAttr);
+    }
+
 }

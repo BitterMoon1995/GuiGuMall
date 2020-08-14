@@ -18,7 +18,7 @@ public class SpuServiceImpl implements SpuService {
     @Autowired
     PmsBaseSaleAttrMapper baseSaleAttrMapper;
     @Autowired
-    PmsProductSaleAttrValueMapper productSaleAttrValueMapper;
+    PmsProductSaleAttrValueMapper spuSaleAttrValueMapper;
     @Autowired
     PmsProductImageMapper imageMapper;
 
@@ -48,7 +48,7 @@ public class SpuServiceImpl implements SpuService {
             List<PmsProductSaleAttrValue> saleAttrValueList = saleAttr.getSpuSaleAttrValueList();
             for (PmsProductSaleAttrValue saleAttrValue : saleAttrValueList) {
                 saleAttrValue.setProductId(productId);
-                productSaleAttrValueMapper.insertSelective(saleAttrValue);
+                spuSaleAttrValueMapper.insertSelective(saleAttrValue);
             }
         }
         //图片绑ID
@@ -68,7 +68,7 @@ public class SpuServiceImpl implements SpuService {
 
         PmsProductSaleAttrValue saleAttrValue = new PmsProductSaleAttrValue();
         saleAttrValue.setProductId(id);
-        productSaleAttrValueMapper.delete(saleAttrValue);
+        spuSaleAttrValueMapper.delete(saleAttrValue);
 
         PmsProductImage productImage = new PmsProductImage();
         productImage.setProductId(id);
@@ -92,7 +92,7 @@ public class SpuServiceImpl implements SpuService {
             */
             attrValue.setSaleAttrId(attr.getSaleAttrId());
 
-            List<PmsProductSaleAttrValue> values = productSaleAttrValueMapper.select(attrValue);
+            List<PmsProductSaleAttrValue> values = spuSaleAttrValueMapper.select(attrValue);
             System.out.println(values);
 
             attr.setSpuSaleAttrValueList(values);
@@ -106,5 +106,32 @@ public class SpuServiceImpl implements SpuService {
         productImage.setProductId(spuId);
         return imageMapper.select(productImage);
     }
+
+    //根据spuID返回所有的属性名和对应的属性值
+    @Override
+    public List<PmsProductSaleAttr> getSaleAttr(String spuId,String skuId) {
+        PmsProductSaleAttr saleAttr = new PmsProductSaleAttr();
+        saleAttr.setProductId(spuId);
+        List<PmsProductSaleAttr> attrs = spuSaleAttrMapper.select(saleAttr);
+
+        attrs.forEach(attr -> {
+            String saleAttrId = attr.getSaleAttrId();
+            PmsProductSaleAttrValue attrValue = new PmsProductSaleAttrValue();
+            //根据商品的spuID和销售属性ID确定该平台销售属性下的所有该商品的销售属性值
+            //NEX3s的颜色属性，对应的所有属性值就是深空流光、液态天河、琥珀醇
+            attrValue.setProductId(spuId);
+            attrValue.setSaleAttrId(saleAttrId);
+
+            List<PmsProductSaleAttrValue> values = spuSaleAttrValueMapper.select(attrValue);
+            attr.setSpuSaleAttrValueList(values);
+        });
+        return attrs;
+    }
+
+    @Override
+    public List<PmsProductSaleAttr> getCheckedSaleAttr(String spuId, String skuId) {
+        return productInfoMapper.getCheckedSaleAttr(spuId,skuId);
+    }
+
 
 }
