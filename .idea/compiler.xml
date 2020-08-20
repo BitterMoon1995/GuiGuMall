@@ -7,17 +7,22 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="zmail-user" />
         <module name="fastdfs-client-java" />
         <module name="zmail-manage-web" />
         <module name="zmail-manage-service" />
         <module name="zmail-service-util" />
         <module name="zmail-user-service" />
-        <module name="zmail-common-util" />
-        <module name="zmail-user-web" />
+        <module name="zmail-user" />
         <module name="zmail-item-web" />
+        <module name="zmail-user-web" />
         <module name="zmail-web-util" />
         <module name="zmail-api" />
+      </profile>
+      <profile name="Annotation profile for zmail-common-util" enabled="true">
+        <sourceOutputDir name="../target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="zmail-common-util" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
@@ -37,8 +42,15 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="zmail-item-web" options="" />
-      <module name="zmail-user" options="" />
+      <module name="zmail-common-util" options="-parameters" />
+      <module name="zmail-item-web" options="-parameters" />
+      <module name="zmail-manage-service" options="-parameters" />
+      <module name="zmail-manage-web" options="-parameters" />
+      <module name="zmail-service-util" options="-parameters" />
+      <module name="zmail-user" options="-parameters" />
+      <module name="zmail-user-service" options="-parameters" />
+      <module name="zmail-user-web" options="-parameters" />
+      <module name="zmail-web-util" options="-parameters" />
     </option>
   </component>
 </project>

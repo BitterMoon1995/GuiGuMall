@@ -13,6 +13,7 @@
 <div id="max">
     <header>
 
+        <input type="text" th:value="${skuSaleAttrHashJsonStr}" id="valueSku">
         <div class="min">
             <ul class="header_ul_left">
                 <li class="glyphicon glyphicon-home"><a href="shouye.html" class="aa">首页</a></li>
@@ -1056,14 +1057,15 @@
             valueIds = valueIds + saleAttrValueDiv.attr("value");
         }
         //页面上的hashjson
-        var valuesSku = $("#valuesSku").attr("value");
+        var valuesSku = $("#valueSku").attr("value");
         var valuesSkuJson = JSON.parse(valuesSku);
+        console.log(valuesSkuJson)
 
-        // 看看hash有没有
+        // 对象[属性名] 相当于 对象.属性名 ，用于获取对象该属性名下的属性值。如果没有则返回undefined
         var skuId = valuesSkuJson[valueIds];
         // 当前sku
         var skuIdSelf = $("#skuId").val();
-
+        console.log(valueIds+skuId)
         // 判断是否跳转
         if (skuId) {
             if (skuId == skuIdSelf) {

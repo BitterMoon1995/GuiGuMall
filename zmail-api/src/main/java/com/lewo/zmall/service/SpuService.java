@@ -4,6 +4,7 @@ import com.lewo.zmall.model.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SpuService {
     List<PmsProductInfo> spuList(String catalog3Id);

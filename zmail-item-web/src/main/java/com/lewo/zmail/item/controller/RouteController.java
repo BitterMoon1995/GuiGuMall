@@ -1,9 +1,8 @@
 package com.lewo.zmail.item.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.lewo.zmall.model.PmsProductSaleAttr;
-import com.lewo.zmall.model.PmsProductSaleAttrValue;
-import com.lewo.zmall.model.PmsSkuInfo;
+import com.alibaba.fastjson.JSON;
+import com.lewo.zmall.model.*;
 import com.lewo.zmall.service.SkuService;
 import com.lewo.zmall.service.SpuService;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class RouteController {
@@ -36,14 +37,20 @@ public class RouteController {
         return "index";
     }
     @RequestMapping("{skuId}.html")
-    public String item(@PathVariable String skuId, ModelMap modelMap){
-        System.out.println(skuId);
+    public String item(@PathVariable String skuId, ModelMap modelMap) throws InterruptedException {
         PmsSkuInfo skuInfo=skuService.getById(skuId);
+        //这里的错误页代表没有该skuID的商品
+        if (skuInfo.getId().equals("noValue")) return "error";
         modelMap.put("skuInfo",skuInfo);
 
         String spuId = skuInfo.getSpuId();
         List<PmsProductSaleAttr> spuSaleAttrList =  spuService.getCheckedSaleAttr(spuId,skuId);
         modelMap.put("spuSaleAttrListCheckBySku",spuSaleAttrList);
+
+        Map<String, String> skuMap = skuService.generateSkuMap(spuId);
+        String toJSON = JSON.toJSONString(skuMap);
+        //返的是解析后的JSON串！我头尼玛又卡1小时
+        modelMap.put("skuSaleAttrHashJsonStr",toJSON);
 
         return "item";
     }

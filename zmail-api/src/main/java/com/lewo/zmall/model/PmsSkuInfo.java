@@ -2,7 +2,9 @@ package com.lewo.zmall.model;
 
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,6 +16,8 @@ import java.util.List;
  * @return
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PmsSkuInfo implements Serializable {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
