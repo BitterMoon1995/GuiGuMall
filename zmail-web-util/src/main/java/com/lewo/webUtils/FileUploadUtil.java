@@ -1,6 +1,6 @@
 package com.lewo.webUtils;
 
-import com.lewo.commonUtils.ConstantTable;
+import com.lewo.utils.ConstantTable;
 import org.csource.common.MyException;
 import org.csource.fastdfs.*;
 import org.springframework.web.multipart.MultipartFile;

@@ -1,4 +1,4 @@
-package com.lewo.commonUtils;
+package com.lewo.utils;
 
 public class ConstantTable {
     //fastdfs所部署服务器

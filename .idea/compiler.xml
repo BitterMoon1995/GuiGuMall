@@ -12,17 +12,12 @@
         <module name="zmail-manage-service" />
         <module name="zmail-service-util" />
         <module name="zmail-user-service" />
+        <module name="zmail-api" />
         <module name="zmail-user" />
         <module name="zmail-item-web" />
-        <module name="zmail-user-web" />
         <module name="zmail-web-util" />
-        <module name="zmail-api" />
-      </profile>
-      <profile name="Annotation profile for zmail-common-util" enabled="true">
-        <sourceOutputDir name="../target/generated-sources/annotations" />
-        <sourceTestOutputDir name="../target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
         <module name="zmail-common-util" />
+        <module name="zmail-user-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
