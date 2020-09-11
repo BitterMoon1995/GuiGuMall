@@ -5,6 +5,7 @@ import com.lewo.zmall.model.PmsBaseCatalog1;
 import com.lewo.zmall.model.PmsBaseCatalog2;
 import com.lewo.zmall.model.PmsBaseCatalog3;
 import com.lewo.zmall.service.PmsBaseService;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 public class CatalogController {
-    @Reference
+    @DubboReference
     PmsBaseService PmsBaseService;
     @RequestMapping("/getCatalog1")
     public List<PmsBaseCatalog1> getCatalog1(){

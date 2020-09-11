@@ -3,12 +3,13 @@ package com.lewo.zmail.manage.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.lewo.zmall.model.PmsSkuInfo;
 import com.lewo.zmall.service.SkuService;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
 public class SkuController {
-    @Reference
+    @DubboReference
     SkuService skuService;
 
     @RequestMapping("/saveSkuInfo")

@@ -12,6 +12,7 @@ import com.lewo.zmall.model.PmsSkuInfo;
 import com.lewo.zmall.model.PmsSkuSaleAttrValue;
 import com.lewo.zmall.service.SkuService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisCallback;
@@ -27,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
 
-@Service
+@DubboService
 public class SkuServiceImpl implements SkuService {
 
     @Autowired
@@ -87,7 +88,7 @@ public class SkuServiceImpl implements SkuService {
 
             //★小问题一：拿到锁的线程XiaoChuan突然暴毙了，且超过了锁的过期时间
             //这时候另外一个线程LiGan刚拿到锁，请求DB，这时候XiaoChuan线程又亲妈复活了
-            //XC复活后继续执行代码并删除LiGan了LG的锁(后果未知，至少这里无所谓)
+            //XiaoChuan复活后继续执行代码并删除了LiGan的锁(后果未知，至少这里无所谓)
             String uniqueLock = UUID.randomUUID().toString().substring(0, 6);
 
             //★互斥锁防缓存击穿★，
@@ -147,10 +148,10 @@ public class SkuServiceImpl implements SkuService {
         }
     }
     private void getDetail(PmsSkuInfo skuInfo, String skuId) {
-        PmsSkuAttrValue attrValue = new PmsSkuAttrValue();
-        attrValue.setSkuId(skuId);
-        List<PmsSkuAttrValue> attrValues = baseAttrValueMapper.select(attrValue);
-        skuInfo.setSkuAttrValueList(attrValues);
+//        PmsSkuAttrValue attrValue = new PmsSkuAttrValue();
+//        attrValue.setSkuId(skuId);
+//        List<PmsSkuAttrValue> attrValues = baseAttrValueMapper.select(attrValue);
+//        skuInfo.setSkuAttrValueList(attrValues);
 
         PmsSkuImage skuImage = new PmsSkuImage();
         skuImage.setSkuId(skuId);
@@ -209,11 +210,26 @@ public class SkuServiceImpl implements SkuService {
                 //将所有销售属性对应的SPU销售属性ID拼接成每个SKU的惟一串，作为key
                 key.append(attrValue.getSaleAttrValueId()).append("|");
             }
-            //value就是SKU的ID。这样前端切换销售属性时，就可以直接根据属性的组合在本地得到对应的SkuID，
+            //value就是SKU的ID。这样前端切换销售属性时，就可以直接根据销售属性的组合在本地得到对应的SkuID，
             //而并不需要再专门查询一次，每一次切换属性就少了一次网络IO和数据库IO
             //key要去除最后一个‘|’
             skuMap.put(key.toString().substring(0, key.length() - 1), value);
         }
         return skuMap;
+    }
+
+    @Override
+    public List<PmsSkuInfo> getAllSku() {
+        List<PmsSkuInfo> skuInfos = skuInfoMapper.selectAll();
+
+        skuInfos.forEach(skuInfo -> {
+            String id = skuInfo.getId();
+            PmsSkuAttrValue attrValue = new PmsSkuAttrValue();
+            attrValue.setSkuId(id);
+            List<PmsSkuAttrValue> attrValueList = baseAttrValueMapper.select(attrValue);
+            skuInfo.setSkuAttrValueList(attrValueList);
+        });
+
+        return skuInfos;
     }
 }

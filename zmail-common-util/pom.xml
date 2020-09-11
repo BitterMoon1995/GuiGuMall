@@ -31,7 +31,6 @@
         </dependency>
 
 
-
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
@@ -52,28 +51,42 @@
             <artifactId>commons-codec</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.dubbo/dubbo-spring-boot-starter -->
         <dependency>
-            <groupId>com.alibaba.boot</groupId>
+            <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo</artifactId>
+            <version>2.7.8</version>
         </dependency>
 
+
+        <!-- zk的依赖,只包含以zk作为注册中心的依赖，服务只能以zk作为注册中心。 -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-dependencies-zookeeper</artifactId>
+            <type>pom</type>
+            <version>2.7.8</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter -->
-        <dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson-spring-boot-starter</artifactId>
-            <version>3.13.3</version>
-        </dependency>
+        <!-- zk的依赖可以换为以下一种或者Apache的也行，均包含了dubbo支持的所有的注册中心的依赖： -->
+        <!--        <dependency>-->
+        <!--            <groupId>com.alibaba</groupId>-->
+        <!--            <artifactId>dubbo</artifactId>-->
+        <!--            <version>2.6.9</version>-->
+        <!--        </dependency>-->
 
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-pool2 -->
+
+        <!--        ”9.9事件“-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.netty</groupId>-->
+        <!--            <artifactId>netty-all</artifactId>-->
+        <!--            <version>4.1.52.Final</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>

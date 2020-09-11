@@ -18,4 +18,6 @@ public interface SkuService {
     List<PmsSkuSaleAttrValue> getSaleAttrValue(String skuId);
 
     Map<String, String> generateSkuMap(String spuId);
+
+    List<PmsSkuInfo> getAllSku();
 }

@@ -7,17 +7,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="fastdfs-client-java" />
-        <module name="zmail-manage-web" />
-        <module name="zmail-manage-service" />
-        <module name="zmail-service-util" />
-        <module name="zmail-user-service" />
         <module name="zmail-api" />
+        <module name="zmail-service-util" />
+        <module name="zmail-user-web" />
+        <module name="zmail-manage-web" />
+        <module name="zmail-search-service" />
+        <module name="zmail-manage-service" />
+        <module name="fastdfs-client-java" />
         <module name="zmail-user" />
+        <module name="zmail-search-web" />
+        <module name="zmail-common-util" />
         <module name="zmail-item-web" />
         <module name="zmail-web-util" />
-        <module name="zmail-common-util" />
-        <module name="zmail-user-web" />
+        <module name="zmail-user-service" />
+        <module name="zmail-test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
@@ -28,7 +31,10 @@
       <module name="zmail-manage-service" target="1.8" />
       <module name="zmail-manage-web" target="1.8" />
       <module name="zmail-parent" target="1.8" />
+      <module name="zmail-search-service" target="1.8" />
+      <module name="zmail-search-web" target="1.8" />
       <module name="zmail-service-util" target="1.8" />
+      <module name="zmail-test" target="1.8" />
       <module name="zmail-user" target="1.8" />
       <module name="zmail-user-service" target="1.8" />
       <module name="zmail-user-web" target="1.8" />
@@ -41,7 +47,10 @@
       <module name="zmail-item-web" options="-parameters" />
       <module name="zmail-manage-service" options="-parameters" />
       <module name="zmail-manage-web" options="-parameters" />
+      <module name="zmail-search-service" options="-parameters" />
+      <module name="zmail-search-web" options="-parameters" />
       <module name="zmail-service-util" options="-parameters" />
+      <module name="zmail-test" options="-parameters" />
       <module name="zmail-user" options="-parameters" />
       <module name="zmail-user-service" options="-parameters" />
       <module name="zmail-user-web" options="-parameters" />

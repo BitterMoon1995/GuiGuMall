@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.lewo</groupId>
-    <artifactId>zmail-user-com.lewo.zmail.manage.service</artifactId>
+    <artifactId>zmail-user-service</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <parent>
@@ -22,7 +22,7 @@
 
         <dependency>
             <groupId>com.lewo</groupId>
-            <artifactId>zmail-com.lewo.zmail.manage.service-util</artifactId>
+            <artifactId>zmail-service-util</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

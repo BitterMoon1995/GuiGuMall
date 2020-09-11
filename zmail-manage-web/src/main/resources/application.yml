@@ -2,15 +2,20 @@ server:
   port: 2010
   address: 0.0.0.0
 
-logging:
-  level: info
+dubbo:
+  application:
+    name: manage-web
+  registry:
+    address: 192.168.156.128
+    protocol: zookeeper
+    port: 2181
+
 
 spring:
-  dubbo:
-    application: manage-web
-    registry:
-      address: 192.168.156.128:2181
-    base-package: com.lewo.zmail.manage.controller
-
-#    Dubbo 使用RPC通信标准化规范:
-#    编写接口 —> 提供者将实现接口的service将服务注册到zookeeper注册中心 —> 消费者在服务中心引用提供者实现的接口
+  thymeleaf:
+    #开发时关闭缓存,不然没法看到实时页面
+    cache: false
+    #设置非严格模式
+    mode: LEGACYHTML5
+  main:
+    allow-bean-definition-overriding: true

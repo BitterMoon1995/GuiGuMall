@@ -4,11 +4,12 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.lewo.zmail.manage.dao.*;
 import com.lewo.zmall.model.*;
 import com.lewo.zmall.service.SpuService;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
-@Service
+@DubboService
 public class SpuServiceImpl implements SpuService {
     @Autowired
     ProductInfoMapper productInfoMapper;

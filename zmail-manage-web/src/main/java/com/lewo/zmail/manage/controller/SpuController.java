@@ -7,6 +7,7 @@ import com.lewo.zmall.model.PmsProductImage;
 import com.lewo.zmall.model.PmsProductInfo;
 import com.lewo.zmall.model.PmsProductSaleAttr;
 import com.lewo.zmall.service.SpuService;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,7 +16,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 public class SpuController {
-    @Reference
+    @DubboReference
     SpuService spuService;
 
     @RequestMapping("/spuList")

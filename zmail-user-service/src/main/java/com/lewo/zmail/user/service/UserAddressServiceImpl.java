@@ -1,9 +1,12 @@
 package com.lewo.zmail.user.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.lewo.zmail.user.dao.UserAddressMapper;
 import com.lewo.zmall.model.UserAddress;
+import com.lewo.zmall.service.SkuService;
 import com.lewo.zmall.service.UserAddressService;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
 
@@ -11,6 +14,8 @@ import java.util.List;
 
 @Service
 public class UserAddressServiceImpl implements UserAddressService{
+    @DubboReference
+    SkuService skuService;
     @Autowired
     UserAddressMapper mapper;
     @Override

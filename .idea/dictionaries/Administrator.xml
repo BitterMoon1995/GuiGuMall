@@ -2,6 +2,7 @@
   <dictionary name="Administrator">
     <words>
       <w>redisson</w>
+      <w>zmail</w>
     </words>
   </dictionary>
 </component>

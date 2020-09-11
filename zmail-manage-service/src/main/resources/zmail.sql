@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 14/08/2020 18:29:28
+ Date: 11/09/2020 18:48:44
 */
 
 SET NAMES utf8mb4;
@@ -268,7 +268,7 @@ INSERT INTO `pms_base_attr_info` VALUES (36, '吃鸡性能', 61, NULL);
 INSERT INTO `pms_base_attr_info` VALUES (37, 'lol性能', 61, NULL);
 INSERT INTO `pms_base_attr_info` VALUES (38, '续航时间', 61, NULL);
 INSERT INTO `pms_base_attr_info` VALUES (40, '商品保修期', 61, NULL);
-INSERT INTO `pms_base_attr_info` VALUES (41, '二级内存', 61, NULL);
+INSERT INTO `pms_base_attr_info` VALUES (41, '一级内存', 61, NULL);
 INSERT INTO `pms_base_attr_info` VALUES (42, '二级内存', 61, NULL);
 
 -- ----------------------------

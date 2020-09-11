@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.lewo.zmall.model.PmsBaseAttrInfo;
 import com.lewo.zmall.model.PmsBaseAttrValue;
 import com.lewo.zmall.service.PmsBaseService;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 public class AttrController {
-    @Reference
+    @DubboReference
     PmsBaseService PmsBaseService;
     @RequestMapping("/attrInfoList")
     public List<PmsBaseAttrInfo> getAttrList(String id){

@@ -6,6 +6,7 @@ import com.lewo.zmail.manage.dao.*;
 import com.lewo.zmall.model.*;
 import com.lewo.zmall.service.PmsBaseService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
 
@@ -17,7 +18,7 @@ import java.util.List;
  * @author makejava
  * @since 2020-03-19 10:47:30
  */
-@Service
+@DubboService
 public class PmsBaseServiceImpl implements PmsBaseService {
     @Autowired
     PmsBaseCatalog1Dao pmsBaseCatalog1Dao;

@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lewo.zmail.manage.dao.ProductInfoMapper">
     <select id="getCheckedSaleAttr" resultMap="getCheckedSaleAttrMap">
-        SELECT sa.id as sa_id,sav.id as sav_id,sa.*,sav.*,IF(ssav.sku_id,1,0) isChecked FROM pms_product_sale_attr sa
+        SELECT sa.id as sa_id,sav.id as sav_id,sa.*,sav.*,IF(ssav.sku_id,1,0) isChecked
+        FROM pms_product_sale_attr sa
         LEFT JOIN pms_product_sale_attr_value sav
         ON sa.product_id = sav.product_id
         AND sa.sale_attr_id = sav.sale_attr_id

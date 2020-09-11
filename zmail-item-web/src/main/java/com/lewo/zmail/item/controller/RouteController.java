@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.lewo.zmall.model.*;
 import com.lewo.zmall.service.SkuService;
 import com.lewo.zmall.service.SpuService;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -18,9 +19,9 @@ import java.util.Map;
 
 @Controller
 public class RouteController {
-    @Reference
+    @DubboReference
     SkuService skuService;//SOA架构的要义：面向服务架构
-    @Reference
+    @DubboReference
     SpuService spuService;
 
     @RequestMapping("index")
