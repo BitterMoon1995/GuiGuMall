@@ -1,7 +1,6 @@
 package com.lewo.zmail.manage.service;
 
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.lewo.zmail.manage.dao.*;
 import com.lewo.zmall.model.*;
 import com.lewo.zmall.service.PmsBaseService;

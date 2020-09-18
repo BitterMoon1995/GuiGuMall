@@ -72,7 +72,7 @@
         <i><img src="/list/image/right-@1x.png" alt=""></i>
         <span th:if="${keyword}!=null" th:text="'&quot;'+${keyword}+'&quot;'">&quot;小米&quot;</span>
         <a class="select-attr" th:each="baseAttrValueSelected:${attrValueSelectedList}"
-           th:href="'list?'+${baseAttrValueSelected.urlParam}"
+           th:href="'list.html?'+${baseAttrValueSelected.urlParam}"
            th:utext=" ${baseAttrValueSelected.valueName} +'<b> ✖ </b>'">
             2G<b> ✖ </b>
         </a>
@@ -100,7 +100,7 @@
                     <div class="sl_value">
                         <ul>
                             <li th:each="attrValue:${attrInfo.attrValueList}"><a
-                                    th:href="'/list?'+${urlParam}+'&valueId='+${attrValue.id}"
+                                    th:href="'/list.html?'+${urlParam}+'&valueId='+${attrValue.id}"
                                     th:text="${attrValue.valueName}">属性值</a></li>
                         </ul>
                     </div>
@@ -410,12 +410,12 @@
 <script src="/list/js/index.js"></script>
 <script language="JavaScript">
     function item(skuid) {
-        window.location.href = "http://item.gmall.com:8082/" + skuid + ".html";
+        window.location.href = "http://localhost:2020/" + skuid + ".html";
     }
 
     function searchList() {
         var keyword = $("#keyword").val();
-        window.location.href = "/list?keyword=" + keyword;
+        window.location.href = "/list.html?keyword=" + keyword;
     }
 
 

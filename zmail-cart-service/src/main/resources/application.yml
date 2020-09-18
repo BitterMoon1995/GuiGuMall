@@ -1,0 +1,42 @@
+server:
+  port: 2041
+  address: 0.0.0.0
+
+dubbo:
+  application:
+    name: cart-service
+  registry:
+    address: 192.168.156.128:2181
+    protocol: zookeeper
+  protocol:
+    #20880是默认端口，被ManageService占了
+    port: 20882
+    #protocol name属性必须配置
+    name: dubbo
+
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost/zmail?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  main:
+    allow-bean-definition-overriding: true
+  redis:
+    host: 192.168.156.128
+    port: 6379
+    password: godz1995
+    timeout: 3000
+    jedis:
+      pool:
+        max-wait: 30000
+        max-active: 100
+        max-idle: 10
+        min-idle: 0
+#    redisson:
+#      config: classpath:redisson-single-dev.yml
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.lewo.zmall.model

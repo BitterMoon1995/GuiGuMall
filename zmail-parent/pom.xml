@@ -11,6 +11,8 @@
         <module>../zmail-test</module>
         <module>../zmail-search-web</module>
         <module>../zmail-search-service</module>
+        <module>../zmail-cart-service</module>
+        <module>../zmail-cart-web</module>
     </modules>
     <packaging>pom</packaging>
 <!--    负责管理版本号，不会有任何内容-->

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lewo.zmail.search.dao.PmsAttrInfoMapper">
+    <select id="attrListByValues" resultMap="godzMap">
+        SELECT
+            ba.*,
+            ba.id AS ba_id,
+            bav.*,
+            bav.id AS bav_id,
+            bav.is_enabled AS bav_is_enabled
+        FROM
+            pms_base_attr_info as ba
+            LEFT JOIN pms_base_attr_value as bav
+            ON ba.id = bav.attr_id
+        WHERE
+            bav.id IN (${valueIdStr});
+    </select>
+    <resultMap id="godzMap" type="com.lewo.zmall.model.PmsBaseAttrInfo" autoMapping="true">
+        <result column="ba_id" property="id"/>
+
+<!--        注意这里的property是bean中那个集合属性名-->
+        <collection property="attrValueList"
+                    ofType="com.lewo.zmall.model.PmsBaseAttrValue" autoMapping="true">
+            <result column="bav_id" property="id"/>
+            <result column="bav_is_enabled" property="isEnabled"/>
+        </collection>
+    </resultMap>
+</mapper>

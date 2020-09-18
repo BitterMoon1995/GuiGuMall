@@ -1,0 +1,23 @@
+server:
+  port: 2040
+  address: 0.0.0.0
+
+dubbo:
+  application:
+    name: cart-web
+  registry:
+    address: 192.168.156.128:2181
+    protocol: zookeeper
+  #  Whether to check if register center is available when boot up
+    check: off
+  consumer:
+    check: off
+
+spring:
+  thymeleaf:
+    #开发时关闭缓存,不然没法看到实时页面
+    cache: false
+    #设置非严格模式
+    mode: LEGACYHTML5
+  main:
+    allow-bean-definition-overriding: true

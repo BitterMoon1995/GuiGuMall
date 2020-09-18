@@ -43,11 +43,11 @@ public class RouteController {
         //这里的错误页代表没有该skuID的商品
         if (skuInfo.getId().equals("noValue")) return "error";
         modelMap.put("skuInfo",skuInfo);
-
+        //生成所属SPU的销售属性集，其中当前SKU的销售属性被标记被选中状态
         String spuId = skuInfo.getSpuId();
         List<PmsProductSaleAttr> spuSaleAttrList =  spuService.getCheckedSaleAttr(spuId,skuId);
         modelMap.put("spuSaleAttrListCheckBySku",spuSaleAttrList);
-
+        //生成<SPU的销售属性对>-<SkuID>的映射集
         Map<String, String> skuMap = skuService.generateSkuMap(spuId);
         String toJSON = JSON.toJSONString(skuMap);
         //返的是解析后的JSON串！我头尼玛又卡1小时

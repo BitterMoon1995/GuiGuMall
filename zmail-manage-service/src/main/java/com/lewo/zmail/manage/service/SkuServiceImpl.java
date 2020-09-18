@@ -196,12 +196,14 @@ public class SkuServiceImpl implements SkuService {
     public Map<String, String> generateSkuMap(String spuId) {
         //根据spuId查询旗下的所有的SKU
         List<PmsSkuInfo> skuInfos = getAllSkuBySpuId(spuId);
-        //现在要拿到键为一个SKU所有销售属性值ID拼接的字符串，值为该skuID的map并返回给页面
+        //现在要拿到键为一个SKU销售属性值ID拼接的字符串，值为该skuID的map并返回给页面
         HashMap<String, String> skuMap = new HashMap<>();
 
         for (PmsSkuInfo sku : skuInfos
         ) {
             StringBuilder key = new StringBuilder();
+            //value就是SKU的ID。这样前端切换销售属性时，就可以直接根据销售属性的组合在本地得到对应的SkuID，
+            //而并不需要再专门查询一次，每一次切换属性就少了一次网络IO和数据库IO
             String value = sku.getId();
             //根据skuId查询旗下所有销售属性
             List<PmsSkuSaleAttrValue> attrValues = getSaleAttrValue(value);
@@ -210,10 +212,14 @@ public class SkuServiceImpl implements SkuService {
                 //将所有销售属性对应的SPU销售属性ID拼接成每个SKU的惟一串，作为key
                 key.append(attrValue.getSaleAttrValueId()).append("|");
             }
-            //value就是SKU的ID。这样前端切换销售属性时，就可以直接根据销售属性的组合在本地得到对应的SkuID，
-            //而并不需要再专门查询一次，每一次切换属性就少了一次网络IO和数据库IO
-            //key要去除最后一个‘|’
+
+            /*key要去除最后一个‘|’
+            这里要有健壮度设计家人们，因为存在这种情况：该SPU旗下存在没有销售属性的SKU
+            比如SPU-25旗下的SKU-16，这时就会截空串就会触发NPE
+            */
+            if (key.toString().length()!=0)
             skuMap.put(key.toString().substring(0, key.length() - 1), value);
+            else System.out.println(sku);
         }
         return skuMap;
     }

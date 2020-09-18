@@ -41,7 +41,7 @@ public class SearchServiceImpl implements SearchService {
     public List<PmsSearchSkuInfo> searchSku(PmsSearchParam param,
     Integer from, Integer size,String sortField,Boolean isDesc) throws IOException {
         BoolQueryBuilder boolBuilder = QueryBuilders.boolQuery();
-        List<PmsSkuAttrValue> attrValueList = param.getValueId();
+        String[] attrValueIdList = param.getValueId();
         String keyword = param.getKeyword();
         String catalog3Id = param.getCatalog3Id();
         //3级分类
@@ -50,11 +50,11 @@ public class SearchServiceImpl implements SearchService {
             boolBuilder.filter(termQueryBuilder);
         }
         //平台属性值
-        if (attrValueList!=null){
-            attrValueList.forEach(attrValue->{
-                TermQueryBuilder termQueryBuilder = new TermQueryBuilder("skuAttrValueList.valueId", attrValue.getValueId());
+        if (attrValueIdList!=null){
+            for (String s : attrValueIdList) {
+                TermQueryBuilder termQueryBuilder = new TermQueryBuilder("skuAttrValueList.valueId", s);
                 boolBuilder.filter(termQueryBuilder);
-            });
+            }
         }
         //搜索关键字
         if (!StringUtils.isEmpty(keyword)){

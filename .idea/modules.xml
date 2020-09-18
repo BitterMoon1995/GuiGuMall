@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/GuiGuMail.iml" filepath="$PROJECT_DIR$/.idea/GuiGuMail.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastdfs-client-java/fastdfs-client-java.iml" filepath="$PROJECT_DIR$/fastdfs-client-java/fastdfs-client-java.iml" />
       <module fileurl="file://$PROJECT_DIR$/zmail-api/zmail-api.iml" filepath="$PROJECT_DIR$/zmail-api/zmail-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zmail-cart-service/zmail-cart-service.iml" filepath="$PROJECT_DIR$/zmail-cart-service/zmail-cart-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zmail-cart-web/zmail-cart-web.iml" filepath="$PROJECT_DIR$/zmail-cart-web/zmail-cart-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/zmail-common-util/zmail-common-util.iml" filepath="$PROJECT_DIR$/zmail-common-util/zmail-common-util.iml" />
       <module fileurl="file://$PROJECT_DIR$/zmail-item-web/zmail-item-web.iml" filepath="$PROJECT_DIR$/zmail-item-web/zmail-item-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/zmail-manage-service/zmail-manage-service.iml" filepath="$PROJECT_DIR$/zmail-manage-service/zmail-manage-service.iml" />

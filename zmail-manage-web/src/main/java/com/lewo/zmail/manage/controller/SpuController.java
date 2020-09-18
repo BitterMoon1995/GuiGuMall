@@ -1,7 +1,6 @@
 package com.lewo.zmail.manage.controller;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.lewo.webUtils.FileUploadUtil;
+import com.lewo.zmail.web.utils.FileUploadUtil;
 import com.lewo.zmall.model.PmsBaseSaleAttr;
 import com.lewo.zmall.model.PmsProductImage;
 import com.lewo.zmall.model.PmsProductInfo;

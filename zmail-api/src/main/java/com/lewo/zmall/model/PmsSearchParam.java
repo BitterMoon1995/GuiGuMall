@@ -12,5 +12,5 @@ public class PmsSearchParam implements Serializable{
 
     private String keyword;
 
-    private List<PmsSkuAttrValue> valueId;
+    private String[] valueId;
 }
