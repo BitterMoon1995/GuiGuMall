@@ -15,11 +15,11 @@ public class OmsOrder implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-    private String memberId;
+    private String userId;
     private String couponId;
     private String orderSn;
     private Date createTime;
-    private String memberUsername;
+    private String userUsername;
     private BigDecimal totalAmount;
     private BigDecimal payAmount;
     private BigDecimal freightAmount;
@@ -80,12 +80,12 @@ public class OmsOrder implements Serializable {
         this.id = id;
     }
 
-    public String getMemberId() {
-        return memberId;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getCouponId() {
@@ -113,11 +113,11 @@ public class OmsOrder implements Serializable {
     }
 
     public String getMemberUsername() {
-        return memberUsername;
+        return userUsername;
     }
 
-    public void setMemberUsername(String memberUsername) {
-        this.memberUsername = memberUsername;
+    public void setMemberUsername(String userUsername) {
+        this.userUsername = userUsername;
     }
 
     public BigDecimal getTotalAmount() {

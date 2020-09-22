@@ -65,7 +65,6 @@ public class CookieUtil {
             // 在域名的根路径下保存
             cookie.setPath("/");
             response.addCookie(cookie);
-            System.out.println(cookie.getDomain());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -101,7 +100,6 @@ public class CookieUtil {
             String[] ary = domainName.split("\\:");
             domainName = ary[0];
         }
-        System.out.println("domainName = " + domainName);
         return domainName;
     }
     /***

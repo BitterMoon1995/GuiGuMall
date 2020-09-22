@@ -25,7 +25,7 @@ CREATE TABLE `oms_cart_item`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `product_id` bigint(0) NULL DEFAULT NULL,
   `product_sku_id` bigint(0) NULL DEFAULT NULL,
-  `member_id` bigint(0) NULL DEFAULT NULL,
+  `user_id` bigint(0) NULL DEFAULT NULL,
   `quantity` int(0) NULL DEFAULT NULL COMMENT '购买数量',
   `price` decimal(10, 2) NULL DEFAULT NULL COMMENT '添加到购物车的价格',
   `sp1` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售属性1',
@@ -35,7 +35,7 @@ CREATE TABLE `oms_cart_item`  (
   `product_name` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品名称',
   `product_sub_title` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品副标题（卖点）',
   `product_sku_code` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品sku条码',
-  `member_nickname` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '会员昵称',
+  `user_nickname` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '会员昵称',
   `create_date` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `modify_date` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
   `delete_status` int(0) NULL DEFAULT 0 COMMENT '是否删除',
@@ -86,11 +86,11 @@ INSERT INTO `oms_company_address` VALUES (3, '南京发货点', 0, 0, '大梨', 
 DROP TABLE IF EXISTS `oms_order`;
 CREATE TABLE `oms_order`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '订单id',
-  `member_id` bigint(0) NOT NULL,
+  `user_id` bigint(0) NOT NULL,
   `coupon_id` bigint(0) NULL DEFAULT NULL,
   `order_sn` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单编号',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '提交时间',
-  `member_username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户帐号',
+  `user_username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户帐号',
   `total_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '订单总金额',
   `pay_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '应付金额（实际支付金额）',
   `freight_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '运费金额',
@@ -1875,10 +1875,10 @@ DROP TABLE IF EXISTS `pms_comment`;
 CREATE TABLE `pms_comment`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `product_id` bigint(0) NULL DEFAULT NULL,
-  `member_nick_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_nick_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `product_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `star` int(0) NULL DEFAULT NULL COMMENT '评价星数：0->5',
-  `member_ip` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '评价的ip',
+  `user_ip` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '评价的ip',
   `create_time` datetime(0) NULL DEFAULT NULL,
   `show_status` int(0) NULL DEFAULT NULL,
   `product_attribute` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '购买时的商品属性',
@@ -1886,7 +1886,7 @@ CREATE TABLE `pms_comment`  (
   `read_count` int(0) NULL DEFAULT NULL,
   `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   `pics` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '上传图片地址，以逗号隔开',
-  `member_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '评论用户头像',
+  `user_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '评论用户头像',
   `replay_count` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品评价表' ROW_FORMAT = Dynamic;
@@ -1902,8 +1902,8 @@ DROP TABLE IF EXISTS `pms_comment_replay`;
 CREATE TABLE `pms_comment_replay`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `comment_id` bigint(0) NULL DEFAULT NULL,
-  `member_nick_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `member_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_nick_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `content` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `create_time` datetime(0) NULL DEFAULT NULL,
   `type` int(0) NULL DEFAULT NULL COMMENT '评论人员类型；0->会员；1->管理员',
@@ -4236,12 +4236,12 @@ INSERT INTO `pms_sku_sale_attr_value` VALUES (478, 115, 1, 262, '颜色', '琥�
 INSERT INTO `pms_sku_sale_attr_value` VALUES (479, 115, 3, 263, '版本', '8+256GB');
 
 -- ----------------------------
--- Table structure for ums_member
+-- Table structure for ums_user
 -- ----------------------------
-DROP TABLE IF EXISTS `ums_member`;
-CREATE TABLE `ums_member`  (
+DROP TABLE IF EXISTS `ums_user`;
+CREATE TABLE `ums_user`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
-  `member_level_id` bigint(0) NULL DEFAULT NULL,
+  `user_level_id` bigint(0) NULL DEFAULT NULL,
   `username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
   `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
   `nickname` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '昵称',
@@ -4265,23 +4265,23 @@ CREATE TABLE `ums_member`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '会员表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of ums_member
+-- Records of ums_user
 -- ----------------------------
-INSERT INTO `ums_member` VALUES (1, 4, 'test', '202cb962ac59075b964b07152d234b70', 'windir', '18061581849', 1, '2018-08-02 10:35:44', NULL, 1, '2009-06-01', '上海', '学生', 'test', NULL, 5000, NULL, NULL, NULL);
-INSERT INTO `ums_member` VALUES (3, 4, 'windy', 'e10adc3949ba59abbe56e057f20f883e', 'windy', '18061581848', 1, '2018-08-03 16:46:38', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ums_member` VALUES (4, 4, 'zhengsan', 'e10adc3949ba59abbe56e057f20f883e', 'zhengsan', '18061581847', 1, '2018-11-12 14:12:04', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ums_member` VALUES (5, 4, 'lisi', 'e10adc3949ba59abbe56e057f20f883e', 'lisi', '18061581841', 1, '2018-11-12 14:12:38', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ums_member` VALUES (6, 4, 'wangwu', 'e10adc3949ba59abbe56e057f20f883e', 'wangwu', '18061581842', 1, '2018-11-12 14:13:09', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ums_member` VALUES (7, 4, 'lion', 'e10adc3949ba59abbe56e057f20f883e', 'lion', '18061581845', 1, '2018-11-12 14:21:39', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ums_member` VALUES (8, 4, 'shari', 'e10adc3949ba59abbe56e057f20f883e', 'shari', '18061581844', 1, '2018-11-12 14:22:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ums_member` VALUES (9, 4, 'aewen', 'e10adc3949ba59abbe56e057f20f883e', 'aewen', '18061581843', 1, '2018-11-12 14:22:55', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ums_member` VALUES (10, 4, 'zhangsan', 'e10adc3949ba59abbe56e057f20f883e', NULL, '17512080612', 1, '2019-03-06 17:51:56', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ums_user` VALUES (1, 4, 'test', '202cb962ac59075b964b07152d234b70', 'windir', '18061581849', 1, '2018-08-02 10:35:44', NULL, 1, '2009-06-01', '上海', '学生', 'test', NULL, 5000, NULL, NULL, NULL);
+INSERT INTO `ums_user` VALUES (3, 4, 'windy', 'e10adc3949ba59abbe56e057f20f883e', 'windy', '18061581848', 1, '2018-08-03 16:46:38', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ums_user` VALUES (4, 4, 'zhengsan', 'e10adc3949ba59abbe56e057f20f883e', 'zhengsan', '18061581847', 1, '2018-11-12 14:12:04', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ums_user` VALUES (5, 4, 'lisi', 'e10adc3949ba59abbe56e057f20f883e', 'lisi', '18061581841', 1, '2018-11-12 14:12:38', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ums_user` VALUES (6, 4, 'wangwu', 'e10adc3949ba59abbe56e057f20f883e', 'wangwu', '18061581842', 1, '2018-11-12 14:13:09', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ums_user` VALUES (7, 4, 'lion', 'e10adc3949ba59abbe56e057f20f883e', 'lion', '18061581845', 1, '2018-11-12 14:21:39', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ums_user` VALUES (8, 4, 'shari', 'e10adc3949ba59abbe56e057f20f883e', 'shari', '18061581844', 1, '2018-11-12 14:22:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ums_user` VALUES (9, 4, 'aewen', 'e10adc3949ba59abbe56e057f20f883e', 'aewen', '18061581843', 1, '2018-11-12 14:22:55', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ums_user` VALUES (10, 4, 'zhangsan', 'e10adc3949ba59abbe56e057f20f883e', NULL, '17512080612', 1, '2019-03-06 17:51:56', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
--- Table structure for ums_member_level
+-- Table structure for ums_user_level
 -- ----------------------------
-DROP TABLE IF EXISTS `ums_member_level`;
-CREATE TABLE `ums_member_level`  (
+DROP TABLE IF EXISTS `ums_user_level`;
+CREATE TABLE `ums_user_level`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `growth_point` int(0) NULL DEFAULT NULL,
@@ -4292,27 +4292,27 @@ CREATE TABLE `ums_member_level`  (
   `priviledge_sign_in` int(0) NULL DEFAULT NULL COMMENT '是否有签到特权',
   `priviledge_comment` int(0) NULL DEFAULT NULL COMMENT '是否有评论获奖励特权',
   `priviledge_promotion` int(0) NULL DEFAULT NULL COMMENT '是否有专享活动特权',
-  `priviledge_member_price` int(0) NULL DEFAULT NULL COMMENT '是否有会员价格特权',
+  `priviledge_user_price` int(0) NULL DEFAULT NULL COMMENT '是否有会员价格特权',
   `priviledge_birthday` int(0) NULL DEFAULT NULL COMMENT '是否有生日特权',
   `note` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '会员等级表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of ums_member_level
+-- Records of ums_user_level
 -- ----------------------------
-INSERT INTO `ums_member_level` VALUES (1, '黄金会员', 1000, 0, 199.00, 5, 1, 1, 1, 1, 1, 1, NULL);
-INSERT INTO `ums_member_level` VALUES (2, '白金会员', 5000, 0, 99.00, 10, 1, 1, 1, 1, 1, 1, NULL);
-INSERT INTO `ums_member_level` VALUES (3, '钻石会员', 15000, 0, 69.00, 15, 1, 1, 1, 1, 1, 1, NULL);
-INSERT INTO `ums_member_level` VALUES (4, '普通会员', 1, 1, 199.00, 20, 1, 1, 1, 1, 0, 0, NULL);
+INSERT INTO `ums_user_level` VALUES (1, '黄金会员', 1000, 0, 199.00, 5, 1, 1, 1, 1, 1, 1, NULL);
+INSERT INTO `ums_user_level` VALUES (2, '白金会员', 5000, 0, 99.00, 10, 1, 1, 1, 1, 1, 1, NULL);
+INSERT INTO `ums_user_level` VALUES (3, '钻石会员', 15000, 0, 69.00, 15, 1, 1, 1, 1, 1, 1, NULL);
+INSERT INTO `ums_user_level` VALUES (4, '普通会员', 1, 1, 199.00, 20, 1, 1, 1, 1, 0, 0, NULL);
 
 -- ----------------------------
--- Table structure for ums_member_receive_address
+-- Table structure for ums_user_receive_address
 -- ----------------------------
-DROP TABLE IF EXISTS `ums_member_receive_address`;
-CREATE TABLE `ums_member_receive_address`  (
+DROP TABLE IF EXISTS `ums_user_receive_address`;
+CREATE TABLE `ums_user_receive_address`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
-  `member_id` bigint(0) NULL DEFAULT NULL,
+  `user_id` bigint(0) NULL DEFAULT NULL,
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '收货人名称',
   `phone_number` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `default_status` int(0) NULL DEFAULT NULL COMMENT '是否为默认',
@@ -4325,11 +4325,11 @@ CREATE TABLE `ums_member_receive_address`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '会员收货地址表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of ums_member_receive_address
+-- Records of ums_user_receive_address
 -- ----------------------------
-INSERT INTO `ums_member_receive_address` VALUES (1, 1, '大梨', '18033441849', 0, '518000', '广东省', '深圳市', '南山区', '科兴科学园');
-INSERT INTO `ums_member_receive_address` VALUES (3, 1, '大梨', '18033441849', 0, '518000', '广东省', '深圳市', '福田区', '清水河街道');
-INSERT INTO `ums_member_receive_address` VALUES (4, 1, '大梨', '18033441849', 1, '518000', '广东省', '深圳市', '福田区', '东晓街道');
+INSERT INTO `ums_user_receive_address` VALUES (1, 1, '大梨', '18033441849', 0, '518000', '广东省', '深圳市', '南山区', '科兴科学园');
+INSERT INTO `ums_user_receive_address` VALUES (3, 1, '大梨', '18033441849', 0, '518000', '广东省', '深圳市', '福田区', '清水河街道');
+INSERT INTO `ums_user_receive_address` VALUES (4, 1, '大梨', '18033441849', 1, '518000', '广东省', '深圳市', '福田区', '东晓街道');
 
 -- ----------------------------
 -- Table structure for wms_ware_info

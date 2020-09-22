@@ -42,7 +42,7 @@
         <!-- 指定逆向分析哪些表，根据表创建JavaBean
         domainObjectName:表对应的类名。若不指定，则默认为首字母大写表名
         -->
-<!--        <table tableName="ums_member" domainObjectName="User"/>-->
-        <table tableName="pms_sku_image" domainObjectName="UserAddress"/>
+<!--        <table tableName="ums_user" domainObjectName="User"/>-->
+        <table tableName="pms_sku_image" domainObjectName="UmsUserReceiveAddress"/>
     </context>
 </generatorConfiguration>

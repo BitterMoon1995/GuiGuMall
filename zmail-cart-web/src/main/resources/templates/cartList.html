@@ -44,7 +44,7 @@
     <div class="one_sousuo">
         <div class="one_search_top">
             <div class="one_top_left">
-                <a href="../" class="one_left_logo"><img src="img/logo1.jpg"></a>
+                <a href=".." class="one_left_logo"><img src="img/logo1.jpg"></a>
                 <a href="#" class="one_left_link">购物车</a>
             </div>
             <div class="one_top_right">
@@ -79,105 +79,7 @@
             </ul>
         </div>
 
-        <div class="One_ShopCon">
-            <ul>
-                <li  th:each="cartInfo:${cartList}">
-                    <div> </div>
-
-                    <div>
-                        <ol>
-                            <li><input type="checkbox"   class="check"  th:value="${cartInfo.skuId}"  onchange="checkSku(this)" th:checked="(${cartInfo.isChecked}==1)?'true':'false'" /></li>
-                            <li>
-                                <dt><img  th:src="${cartInfo.imgUrl}"  src="img\shop1.jpg" alt=""></dt>
-                                <dd  th:onclick="'toItem('+${cartInfo.skuId}+')'">
-                                    <p>
-                                        <span th:text="${cartInfo.skuName}" >TCL 55A950C 55英寸32核</span>
-                                    </p>
-                                </dd>
-                            </li>
-                            <li>
-                                <p class="dj" th:text="'￥'+${cartInfo.skuPrice}" >4599.00</p>
-                            </li>
-                            <li>
-                                <p>
-                                    <span>-</span>
-                                    <span th:text="${cartInfo.skuNum}">5</span>
-                                    <span>+</span>
-                                </p>
-                            </li>
-                            <li style="font-weight:bold"><p class="zj" th:text="'￥'+${cartInfo.totalPrice}"  >￥22995.00</p></li>
-                            <li>
-                                <p>删除</p>
-                            </li>
-                        </ol>
-                    </div>
-                </li>
-                <!--<li>
-                    <div>
-                    </div>
-                    <div>
-                        <ol>
-                            <li><input type="checkbox"  class="check"></li>
-                            <li>
-                                <dt><img src="img\shop1.jpg" alt=""></dt>
-                                <dd>
-                                    <p>
-
-                                        <span>TCL 55A950C 55英寸32核</span>
-                                        <span>尺码: 55时 超薄曲面 人工智能</span>
-                                    </p>
-                                    <p>人工智能 HDR曲面超薄4K电视金属机</p>
-
-                                </dd>
-                            </li>
-                            <li>
-                                <p class="dj">￥4599.00</p>
-
-                            </li>
-                            <li>
-                                <p>
-                                    <span>-</span>
-                                    <span>5</span>
-                                    <span>+</span>
-                                </p>
-
-                            </li>
-                            <li style="font-weight:bold"><p class="zj">￥22995.00</p></li>
-                            <li>
-                                <p>删除</p>
-
-                            </li>
-                        </ol>
-                    </div>
-                </li>-->
-
-            </ul>
-        </div>
-        <div class="One_ShopFootBuy fix1">
-            <div>
-                <ul>
-                    <li><input type="checkbox" class="allCheck"><span>全选</span></li>
-                    <li>删除选中的商品</li>
-                    <li>移到我的关注</li>
-                    <li>清除下柜商品</li>
-                </ul>
-            </div>
-            <div>
-                 <font style="color:#e64346;font-weight:bold;" class="sumNum"> </font>&nbsp;
-
-                <ul>
-                    <li><img src="img/buyNumleft.png" alt=""></li>
-                    <li><img src="img/buyNumright.png" alt=""></li>
-                </ul>
-            </div>
-            <div>
-                <ol>
-                    <li>总价:<span style="color:#e64346;font-weight:bold;font-size:16px;" class="fnt">￥0.00</span>  </li>
-
-                </ol>
-            </div>
-            <div><button  onclick="toTrade()" type="button">去结算</button></div>
-        </div>
+        <div th:include="cartListInner" id="cartListInner"></div>
     </div>
 </div>
 
@@ -268,8 +170,8 @@
      function toTrade(){
          window.location.href="http://cart.gmall.com:8087/toTrade";
     }
-    function toItem(skuId) {
-        window.location.href="http://item.gmall.com:8084/"+skuId+".html";
+    function toItem(productSkuId) {
+        window.location.href="http://item.gmall.com:8084/"+productSkuId+".html";
     }
 
     function login(){
@@ -278,14 +180,17 @@
     }
 
     function checkSku( chkbox){
-       var skuId= $(chkbox).attr("value");
+       var productSkuId= $(chkbox).attr("value");
+       console.log(productSkuId)
        var checked=$(chkbox).prop("checked");
-       var isCheckedFlag="0";
+       console.log(checked)
+       var isCheckedFlag=false;
        if(checked){
-           isCheckedFlag="1";
+           isCheckedFlag=true;
        }
-        var param="isChecked="+isCheckedFlag+"&"+"skuId="+skuId;
+        var param="isChecked="+isCheckedFlag+"&"+"productSkuId="+productSkuId;
         $.post("checkCart",param,function (data) {
+            $("#cartListInner").html(data)
             sumSumPrice();
         });
 
@@ -647,7 +552,7 @@
         $(this).css("color","black")
     })
 
-    //封装总价钱函数
+    //封装总价钱函数   看笑了家人们☺
     function sumSumPrice(){
         console.log("计算总价");
         var zzj=0;
@@ -660,6 +565,7 @@
                 console.log(" 价格："+zj);
                 zzj=zzj+parseFloat(zj);
             }
+            //.fnt这个类就是总价那个span（爆笑了）
             $(".fnt").html("￥"+zzj+".00")
         })
 

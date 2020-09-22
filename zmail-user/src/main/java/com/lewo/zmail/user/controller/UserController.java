@@ -1,6 +1,5 @@
 package com.lewo.zmail.user.controller;
 
-import com.lewo.zmall.model.User;
 import com.lewo.zmall.service.UserService ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
