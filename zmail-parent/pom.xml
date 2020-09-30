@@ -13,6 +13,7 @@
         <module>../zmail-search-service</module>
         <module>../zmail-cart-service</module>
         <module>../zmail-cart-web</module>
+        <module>../zmail-authentication-web</module>
     </modules>
     <packaging>pom</packaging>
 <!--    负责管理版本号，不会有任何内容-->
@@ -37,7 +38,7 @@
         <xml-apis.version>1.4.01</xml-apis.version>
         <batik-ext.version>1.9.1</batik-ext.version>
         <jsoup.version>1.11.2</jsoup.version>
-        <httpclient.version>4.5.5</httpclient.version>
+        <httpclient.version>4.5.12</httpclient.version>
         <commons-lang3.version>3.7</commons-lang3.version>
         <mapper-starter.version>2.1.5</mapper-starter.version>
         <jedis.version>2.9.0</jedis.version>

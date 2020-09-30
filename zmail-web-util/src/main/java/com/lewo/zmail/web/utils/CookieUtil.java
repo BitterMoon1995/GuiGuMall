@@ -100,6 +100,8 @@ public class CookieUtil {
             String[] ary = domainName.split("\\:");
             domainName = ary[0];
         }
+        if (domainName.indexOf(0)=='.')
+            return domainName.substring(1);
         return domainName;
     }
     /***

@@ -21,3 +21,10 @@ spring:
     mode: LEGACYHTML5
   main:
     allow-bean-definition-overriding: true
+  resources:
+    #静态资源缓存,默认true
+    chain:
+      cache: true
+    #静态资源缓存时间12小时
+    cache:
+      period: 43200

@@ -2,6 +2,7 @@ package com.lewo.zmail.cart.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.lewo.zmail.cart.function.CartFunction;
+import com.lewo.zmail.web.filter.CheckLogin;
 import com.lewo.zmail.web.utils.CookieUtil;
 import com.lewo.zmall.model.OmsCartItem;
 import com.lewo.zmall.model.PmsSkuInfo;
@@ -15,6 +16,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,6 +40,7 @@ public class CartController {
     @Autowired
     CartFunction function;
 
+    @CheckLogin(mustLogin = false)
     @RequestMapping("addToCart")
     public String addToCart(String skuId,Integer quantity,
     HttpServletRequest request, HttpServletResponse response) throws InterruptedException {
@@ -100,9 +103,12 @@ public class CartController {
         return "redirect:/success.html";
     }
 
+    @CheckLogin(mustLogin = false)
     @RequestMapping("cartList")
     public String cartList(ModelMap modelMap, HttpServletRequest request,
     HttpServletResponse response,String userId){
+        System.out.println(request.getAttribute("nickname"));
+        System.out.println(request.getAttribute("userId"));
 
         //空值的校验不要在service层进行，在web层就要确保传输的值没有问题
         if (StringUtils.isBlank(userId))
@@ -129,13 +135,13 @@ public class CartController {
     未完成：未登录状态的check修改？
      */
 
+    @CheckLogin(mustLogin = false)
     @RequestMapping("checkCart")
     public String checkCart(Boolean isChecked,String productSkuId,
     ModelMap modelMap,HttpServletRequest request,HttpServletResponse response){
 
         String userId = "godz";
         service.checkCart(userId,isChecked,productSkuId);
-        service.getUsersCart(userId);
 
         modelMap.put("cartList",service.getUsersCart(userId));
         //返回的是内嵌页面
@@ -143,5 +149,26 @@ public class CartController {
     }
     /*
     未完成：登录后，cookie中购物车数据同步到cache和db以及页面？
+           checkCart逻辑过长，一致性要求过高。
      */
+
+    @CheckLogin
+    @RequestMapping("toTrade")
+    public String toTrade(HttpServletRequest request,
+                          HttpServletResponse response){
+        System.out.println(request.getAttribute("nickname"));
+        System.out.println(request.getAttribute("userId"));
+        return "trade";
+    }
+
+    public static void main(String[] args) {
+        String s = "";
+        System.out.println(StringUtils.isBlank(s));
+    }
+
+    @ResponseBody
+    @RequestMapping("noAuth")
+    public String noAuth(){
+        return "小心尼哥";
+    }
 }

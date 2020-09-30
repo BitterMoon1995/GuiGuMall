@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-
+@CrossOrigin
 @Controller
 public class SearchController {
     @DubboReference
@@ -77,6 +78,11 @@ public class SearchController {
             model.addAttribute("keyword",keyword);
 
         return "list";
+    }
+
+    @RequestMapping("error.html")
+    public String error(){
+        return "error";
     }
 
 }

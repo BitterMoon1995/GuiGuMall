@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 11/09/2020 18:48:44
+ Date: 30/09/2020 15:29:52
 */
 
 SET NAMES utf8mb4;
@@ -25,35 +25,44 @@ CREATE TABLE `oms_cart_item`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `product_id` bigint(0) NULL DEFAULT NULL,
   `product_sku_id` bigint(0) NULL DEFAULT NULL,
-  `user_id` bigint(0) NULL DEFAULT NULL,
+  `user_id` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户ID',
   `quantity` int(0) NULL DEFAULT NULL COMMENT '购买数量',
   `price` decimal(10, 2) NULL DEFAULT NULL COMMENT '添加到购物车的价格',
   `sp1` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售属性1',
   `sp2` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售属性2',
-  `sp3` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售属性3',
+  `sp3` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售属性3，固定3个销售属性写死了的，设计得一般',
   `product_pic` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品主图',
   `product_name` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品名称',
   `product_sub_title` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品副标题（卖点）',
   `product_sku_code` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品sku条码',
   `user_nickname` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '会员昵称',
   `create_date` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
-  `modify_date` datetime(0) NULL DEFAULT NULL COMMENT '修改时间',
-  `delete_status` int(0) NULL DEFAULT 0 COMMENT '是否删除',
+  `modify_date` datetime(0) NULL DEFAULT NULL COMMENT '修改时间，较为无意义',
+  `delete_status` int(0) NULL DEFAULT 0 COMMENT '是否删除，用于购物车垃圾箱，一般',
   `product_category_id` bigint(0) NULL DEFAULT NULL COMMENT '商品分类',
-  `product_brand` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `product_sn` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `product_brand` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商标',
+  `product_sn` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品编号',
   `product_attr` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品销售属性:[{\"key\":\"颜色\",\"value\":\"颜色\"},{\"key\":\"容量\",\"value\":\"4G\"}]',
+  `is_checked` tinyint(1) NULL DEFAULT 1 COMMENT '是否被选中',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '购物车表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '购物车表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of oms_cart_item
 -- ----------------------------
-INSERT INTO `oms_cart_item` VALUES (12, 26, 90, 1, 1, 3788.00, '金色', '16G', NULL, NULL, '华为 HUAWEI P20', 'AI智慧全面屏 6GB +64GB 亮黑色 全网通版 移动联通电信4G手机 双卡双待手机 双卡双待', '201806070026001', 'windir', '2018-08-27 16:53:44', NULL, 0, 19, NULL, NULL, NULL);
-INSERT INTO `oms_cart_item` VALUES (13, 27, 98, 1, 3, 2699.00, '黑色', '32G', NULL, NULL, '小米8', '骁龙845处理器，红外人脸解锁，AI变焦双摄，AI语音助手小米6X低至1299，点击抢购', '201808270027001', 'windir', '2018-08-27 17:11:53', NULL, 0, 19, NULL, NULL, NULL);
-INSERT INTO `oms_cart_item` VALUES (14, 28, 102, 1, 1, 649.00, '金色', '16G', NULL, NULL, '红米5A', '8天超长待机，137g轻巧机身，高通骁龙处理器小米6X低至1299，点击抢购', '201808270028001', 'windir', '2018-08-27 17:18:02', NULL, 0, 19, NULL, NULL, NULL);
-INSERT INTO `oms_cart_item` VALUES (15, 28, 103, 1, 1, 699.00, '金色', '32G', NULL, NULL, '红米5A', '8天超长待机，137g轻巧机身，高通骁龙处理器小米6X低至1299，点击抢购', '201808270028001', 'windir', '2018-08-28 10:22:45', NULL, 0, 19, NULL, NULL, NULL);
-INSERT INTO `oms_cart_item` VALUES (16, 29, 106, 1, 1, 5499.00, '金色', '32G', NULL, NULL, 'Apple iPhone 8 Plus', '【限时限量抢购】Apple产品年中狂欢节，好物尽享，美在智慧！速来 >> 勾选[保障服务][原厂保2年]，获得AppleCare+全方位服务计划，原厂延保售后无忧。', '201808270029001', 'windir', '2018-08-28 10:50:50', NULL, 0, 19, NULL, NULL, NULL);
+INSERT INTO `oms_cart_item` VALUES (12, 26, 90, '1', 1, 3788.00, '金色', '16G', NULL, NULL, '华为 HUAWEI P20', 'AI智慧全面屏 6GB +64GB 亮黑色 全网通版 移动联通电信4G手机 双卡双待手机 双卡双待', '201806070026001', 'windir', '2018-08-27 16:53:44', NULL, 0, 19, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_cart_item` VALUES (13, 27, 98, '1', 3, 2699.00, '黑色', '32G', NULL, NULL, '小米8', '骁龙845处理器，红外人脸解锁，AI变焦双摄，AI语音助手小米6X低至1299，点击抢购', '201808270027001', 'windir', '2018-08-27 17:11:53', NULL, 0, 19, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_cart_item` VALUES (14, 28, 102, '1', 1, 649.00, '金色', '16G', NULL, NULL, '红米5A', '8天超长待机，137g轻巧机身，高通骁龙处理器小米6X低至1299，点击抢购', '201808270028001', 'windir', '2018-08-27 17:18:02', NULL, 0, 19, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_cart_item` VALUES (15, 28, 103, '1', 1, 699.00, '金色', '32G', NULL, NULL, '红米5A', '8天超长待机，137g轻巧机身，高通骁龙处理器小米6X低至1299，点击抢购', '201808270028001', 'windir', '2018-08-28 10:22:45', NULL, 0, 19, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_cart_item` VALUES (16, 29, 106, '1', 1, 5499.00, '金色', '32G', NULL, NULL, 'Apple iPhone 8 Plus', '【限时限量抢购】Apple产品年中狂欢节，好物尽享，美在智慧！速来 >> 勾选[保障服务][原厂保2年]，获得AppleCare+全方位服务计划，原厂延保售后无忧。', '201808270029001', 'windir', '2018-08-28 10:50:50', NULL, 0, 19, NULL, NULL, NULL, NULL);
+INSERT INTO `oms_cart_item` VALUES (17, 80, 115, 'godz', 2, 4998.00, NULL, NULL, NULL, 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAFNypAASABMNKcnU638.jpg', 'vivo NEX 3S 5G 8GB+256GB 琥珀醇 骁龙865 无界瀑布屏 6400万超高像素 双模5G全网通手机', NULL, NULL, NULL, '2020-09-21 07:40:33', '2020-09-21 07:40:33', 0, 61, NULL, NULL, NULL, 1);
+INSERT INTO `oms_cart_item` VALUES (18, 80, 114, 'godz', 1, 5298.00, NULL, NULL, NULL, 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAUtNXAARWFLs5Gsw808.jpg', 'vivo NEX 3S 5G 12GB+256GB 液态天河 骁龙865 无界瀑布屏 6400万超高像素 双模5G全网通手机', NULL, NULL, NULL, '2020-09-21 07:45:49', '2020-09-21 07:45:49', 0, 61, NULL, NULL, NULL, 1);
+INSERT INTO `oms_cart_item` VALUES (19, 25, 78, 'godz', 1, 111.00, NULL, NULL, NULL, 'http://192.168.222.20/group1/M00/00/00/wKjeFVrMkFmALbd9AABKCGOfKjM371.jpg', '测试sku111', NULL, NULL, NULL, '2020-09-21 08:01:57', '2020-09-21 08:01:57', 0, 61, NULL, NULL, NULL, 1);
+INSERT INTO `oms_cart_item` VALUES (20, 25, 74, 'godz', 2, 7000.00, NULL, NULL, NULL, 'http://192.168.222.20/group1/M00/00/00/wKjeFVrMkGiAEtNCAABGOuGpu5s437.jpg', '当季新品 小米MIX2全面屏游戏手机 6GB+64GB 白色 全网通4G 陶瓷手机 ', NULL, NULL, NULL, '2020-09-21 08:03:05', '2020-09-21 08:03:05', 0, 61, NULL, NULL, NULL, 1);
+INSERT INTO `oms_cart_item` VALUES (21, 80, 113, 'godz', 1, 5298.00, NULL, NULL, NULL, 'http://192.168.156.128//group1/M00/00/09/wKicgF8qKZmAFNypAASABMNKcnU638.jpg', 'vivo NEX 3S 5G 12GB+256GB 琥珀醇 骁龙865 无界瀑布屏 6400万超高像素 双模5G全网通手机', '商品名称：vivoNEX 3S商品编号：100011512632商品毛重：0.735kg商品产地：中国大陆CPU型号：其他运行内存：12GB机身存储：256GB存储卡：不支持存储卡摄像头数量：后置三摄后摄主摄像素：6400万像素前摄主摄像素：1600万像素主屏幕尺寸（英寸）：6.89英寸分辨率：其它分辨率屏幕比例：其它屏幕比例屏幕前摄组合：弹出式摄像头充电器：11V/4A热点：快速充电，NFC，屏幕指纹，5G，超高屏占比，弹出式摄像头充电功率：40-49W操作系统：Android(安卓)游戏配置：游戏性能模式', NULL, NULL, '2020-09-21 10:06:17', '2020-09-21 10:06:17', 0, 61, NULL, NULL, NULL, 1);
+INSERT INTO `oms_cart_item` VALUES (22, 24, 14, 'godz', 1, 2888.00, NULL, NULL, NULL, 'https://img13.360buyimg.com/n7/jfs/t4177/323/133450331/58871/8754fee4/58afc7b7Nd5208ecc.jpg', '小米6 全网通 6GB+128GB 亮蓝色 移动联通电信4G手机 双卡双待', '小米6 全网通 6GB+128GB 亮蓝色 移动联通电信4G手机 双卡双待', NULL, NULL, '2020-09-21 10:12:03', '2020-09-21 10:12:03', 0, 61, NULL, NULL, NULL, 1);
+INSERT INTO `oms_cart_item` VALUES (23, 62, 100, 'godz', 1, 10000.00, NULL, NULL, NULL, 'http://192.168.222.20/group1/M00/00/00/wKjeFFwcg1eAaSYEAAA2oBvXGRY401.jpg', '尚硅谷0725测试游戏手机(n系列) 16G 高配版', '尚硅谷0725测试游戏手机(n系列) 16G 高配版尚硅谷0725测试游戏手机(n系列) 16G 高配版尚硅谷0725测试游戏手机(n系列) 16G 高配版尚硅谷0725测试游戏手机(n系列) 16G 高配版尚硅谷0725测试游戏手机(n系列) 16G 高配版尚硅谷0725测试游戏手机(n系列) 16G 高配版尚硅谷0725测试游戏手机(n系列) 16G 高配版尚硅谷0725测试游戏手机(n系列) 16G 高配版', NULL, NULL, '2020-09-21 10:15:47', '2020-09-21 10:15:47', 0, 61, NULL, NULL, NULL, 1);
+INSERT INTO `oms_cart_item` VALUES (24, 65, 103, 'godz', 1, 10001.00, NULL, NULL, NULL, 'http://192.168.222.20/group1/M00/00/01/wKjeFFx_M_iAYYSfAABLvWYyykI766.jpg', '黑鲨游戏手机Gmall1015系列低配双核版', '黑鲨游戏手机Gmall1015系列低配双核版黑鲨游戏手机Gmall1015系列低配双核版黑鲨游戏手机Gmall1015系列低配双核版黑鲨游戏手机Gmall1015系列低配双核版黑鲨游戏手机Gmall1015系列低配双核版', NULL, NULL, '2020-09-21 10:22:34', '2020-09-21 10:22:34', 0, 61, NULL, NULL, NULL, 1);
 
 -- ----------------------------
 -- Table structure for oms_company_address
@@ -86,11 +95,11 @@ INSERT INTO `oms_company_address` VALUES (3, '南京发货点', 0, 0, '大梨', 
 DROP TABLE IF EXISTS `oms_order`;
 CREATE TABLE `oms_order`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '订单id',
-  `user_id` bigint(0) NOT NULL,
+  `member_id` bigint(0) NOT NULL,
   `coupon_id` bigint(0) NULL DEFAULT NULL,
   `order_sn` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '订单编号',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '提交时间',
-  `user_username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户帐号',
+  `member_username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户帐号',
   `total_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '订单总金额',
   `pay_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '应付金额（实际支付金额）',
   `freight_amount` decimal(10, 2) NULL DEFAULT NULL COMMENT '运费金额',
@@ -1875,10 +1884,10 @@ DROP TABLE IF EXISTS `pms_comment`;
 CREATE TABLE `pms_comment`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `product_id` bigint(0) NULL DEFAULT NULL,
-  `user_nick_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `member_nick_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `product_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `star` int(0) NULL DEFAULT NULL COMMENT '评价星数：0->5',
-  `user_ip` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '评价的ip',
+  `member_ip` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '评价的ip',
   `create_time` datetime(0) NULL DEFAULT NULL,
   `show_status` int(0) NULL DEFAULT NULL,
   `product_attribute` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '购买时的商品属性',
@@ -1886,7 +1895,7 @@ CREATE TABLE `pms_comment`  (
   `read_count` int(0) NULL DEFAULT NULL,
   `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   `pics` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '上传图片地址，以逗号隔开',
-  `user_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '评论用户头像',
+  `member_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '评论用户头像',
   `replay_count` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品评价表' ROW_FORMAT = Dynamic;
@@ -1902,8 +1911,8 @@ DROP TABLE IF EXISTS `pms_comment_replay`;
 CREATE TABLE `pms_comment_replay`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT,
   `comment_id` bigint(0) NULL DEFAULT NULL,
-  `user_nick_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `user_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `member_nick_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `member_icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `content` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `create_time` datetime(0) NULL DEFAULT NULL,
   `type` int(0) NULL DEFAULT NULL COMMENT '评论人员类型；0->会员；1->管理员',
@@ -2133,7 +2142,7 @@ CREATE TABLE `pms_product_sale_attr`  (
   `sale_attr_id` bigint(0) NULL DEFAULT NULL COMMENT '销售属性id',
   `sale_attr_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售属性名称(冗余)',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 114 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 113 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_product_sale_attr
@@ -2225,7 +2234,7 @@ CREATE TABLE `pms_product_sale_attr_value`  (
   `sale_attr_id` bigint(0) NULL DEFAULT NULL COMMENT '销售属性id',
   `sale_attr_value_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售属性值名称',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 265 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'spu销售属性值' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 264 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'spu销售属性值' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_product_sale_attr_value
@@ -3138,7 +3147,7 @@ CREATE TABLE `pms_sku_image`  (
   `spu_img_id` bigint(0) NULL DEFAULT NULL COMMENT '商品图片id',
   `is_default` varchar(4000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '是否默认',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1047 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '库存单元图片表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1046 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '库存单元图片表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_sku_image
@@ -3793,7 +3802,7 @@ CREATE TABLE `pms_sku_info`  (
   `sku_default_img` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '默认显示图片(冗余)',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_sku_info_sku_name`(`sku_name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 116 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '库存单元表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 115 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '库存单元表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_sku_info
@@ -3910,7 +3919,7 @@ CREATE TABLE `pms_sku_sale_attr_value`  (
   `sale_attr_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售属性名称(冗余)',
   `sale_attr_value_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '销售属性值名称(冗余)',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 480 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'sku销售属性值' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 479 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'sku销售属性值' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pms_sku_sale_attr_value
@@ -4254,28 +4263,31 @@ CREATE TABLE `ums_user`  (
   `city` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '所做城市',
   `job` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '职业',
   `personalized_signature` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '个性签名',
-  `source_type` int(0) NULL DEFAULT NULL COMMENT '用户来源',
+  `source_type` int(0) NULL DEFAULT NULL COMMENT '用户来源,微博？小红书？抖音？',
+  `source_uid` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `integration` int(0) NULL DEFAULT NULL COMMENT '积分',
   `growth` int(0) NULL DEFAULT NULL COMMENT '成长值',
-  `luckey_count` int(0) NULL DEFAULT NULL COMMENT '剩余抽奖次数',
+  `lucky_count` int(0) NULL DEFAULT NULL COMMENT '剩余抽奖次数',
   `history_integration` int(0) NULL DEFAULT NULL COMMENT '历史积分数量',
+  `access_token` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '对应source_type',
+  `access_code` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_username`(`username`) USING BTREE,
   UNIQUE INDEX `idx_phone`(`phone`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '会员表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '会员表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ums_user
 -- ----------------------------
-INSERT INTO `ums_user` VALUES (1, 4, 'test', '202cb962ac59075b964b07152d234b70', 'windir', '18061581849', 1, '2018-08-02 10:35:44', NULL, 1, '2009-06-01', '上海', '学生', 'test', NULL, 5000, NULL, NULL, NULL);
-INSERT INTO `ums_user` VALUES (3, 4, 'windy', 'e10adc3949ba59abbe56e057f20f883e', 'windy', '18061581848', 1, '2018-08-03 16:46:38', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ums_user` VALUES (4, 4, 'zhengsan', 'e10adc3949ba59abbe56e057f20f883e', 'zhengsan', '18061581847', 1, '2018-11-12 14:12:04', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ums_user` VALUES (5, 4, 'lisi', 'e10adc3949ba59abbe56e057f20f883e', 'lisi', '18061581841', 1, '2018-11-12 14:12:38', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ums_user` VALUES (6, 4, 'wangwu', 'e10adc3949ba59abbe56e057f20f883e', 'wangwu', '18061581842', 1, '2018-11-12 14:13:09', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ums_user` VALUES (7, 4, 'lion', 'e10adc3949ba59abbe56e057f20f883e', 'lion', '18061581845', 1, '2018-11-12 14:21:39', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ums_user` VALUES (8, 4, 'shari', 'e10adc3949ba59abbe56e057f20f883e', 'shari', '18061581844', 1, '2018-11-12 14:22:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ums_user` VALUES (9, 4, 'aewen', 'e10adc3949ba59abbe56e057f20f883e', 'aewen', '18061581843', 1, '2018-11-12 14:22:55', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `ums_user` VALUES (10, 4, 'zhangsan', 'e10adc3949ba59abbe56e057f20f883e', NULL, '17512080612', 1, '2019-03-06 17:51:56', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ums_user` VALUES (1, 4, 'weier', '52meiqun', 'windir', '18061581849', 1, '2018-08-02 10:35:44', NULL, 1, '2009-06-01', '上海', '学生', 'test', NULL, NULL, 5000, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ums_user` VALUES (3, 4, 'windy', 'e10adc3949ba59abbe56e057f20f883e', 'windy', '18061581848', 1, '2018-08-03 16:46:38', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ums_user` VALUES (4, 4, 'zhengsan', 'e10adc3949ba59abbe56e057f20f883e', 'zhengsan', '18061581847', 1, '2018-11-12 14:12:04', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ums_user` VALUES (5, 4, 'lisi', 'e10adc3949ba59abbe56e057f20f883e', 'lisi', '18061581841', 1, '2018-11-12 14:12:38', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ums_user` VALUES (6, 4, 'wangwu', 'e10adc3949ba59abbe56e057f20f883e', 'wangwu', '18061581842', 1, '2018-11-12 14:13:09', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ums_user` VALUES (7, 4, 'lion', 'e10adc3949ba59abbe56e057f20f883e', 'lion', '18061581845', 1, '2018-11-12 14:21:39', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ums_user` VALUES (8, 4, 'shari', 'e10adc3949ba59abbe56e057f20f883e', 'shari', '18061581844', 1, '2018-11-12 14:22:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ums_user` VALUES (9, 4, 'aewen', 'e10adc3949ba59abbe56e057f20f883e', 'aewen', '18061581843', 1, '2018-11-12 14:22:55', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ums_user` VALUES (10, 4, 'zhangsan', 'e10adc3949ba59abbe56e057f20f883e', NULL, '17512080612', 1, '2019-03-06 17:51:56', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for ums_user_level
@@ -4292,7 +4304,7 @@ CREATE TABLE `ums_user_level`  (
   `priviledge_sign_in` int(0) NULL DEFAULT NULL COMMENT '是否有签到特权',
   `priviledge_comment` int(0) NULL DEFAULT NULL COMMENT '是否有评论获奖励特权',
   `priviledge_promotion` int(0) NULL DEFAULT NULL COMMENT '是否有专享活动特权',
-  `priviledge_user_price` int(0) NULL DEFAULT NULL COMMENT '是否有会员价格特权',
+  `priviledge_member_price` int(0) NULL DEFAULT NULL COMMENT '是否有会员价格特权',
   `priviledge_birthday` int(0) NULL DEFAULT NULL COMMENT '是否有生日特权',
   `note` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE

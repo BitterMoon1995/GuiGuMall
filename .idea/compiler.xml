@@ -10,24 +10,26 @@
         <module name="zmail-api" />
         <module name="zmail-service-util" />
         <module name="zmail-user-web" />
+        <module name="zmail-manage-web" />
         <module name="zmail-search-service" />
-        <module name="zmail-cart-web" />
         <module name="zmail-cart-service" />
         <module name="zmail-manage-service" />
         <module name="fastdfs-client-java" />
         <module name="zmail-user" />
         <module name="zmail-search-web" />
-        <module name="zmail-user-service" />
+        <module name="zmail-cart-web" />
         <module name="zmail-common-util" />
+        <module name="zmail-authentication-web" />
         <module name="zmail-item-web" />
         <module name="zmail-web-util" />
-        <module name="zmail-manage-web" />
+        <module name="zmail-user-service" />
         <module name="zmail-test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
       <module name="fastdfs-client-java" target="1.8" />
       <module name="zmail-api" target="1.8" />
+      <module name="zmail-authentication-web" target="1.8" />
       <module name="zmail-cart-service" target="1.8" />
       <module name="zmail-cart-web" target="1.8" />
       <module name="zmail-common-util" target="1.8" />
@@ -47,6 +49,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="zmail-authentication-web" options="-parameters" />
       <module name="zmail-cart-service" options="-parameters" />
       <module name="zmail-cart-web" options="-parameters" />
       <module name="zmail-common-util" options="-parameters" />

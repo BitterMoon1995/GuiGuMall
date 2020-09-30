@@ -137,7 +137,7 @@ public class SkuServiceImpl implements SkuService {
             //★拿不到锁，休眠，再尝试(自旋)。保证永远只有一个线程能走一次DB，MySQL就永远不会被打死y1s1hxd
             else {
                 System.out.println("未拿到互斥锁，休眠50毫秒再请求");
-                sleep(50);
+                sleep(100);
                 return getById(skuId);
             }
         }

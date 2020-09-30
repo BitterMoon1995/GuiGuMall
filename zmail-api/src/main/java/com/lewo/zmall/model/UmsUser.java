@@ -35,7 +35,7 @@ public class UmsUser implements Serializable {
     private String sourceType;
     private int integration;
     private int growth;
-    private int luckeyCount;
+    private int luckyCount;
     private int historyIntegration;
     private String sourceUid;
     private String accessToken;
