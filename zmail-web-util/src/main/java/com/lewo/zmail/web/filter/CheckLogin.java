@@ -13,4 +13,11 @@ import java.lang.annotation.Target;
 public @interface CheckLogin {
     //方法是否要求必须登录
     boolean mustLogin() default true;
+
+    /*
+    1:认证接口
+    2:token解析接口
+     */
+    short type() default 1;
+
 }

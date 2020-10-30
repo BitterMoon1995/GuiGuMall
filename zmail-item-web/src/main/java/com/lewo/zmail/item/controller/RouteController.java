@@ -2,6 +2,8 @@ package com.lewo.zmail.item.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
+import com.lewo.zmail.web.filter.CheckLogin;
+import com.lewo.zmail.web.utils.CookieUtil;
 import com.lewo.zmall.model.*;
 import com.lewo.zmall.service.SkuService;
 import com.lewo.zmall.service.SpuService;
@@ -12,6 +14,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,8 +41,15 @@ public class RouteController {
         model.addAttribute("str","来吧，展示");
         return "index";
     }
+    @CheckLogin(type = 2)
     @RequestMapping("{skuId}.html")
-    public String item(@PathVariable String skuId, ModelMap modelMap) throws InterruptedException {
+    public String item(@PathVariable String skuId, ModelMap modelMap,
+                       HttpServletRequest request, HttpServletResponse response) throws InterruptedException {
+        request.getAttribute("userId");
+        String token = CookieUtil.getCookieValue(request, "token", true);
+        System.out.println(token);
+        CookieUtil.setCookie(request,response,"token",token);
+
         PmsSkuInfo skuInfo=skuService.getById(skuId);
         //这里的错误页代表没有该skuID的商品
         if (skuInfo.getId().equals("noValue")) return "error";

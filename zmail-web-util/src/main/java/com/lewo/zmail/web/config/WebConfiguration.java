@@ -18,7 +18,7 @@ public class WebConfiguration implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 //老师坑点：静态资源不能拦截啊
                 .excludePathPatterns("/login","/js/**","/css/**","/favicon/**","/icon/**",
-                        "/png/**","/jpg/**","/font/**","/img/**","/image/**");
+                        "/png/**","/jpg/**","/font/**","/img/**","/image/**","/err/**","/error/**");
         registry.addInterceptor(new CorsInterceptor())
                 .addPathPatterns("/**");
     }

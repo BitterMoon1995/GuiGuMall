@@ -47,5 +47,10 @@
             <artifactId>fastdfs-client-java</artifactId>
             <version>1.29-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+        </dependency>
     </dependencies>
 </project>

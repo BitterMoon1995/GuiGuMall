@@ -26,12 +26,12 @@ public class CookieUtil {
         }
         String retValue = null;
         try {
-            for (int i = 0; i < cookies.length; i++) {
-                if (cookies[i].getName().equals(cookieName)) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(cookieName)) {
                     if (isDecoder) {//如果涉及中文
-                        retValue = URLDecoder.decode(cookies[i].getValue(), "UTF-8");
+                        retValue = URLDecoder.decode(cookie.getValue(), "UTF-8");
                     } else {
-                        retValue = cookies[i].getValue();
+                        retValue = cookie.getValue();
                     }
                     break;
                 }
@@ -69,6 +69,22 @@ public class CookieUtil {
             e.printStackTrace();
         }
     }
+    //默认两小时 utf-8编码
+    public static void setCookie(HttpServletRequest request, HttpServletResponse response, String cookieName, String cookieValue) {
+        try {
+            cookieValue = URLEncoder.encode(cookieValue, "utf-8");
+            Cookie cookie = new Cookie(cookieName, cookieValue);
+            cookie.setMaxAge(3600 * 2);
+            if (null != request)// 设置域名的cookie
+                cookie.setDomain(getDomainName(request));
+            // 在域名的根路径下保存
+            cookie.setPath("/");
+            response.addCookie(cookie);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /***
      * 获得cookie的主域名，本系统为gmall.com，保存时使用
      * @param request

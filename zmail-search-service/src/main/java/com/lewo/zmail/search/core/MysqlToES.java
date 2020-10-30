@@ -52,6 +52,7 @@ public class MysqlToES {
     }
 
     @Test
+    //1.数据库薅商品数据 2.转换成ES-Java对象 3.序列化为JSON传，传输
     public void bulkInsertTest() throws InvocationTargetException, IllegalAccessException {
         List<PmsSkuInfo> pmsSkuInfos = skuService.getAllSku();
         ArrayList<PmsSearchSkuInfo> searchSkuInfos = new ArrayList<>();
@@ -72,7 +73,7 @@ public class MysqlToES {
         insertList.forEach(item -> {
             bulkRequest.add(new IndexRequest(indexName)
 //                    .id(item.getId()).source(JSON.toJSON(item), XContentType.JSON));
-                    //★必须传对象对应的JSON字符串★
+                    //★必须传对象对应的JSON字符串交由ES解析★
                     .id(item.getId()).source(JSON.toJSONString(item), XContentType.JSON));
         });
         try {

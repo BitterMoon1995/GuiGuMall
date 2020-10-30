@@ -83,23 +83,22 @@
                 	if(token==="fail"){
 						alert("用户名或者密码错误");
 					}else{
-                        // 验证token是否为空或者异常
-						// window.location.href=$("#ReturnUrl").val() + "?token=" + token;
 						let url = $("#ReturnUrl").val()
+						//用户主动登陆 转发到首页
+						//token统一通过parameter传递
 						if (url==='') {
+							/* 【注意】首页所在服务 search-web 【并没有】auth拦截器！
+							所以该接口要自己解析这个token！
+							 */
 							url = 'http://localhost:2030/index.html' + "?token=" + token
 							window.location.href = url
+
 							return
 						}
-						//屡次尝试，token还是只能从这里带过去
-						//前端需要接收并隐藏urlParam
+                		//非主动登陆 转到来时的路
+						/*反观被动登录，那么之前请求的服务【一定是】有拦截器的
+						路径里的token是会被自动解析的*/
 						window.location.href=url + "?token=" + token
-                		// $.ajax({
-						// 	url:url,
-						// 	method:"POST",
-						// 	dataType: "json",
-						// 	data:{token:token}
-						// })
 					}
 				});
             }

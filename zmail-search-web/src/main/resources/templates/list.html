@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/list/css/index.css">
     <link rel="stylesheet" type="text/css" href="/list/font/iconfont.css">
     <script src="/list/js/jquery-1.12.4.js"></script>
+    <script src="/list/js/axios.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -410,14 +411,34 @@
 <script src="/list/js/index.js"></script>
 <script language="JavaScript">
     function item(skuid) {
-        window.location.href = "http://localhost:2020/" + skuid + ".html";
+        let token = getCookie('token')
+        window.location.href = "http://localhost:2020/" + skuid + ".html?token="+token;
+        // $.ajax("www.baidu.com" + skuid + ".html",{
+        //     async: false,
+        //     xhrFields: {
+        //         withCredentials: true
+        //     },
+        //     crossDomain: true
+        // })
     }
 
     function searchList() {
-        var keyword = $("#keyword").val();
+        const keyword = $("#keyword").val();
         window.location.href = "/list.html?keyword=" + keyword;
     }
-
+    function getCookie(cname)
+    {
+        const name = cname + "=";
+        const ca = document.cookie.split(';');
+        for(let i=0; i<ca.length; i++)
+        {
+            const c = ca[i].trim();
+            //返回某个指定的字符串值在字符串中首次出现的位置。
+            //提取字符串中介于两个指定下标之间的字符,包含起始下标不包含终止下标
+            if (c.indexOf(name)===0) return c.substring(name.length,c.length);
+        }
+        return "";
+    }
 
     $(".sl_ext a:nth-child(1)").hover(function () {
         $(this).children("b").stop(true).animate({top: "3px"}, 50);

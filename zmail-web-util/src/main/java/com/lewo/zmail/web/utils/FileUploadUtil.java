@@ -1,6 +1,6 @@
 package com.lewo.zmail.web.utils;
 
-import com.lewo.utils.ConstantTable;
+import com.lewo.utils.Constant;
 import org.csource.common.MyException;
 import org.csource.fastdfs.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -41,7 +41,7 @@ public class FileUploadUtil {
             e.printStackTrace();
         }
 
-        StringBuilder url= new StringBuilder(ConstantTable.fileUpLoadUrl);
+        StringBuilder url= new StringBuilder(Constant.vm01Url);
         for (String s : uploadInfo) {
             url.append("/").append(s);
         }

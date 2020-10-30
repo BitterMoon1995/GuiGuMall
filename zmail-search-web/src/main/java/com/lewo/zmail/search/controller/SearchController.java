@@ -1,6 +1,9 @@
 package com.lewo.zmail.search.controller;
 
 import com.lewo.zmail.search.function.SearchFunction;
+import com.lewo.zmail.web.filter.CheckLogin;
+import com.lewo.zmail.web.utils.CookieUtil;
+import com.lewo.zmail.web.utils.JwtUtil;
 import com.lewo.zmall.model.*;
 import com.lewo.zmall.service.PlatformAttrService;
 import com.lewo.zmall.service.SearchService;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -31,8 +35,13 @@ public class SearchController {
     @Autowired
     SearchFunction function;
 
+    @CheckLogin(type = 2)
     @RequestMapping("index.html")
-    public String index(){
+    public String index(String token, HttpServletRequest request){
+        String token1 = CookieUtil.getCookieValue(request, "token", true);
+        System.out.println("cookie:"+token1);
+        System.out.println(token);
+        System.out.println(request.getAttribute("nickname"));
         return "index";
     }
 

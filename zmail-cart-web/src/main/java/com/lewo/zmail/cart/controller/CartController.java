@@ -1,6 +1,7 @@
 package com.lewo.zmail.cart.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.lewo.unified.iResult;
 import com.lewo.zmail.cart.function.CartFunction;
 import com.lewo.zmail.web.filter.CheckLogin;
 import com.lewo.zmail.web.utils.CookieUtil;
@@ -13,10 +14,7 @@ import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@CrossOrigin
 @Controller
 public class CartController {
 
@@ -40,18 +39,20 @@ public class CartController {
     @Autowired
     CartFunction function;
 
+    @ResponseBody
     @CheckLogin(mustLogin = false)
     @RequestMapping("addToCart")
-    public String addToCart(String skuId,Integer quantity,
-    HttpServletRequest request, HttpServletResponse response) throws InterruptedException {
-
-        //调用商品服务查询商品信息
+    public iResult addToCart(String skuId, Integer quantity,
+        HttpServletRequest request, HttpServletResponse response) throws InterruptedException {
+        //从拦截器的请求域里薅到userID
+        String userId = request.getAttribute("userId").toString();
+        //薅到了就说明已登录
+        boolean isLogin = StringUtils.isNotBlank(userId);
+        //调用商品服务查询要加入到购物车的商品信息
         PmsSkuInfo skuInfo = skuService.getById(skuId);
         //将商品信息封装成购物车信息
         OmsCartItem cartItem = function.convert(skuInfo, quantity);
 
-        String userId = "godz";
-        boolean isLogin = true;
         //判断用户是否登录，如果登录走DB
         if (isLogin){
             //查询用户购物车中的该商品
@@ -100,15 +101,14 @@ public class CartController {
                         JSON.toJSONString(cart), 60 * 60 * 24 * 3, true);
             }
         }
-        return "redirect:/success.html";
+        return iResult.success;
     }
 
     @CheckLogin(mustLogin = false)
     @RequestMapping("cartList")
     public String cartList(ModelMap modelMap, HttpServletRequest request,
-    HttpServletResponse response,String userId){
-        System.out.println(request.getAttribute("nickname"));
-        System.out.println(request.getAttribute("userId"));
+    HttpServletResponse response){
+        String userId = request.getAttribute("userId").toString();
 
         //空值的校验不要在service层进行，在web层就要确保传输的值没有问题
         if (StringUtils.isBlank(userId))
@@ -125,7 +125,10 @@ public class CartController {
             if (StringUtils.isNotBlank(cookieValue))
                 cart = JSON.parseArray(cookieValue,OmsCartItem.class);
         }
-        BigDecimal totalAmount = function.getTotalAmount(cart);
+        BigDecimal totalAmount = new BigDecimal("0");
+        //空校验随时注意
+        if (cart.size() != 0)
+        totalAmount = function.getTotalAmount(cart);
         modelMap.put("totalAmount",totalAmount);
         modelMap.put("cartList",cart);
         return "cartList";
@@ -159,16 +162,5 @@ public class CartController {
         System.out.println(request.getAttribute("nickname"));
         System.out.println(request.getAttribute("userId"));
         return "trade";
-    }
-
-    public static void main(String[] args) {
-        String s = "";
-        System.out.println(StringUtils.isBlank(s));
-    }
-
-    @ResponseBody
-    @RequestMapping("noAuth")
-    public String noAuth(){
-        return "小心尼哥";
     }
 }

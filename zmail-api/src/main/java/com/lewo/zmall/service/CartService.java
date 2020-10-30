@@ -12,7 +12,7 @@ public interface CartService {
 
     void updateUsersItem(OmsCartItem usersItem);
 
-    void flushCache(String userId);
+    List<OmsCartItem> flushCache(String userId);
 
     List<OmsCartItem> getUsersCart(String userId);
 

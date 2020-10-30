@@ -27,6 +27,7 @@ public class UserServiceImpl  implements UserService {
     }
 
     @Override
+    //与验证中心交互，不对外暴露
     public UmsUser login(UmsUser umsUser) {
         ValueOperations<String, Object> value = redisTemplate.opsForValue();
         String username = umsUser.getUsername();
@@ -58,5 +59,9 @@ public class UserServiceImpl  implements UserService {
                 return (UmsUser) value.get("user:" + username + ":info");
             else return null;
         }
+    }
+
+    public void storeToken(String token,String userId){
+        redisTemplate.opsForValue().set("token:" + token + ":userId",userId);
     }
 }

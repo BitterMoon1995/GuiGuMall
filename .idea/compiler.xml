@@ -7,17 +7,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="zmail-api" />
+        <module name="weibo-oauth2" />
         <module name="zmail-service-util" />
         <module name="zmail-user-web" />
-        <module name="zmail-manage-web" />
         <module name="zmail-search-service" />
-        <module name="zmail-cart-service" />
+        <module name="zmail-manage-web" />
+        <module name="zmail-api" />
+        <module name="zmail-cart-web" />
         <module name="zmail-manage-service" />
         <module name="fastdfs-client-java" />
         <module name="zmail-user" />
         <module name="zmail-search-web" />
-        <module name="zmail-cart-web" />
+        <module name="zmail-cart-service" />
         <module name="zmail-common-util" />
         <module name="zmail-authentication-web" />
         <module name="zmail-item-web" />
@@ -28,6 +29,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
       <module name="fastdfs-client-java" target="1.8" />
+      <module name="weibo-oauth2" target="1.8" />
       <module name="zmail-api" target="1.8" />
       <module name="zmail-authentication-web" target="1.8" />
       <module name="zmail-cart-service" target="1.8" />

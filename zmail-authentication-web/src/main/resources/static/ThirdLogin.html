@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/vue.js"></script>
+    <script src="../static/js/axios.js"></script>
+</head>
+<body>
+近平登基！
+<button class="nigger" onclick="thirdLogin()">微博登陆</button>
+</body>
+
+<script>
+
+    const authorizeUrl = 'https://api.weibo.com/oauth2/authorize'
+    const client_id = '235360557'
+    const returnUrl = 'http://auth.zmail.com:2050/thirdLogin'
+
+    function thirdLogin() {
+        window.location.href = authorizeUrl
+        + '?client_id=' + client_id
+        + '&redirect_uri=' + returnUrl
+    }
+</script>
+
+<style>
+    .nigger{
+        font-size: 26px;
+        color: white;
+        border: white;
+
+        width: 200px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: deepskyblue;
+    }
+    .nigger:hover{
+        background-color: pink;
+    }
+</style>
+</html>

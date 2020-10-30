@@ -1035,15 +1035,33 @@
 
 <script src="/js/jquery1.9.js" type="text/javascript" charset="utf-8"></script>
 <script src="/js/js.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/axios.js"></script>
 <script type="text/javascript">
     function addToCart(obj) {
         var canClick = $(obj).attr("canClick");
         if (canClick == '0') {
             return;
         }
-        $("#itemForm").submit();
+        let token = getCookie('token')
+        let form = new FormData(document.getElementById('itemForm'))
+        axios.post('http://cart.zmail.com:2040/addToCart?token='+token,form)
+        .then(res => {
+            let iResult = res.data
+            window.location.href = 'http://cart.zmail.com:2040/success.html'
+        })
     }
-
+    //获取cookie
+    function getCookie(cname)
+    {
+        const name = cname + "=";
+        const ca = document.cookie.split(';');
+        for(let i=0; i<ca.length; i++)
+        {
+            const c = ca[i].trim();
+            if (c.indexOf(name)===0) return c.substring(name.length,c.length);
+        }
+        return "";
+    }
     function switchSkuId() {
         // 被选中属性
         var checkDivs = $(".redborder div");

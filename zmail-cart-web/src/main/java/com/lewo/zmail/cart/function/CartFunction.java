@@ -24,6 +24,7 @@ public class CartFunction {
         cartItem.setProductSkuId(skuInfo.getId());
         cartItem.setQuantity(quantity);
         cartItem.setProductSubTitle(skuInfo.getSkuDesc());
+        cartItem.setIsChecked(false);
         return cartItem;
     }
     //突然高雅！
@@ -32,15 +33,13 @@ public class CartFunction {
         return currentCart.stream()
                 .anyMatch(curItem -> curItem.getProductSkuId().equals(skuId));
     }
-    //再度(强行)高雅！
+    //不再高雅、god周
     public BigDecimal getTotalAmount(List<OmsCartItem> cart) {
-        BigDecimal[] a = new BigDecimal[1];
-        a[0] = new BigDecimal("0");
-        cart.stream()
-                .filter(OmsCartItem::getIsChecked)
-                .forEach(item->{
-                    a[0] = a[0].add(item.getTotalPrice());
-                });
-        return a[0];
+        BigDecimal totalAmount = new BigDecimal("0");
+                  for (OmsCartItem cartItem :cart) {
+            if (cartItem.getIsChecked())
+                totalAmount = totalAmount.add(cartItem.getTotalPrice());
+        }
+        return totalAmount;
     }
 }

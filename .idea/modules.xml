@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/GuiGuMail.iml" filepath="$PROJECT_DIR$/.idea/GuiGuMail.iml" />
       <module fileurl="file://$PROJECT_DIR$/fastdfs-client-java/fastdfs-client-java.iml" filepath="$PROJECT_DIR$/fastdfs-client-java/fastdfs-client-java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/weibo-oauth2/weibo-oauth2.iml" filepath="$PROJECT_DIR$/weibo-oauth2/weibo-oauth2.iml" />
       <module fileurl="file://$PROJECT_DIR$/zmail-api/zmail-api.iml" filepath="$PROJECT_DIR$/zmail-api/zmail-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/zmail-authentication-web/zmail-authentication-web.iml" filepath="$PROJECT_DIR$/zmail-authentication-web/zmail-authentication-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/zmail-cart-service/zmail-cart-service.iml" filepath="$PROJECT_DIR$/zmail-cart-service/zmail-cart-service.iml" />

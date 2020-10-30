@@ -8,4 +8,6 @@ public interface UserService {
     public List<UmsUser> getAllUsers();
 
     UmsUser login(UmsUser umsUser);
+
+    void storeToken(String token,String userId);
 }

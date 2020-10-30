@@ -16,14 +16,14 @@
         <module>../zmail-authentication-web</module>
     </modules>
     <packaging>pom</packaging>
-<!--    负责管理版本号，不会有任何内容-->
+    <!--    负责管理版本号，不会有任何内容-->
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.3.3.RELEASE</version>
     </parent>
-     <properties>
+    <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -45,10 +45,11 @@
         <jest.version>5.3.3</jest.version>
         <jna.version>4.5.1</jna.version>
         <beanUtils.version>1.9.3</beanUtils.version>
+        <jjwt.version>0.9.1</jjwt.version>
     </properties>
     <dependencyManagement>
         <dependencies>
-<!--            选用适配dubbo的fastjson-->
+            <!--            选用适配dubbo的fastjson-->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
@@ -87,7 +88,7 @@
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis.version}</version>
-             </dependency>
+            </dependency>
             <dependency>
                 <groupId>tk.mybatis</groupId>
                 <artifactId>mapper-spring-boot-starter</artifactId>
@@ -98,13 +99,13 @@
                 <artifactId>mybatis-generator-core</artifactId>
                 <version>${mybatis-generator-core.version}</version>
             </dependency>
-<!--            thymeleaf渲染框架依赖-->
-             <dependency>
+            <!--            thymeleaf渲染框架依赖-->
+            <dependency>
                 <groupId>net.sourceforge.nekohtml</groupId>
                 <artifactId>nekohtml</artifactId>
                 <version>${nekohtml.version}</version>
-             </dependency>
-             <dependency>
+            </dependency>
+            <dependency>
                 <groupId>xml-apis</groupId>
                 <artifactId>xml-apis</artifactId>
                 <version>${xml-apis.version}</version>
@@ -119,7 +120,7 @@
                 <artifactId>jsoup</artifactId>
                 <version>${jsoup.version}</version>
             </dependency>
-<!--            通过java程序发送http请求-->
+            <!--            通过java程序发送http请求-->
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
@@ -131,22 +132,29 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
             </dependency>
-             <dependency>
-                    <groupId>io.searchbox</groupId>
-                    <artifactId>jest</artifactId>
-                    <version>${jest.version}</version>
-             </dependency>
+            <dependency>
+                <groupId>io.searchbox</groupId>
+                <artifactId>jest</artifactId>
+                <version>${jest.version}</version>
+            </dependency>
 
-             <dependency>
+            <dependency>
                 <groupId>net.java.dev.jna</groupId>
                 <artifactId>jna</artifactId>
                 <version>${jna.version}</version>
-             </dependency>
-             <dependency>
+            </dependency>
+            <dependency>
                 <groupId>commons-beanutils</groupId>
                 <artifactId>commons-beanutils</artifactId>
                 <version>${beanUtils.version}</version>
-               </dependency>
+            </dependency>
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
