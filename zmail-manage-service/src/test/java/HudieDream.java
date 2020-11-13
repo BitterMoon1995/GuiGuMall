@@ -1,4 +1,4 @@
-import com.lewo.zmail.manage.Manage_Service;
+import com.lewo.zmail.Manage_Service;
 import com.lewo.zmall.model.PmsSkuInfo;
 import com.lewo.zmall.service.SkuService;
 import org.junit.jupiter.api.Test;

@@ -1,9 +1,9 @@
 package com.lewo.zmail.web.filter;
 
 import com.alibaba.fastjson.JSON;
-import com.lewo.utils.Constant;
+import com.lewo.unified.Constant;
 import com.lewo.zmail.web.utils.HttpClientUtil;
-import com.lewo.utils.VerifyRes;
+import com.lewo.unified.VerifyRes;
 import com.lewo.zmail.web.utils.CookieUtil;
 import com.lewo.zmail.web.utils.IPUtils;
 import com.lewo.zmail.web.utils.JwtUtil;
@@ -24,7 +24,6 @@ public class AuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request,
     HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("嘻嘻");
 /*      小知识：
         Spring MVC应用启动时会搜集并分析每个Web控制器方法，从中提取对应的"<请求匹配条件,控制器方法>“映射关系，" +
         "形成一个映射关系表保存在一个RequestMappingHandlerMapping bean中。然后在客户请求到达时，" +
@@ -33,13 +32,14 @@ public class AuthInterceptor implements HandlerInterceptor {
         "请求匹配条件"通过RequestMappingInfo包装和表示，而"控制器方法"则通过HandlerMethod来包装和表示。*/
 
 
-        HandlerMethod handlerMethod = null;
+        HandlerMethod handlerMethod;
         try {
             handlerMethod = (HandlerMethod) handler;
         //如果不能转换，那么可能是拦截到静态资源请求了(ResourceHttpRequestHandler),就直接放行
         } catch (Exception e) {
             return true;
         }
+        System.out.println("嘻嘻");
         CheckLogin checkLogin = handlerMethod.getMethodAnnotation(CheckLogin.class);
 
         //没有@CheckLogin注解，直接放行
@@ -59,7 +59,7 @@ public class AuthInterceptor implements HandlerInterceptor {
             else {
                 Map<String, Object> decodeMap = JwtUtil.decode(token, Constant.jwtKey, currIP);
                 if (decodeMap==null){
-                    System.out.println("我头尼玛"+currIP);
+                    System.out.println("currIP:"+currIP);
                     return true;
                 }
                 request.setAttribute("userId",decodeMap.get("userId"));
@@ -122,7 +122,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         }
         //mustLogin==false表示需要获取登录信息，但不要求必须登录成功，而是根据登录状态走不同的业务分支的模块，比如购物车
         else {
-            //用户已登录，将用户token携带的用户信息写入
+            //用户成功登录，将用户token携带的用户信息写入
             if (verifyRes.getCode()==VerifyRes.successCode){
                 request.setAttribute("userId",verifyRes.getUserId());
                 request.setAttribute("nickname",verifyRes.getNickname());
@@ -131,7 +131,7 @@ public class AuthInterceptor implements HandlerInterceptor {
                     CookieUtil.setCookie(request,response,"token",token,60*60*2,true);
                 }
             }
-            //用户未登录
+            //用户未成功登录
             else {
                 notLogin(request);
             }

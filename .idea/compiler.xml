@@ -7,19 +7,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="zmail-order-web" />
+        <module name="zmail-api" />
         <module name="weibo-oauth2" />
         <module name="zmail-service-util" />
-        <module name="zmail-user-web" />
-        <module name="zmail-search-service" />
+        <module name="zmail-search-web" />
         <module name="zmail-manage-web" />
-        <module name="zmail-api" />
-        <module name="zmail-cart-web" />
+        <module name="zmail-search-service" />
+        <module name="zmail-cart-service" />
+        <module name="zmail-order-service" />
         <module name="zmail-manage-service" />
         <module name="fastdfs-client-java" />
         <module name="zmail-user" />
-        <module name="zmail-search-web" />
-        <module name="zmail-cart-service" />
         <module name="zmail-common-util" />
+        <module name="zmail-cart-web" />
+        <module name="zmail-user-web" />
         <module name="zmail-authentication-web" />
         <module name="zmail-item-web" />
         <module name="zmail-web-util" />
@@ -38,6 +40,8 @@
       <module name="zmail-item-web" target="1.8" />
       <module name="zmail-manage-service" target="1.8" />
       <module name="zmail-manage-web" target="1.8" />
+      <module name="zmail-order-service" target="1.8" />
+      <module name="zmail-order-web" target="1.8" />
       <module name="zmail-parent" target="1.8" />
       <module name="zmail-search-service" target="1.8" />
       <module name="zmail-search-web" target="1.8" />
@@ -58,6 +62,8 @@
       <module name="zmail-item-web" options="-parameters" />
       <module name="zmail-manage-service" options="-parameters" />
       <module name="zmail-manage-web" options="-parameters" />
+      <module name="zmail-order-service" options="-parameters" />
+      <module name="zmail-order-web" options="-parameters" />
       <module name="zmail-search-service" options="-parameters" />
       <module name="zmail-search-web" options="-parameters" />
       <module name="zmail-service-util" options="-parameters" />

@@ -3,6 +3,7 @@ package com.lewo.zmail.cart.controller;
 import com.alibaba.fastjson.JSON;
 import com.lewo.unified.iResult;
 import com.lewo.zmail.cart.function.CartFunction;
+import com.lewo.zmail.web.annotation.Entrance;
 import com.lewo.zmail.web.filter.CheckLogin;
 import com.lewo.zmail.web.utils.CookieUtil;
 import com.lewo.zmall.model.OmsCartItem;
@@ -104,6 +105,7 @@ public class CartController {
         return iResult.success;
     }
 
+    @Entrance
     @CheckLogin(mustLogin = false)
     @RequestMapping("cartList")
     public String cartList(ModelMap modelMap, HttpServletRequest request,
@@ -155,12 +157,4 @@ public class CartController {
            checkCart逻辑过长，一致性要求过高。
      */
 
-    @CheckLogin
-    @RequestMapping("toTrade")
-    public String toTrade(HttpServletRequest request,
-                          HttpServletResponse response){
-        System.out.println(request.getAttribute("nickname"));
-        System.out.println(request.getAttribute("userId"));
-        return "trade";
-    }
 }

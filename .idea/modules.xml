@@ -13,6 +13,8 @@
       <module fileurl="file://$PROJECT_DIR$/zmail-item-web/zmail-item-web.iml" filepath="$PROJECT_DIR$/zmail-item-web/zmail-item-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/zmail-manage-service/zmail-manage-service.iml" filepath="$PROJECT_DIR$/zmail-manage-service/zmail-manage-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/zmail-manage-web/zmail-manage-web.iml" filepath="$PROJECT_DIR$/zmail-manage-web/zmail-manage-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zmail-order-service/zmail-order-service.iml" filepath="$PROJECT_DIR$/zmail-order-service/zmail-order-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zmail-order-web/zmail-order-web.iml" filepath="$PROJECT_DIR$/zmail-order-web/zmail-order-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/zmail-parent/zmail-parent.iml" filepath="$PROJECT_DIR$/zmail-parent/zmail-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/zmail-search-service/zmail-search-service.iml" filepath="$PROJECT_DIR$/zmail-search-service/zmail-search-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/zmail-search-web/zmail-search-web.iml" filepath="$PROJECT_DIR$/zmail-search-web/zmail-search-web.iml" />

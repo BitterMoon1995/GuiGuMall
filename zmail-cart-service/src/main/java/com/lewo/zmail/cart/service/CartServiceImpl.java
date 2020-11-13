@@ -56,6 +56,7 @@ public class CartServiceImpl implements CartService {
         //便于频繁地对同一用户的购物车条目进行增删改
         HashMap<String, String> cartMap = new HashMap<>();
         usersCart.forEach(item->{
+            item.setTotalPrice(item.getPrice().multiply(BigDecimal.valueOf(item.getQuantity())));
             cartMap.put(item.getProductSkuId(), JSON.toJSONString(item));
         });
 

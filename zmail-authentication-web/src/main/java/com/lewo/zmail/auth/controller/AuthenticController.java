@@ -1,20 +1,22 @@
 package com.lewo.zmail.auth.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.lewo.utils.Constant;
-import com.lewo.utils.VerifyRes;
+import com.lewo.unified.Constant;
+import com.lewo.unified.VerifyRes;
+import com.lewo.zmail.auth.function.AuthFunction;
+import com.lewo.zmail.auth.utils.AuthUtils;
 import com.lewo.zmail.web.utils.HttpClientUtil;
 import com.lewo.zmail.web.utils.IPUtils;
 import com.lewo.zmail.web.utils.JwtUtil;
 import com.lewo.zmall.model.UmsUser;
 import com.lewo.zmall.service.UserService;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import weibo4j.model.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +31,8 @@ public class AuthenticController {
 
     @DubboReference
     UserService userService;
+    @Autowired
+    AuthFunction function;
 
     static String accessTokenUrl = "https://api.weibo.com/oauth2/access_token";
     static String client_id = "235360557";
@@ -110,31 +114,24 @@ public class AuthenticController {
     }
 
     @RequestMapping("thirdLogin")
-    public void thirdLogin(String code){
-        System.out.println(code);
-
-        HashMap<String, String> map = new HashMap<>();
-        map.put("grant_type",grant_type);
-        map.put("client_secret",client_secret);
-        map.put("client_id",client_id);
-        map.put("redirect_uri",redirect_uri);
-        map.put("code",code);
-
-        String tokenJson = HttpClientUtil.doPost(accessTokenUrl, map);
-        System.out.println(tokenJson);
-        HashMap tokenMap = JSON.parseObject(tokenJson, HashMap.class);
+    public String thirdLogin(String code,HttpServletRequest request){
+        //使用用户的授权码获取用户的授权令牌
+        String tokenJson = function.acqWeiboToken(code);
+        //薅出授权令牌
+        HashMap<String,String> tokenMap = JSON.parseObject(tokenJson, HashMap.class);
         assert tokenMap != null;
-        String access_token = tokenMap.get("access_token").toString();
-        String uid = tokenMap.get("uid").toString();
-        System.out.println(access_token+"....."+uid);
-
-        String userJson = HttpClientUtil.doGet("https://api.weibo.com/2/users/show.json?"
-                + "access_token=" + access_token
+        String access_token = tokenMap.get("access_token");
+        String uid = tokenMap.get("uid");
+        //根据授权令牌，获取用户信息
+        String userJson = HttpClientUtil.doGet(userInfo_url
+                + "?access_token=" + access_token
                 + "&uid=" + uid);
-//        User weiboUser = JSON.parseObject(userJson, User.class);
-        System.out.println(userJson);
-//        assert weiboUser != null;
-//        System.out.println(weiboUser.toString());
+        //根据用户信息，注册新用户 或 找出已有的用户，返回用户对象
+        UmsUser umsUser = userService.loginFromWeibo(userJson, access_token, code);
+        //根据用户对象，生成token
+        String token = AuthUtils.encodeUser(umsUser, IPUtils.getCurrIP(request));
+        //(第三方)登陆成功，携带token重定向至首页
+        return "redirect:http://localhost:1989/toApiCenter?token="+token;
     }
 
     @RequestMapping("success")

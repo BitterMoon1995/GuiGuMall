@@ -1,19 +1,21 @@
 package com.lewo.zmail.user.service;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.lewo.zmail.user.db.UserAddressMapper;
 import com.lewo.zmail.user.db.UserMapper;
 import com.lewo.zmall.model.UmsUser;
+import com.lewo.zmall.model.UmsUserReceiveAddress;
 import com.lewo.zmall.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
-import redis.clients.jedis.Client;
-import redis.clients.jedis.Jedis;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @DubboService
@@ -64,4 +66,56 @@ public class UserServiceImpl  implements UserService {
     public void storeToken(String token,String userId){
         redisTemplate.opsForValue().set("token:" + token + ":userId",userId);
     }
+
+    @Override
+    @Transactional
+    public UmsUser loginFromWeibo(String userJson, String access_token, String access_code) {
+        Map<String,Object> userMap = JSONObject.parseObject(userJson, Map.class);
+        UmsUser user = new UmsUser();
+
+        //校验该微博注册账户是否已存在
+        String id = userMap.get("id").toString();
+        user.setSourceUid(id);
+        UmsUser existed = mapper.selectOne(user);
+        if (existed != null)
+            return existed;
+
+        //不存在，执行注册逻辑
+        String province = userMap.get("province").toString();
+        int gender = 88;
+        switch (userMap.get("gender").toString()){
+            case "m" : gender = 1;
+            break;
+            case "f" : gender = 2;
+            break;
+            default : gender = 0;
+        }
+        String coordinate = userMap.get("location").toString();
+        String name = userMap.get("name").toString();
+        String profileImg = userMap.get("profile_image_url").toString();
+
+        //预设值
+        user.setSourceType(2);
+        user.setAccessCode(access_code);
+        user.setAccessToken(access_token);
+
+        user.setGender(gender);
+        user.setCoordinate(coordinate);//位置信息
+        user.setNickname(name);
+        user.setProfileImg(profileImg);
+        user.setCreateTime(new Date());
+        user.setProvince(province);
+
+        /*
+        一个极极极小的【细节】：这个user插入后才生成主键id
+        但是调用方（认证中心-第三方登陆接口）此时随后就需要userID来生成token
+        所以插入后就要查出来，把ID拿到，给要返回的user对象
+         */
+        mapper.insert(user);
+        UmsUser inserted = mapper.selectOne(user);
+        user.setId(inserted.getId());
+        return user;
+    }
+
+
 }

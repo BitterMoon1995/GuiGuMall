@@ -18,26 +18,33 @@ public class UmsUser implements Serializable {
     IDENTITY：主键由数据库自动生成（主要是自动增长型） 
     AUTO：主键由程序控制。 */
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private String userLevelId;
+    /*
+    未完成：
+        用户名、密码必须经过MD5加密
+     */
     private String username;
     private String password;
     private String nickname;
     private String phone;
     private int status;
     private Date createTime;
-    private String icon;
-    private String gender;
+    private String profileImg;
+    private int gender;//微博： m/f
     private Date birthday;
+    private String province;
     private String city;
     private String job;
     private String personalizedSignature;
-    private String sourceType;
+    private int sourceType;//微博=1
     private int integration;
     private int growth;
     private int luckyCount;
     private int historyIntegration;
-    private String sourceUid;
-    private String accessToken;
-    private String accessCode;
+    private String sourceUid;//第三方ID
+    private String accessToken;//第三方accessToken
+    private String accessCode;//第三方授权码
+    private String coordinate;//地理位置。location不能用是保留字
+
 }

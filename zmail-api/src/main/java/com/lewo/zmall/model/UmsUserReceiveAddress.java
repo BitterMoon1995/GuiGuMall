@@ -9,7 +9,7 @@ public class UmsUserReceiveAddress implements Serializable {
 
     @Id
     private Long id;
-    private Long userId;
+    private String userId;
     private String  name;
     private String  phoneNumber;
     private int defaultStatus;

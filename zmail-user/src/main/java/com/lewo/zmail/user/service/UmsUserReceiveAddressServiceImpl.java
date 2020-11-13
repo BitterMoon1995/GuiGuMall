@@ -2,7 +2,7 @@
 //
 //import com.lewo.zmail.user.db.UmsUserReceiveAddressMapper;
 //import com.lewo.zmall.model.UmsUserReceiveAddress;
-//import com.lewo.zmall.service.UmsUserReceiveAddressService ;
+//import com.lewo.zmall.service.UserAddressService ;
 //import org.apache.dubbo.config.annotation.DubboService;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import tk.mybatis.mapper.entity.Example;
@@ -10,7 +10,7 @@
 //import java.util.List;
 //
 //@DubboService
-//public class UmsUserReceiveAddressServiceImpl implements UmsUserReceiveAddressService{
+//public class UmsUserReceiveAddressServiceImpl implements UserAddressService{
 //    @Autowired
 //    UmsUserReceiveAddressMapper mapper;
 //    @Override

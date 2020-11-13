@@ -14,6 +14,8 @@
         <module>../zmail-cart-service</module>
         <module>../zmail-cart-web</module>
         <module>../zmail-authentication-web</module>
+        <module>../zmail-order-web</module>
+        <module>../zmail-order-service</module>
     </modules>
     <packaging>pom</packaging>
     <!--    负责管理版本号，不会有任何内容-->
