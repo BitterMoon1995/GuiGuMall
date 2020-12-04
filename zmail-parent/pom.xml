@@ -16,6 +16,8 @@
         <module>../zmail-authentication-web</module>
         <module>../zmail-order-web</module>
         <module>../zmail-order-service</module>
+        <module>../zmail-alipay</module>
+        <module>../zmail-alipay</module>
     </modules>
     <packaging>pom</packaging>
     <!--    负责管理版本号，不会有任何内容-->

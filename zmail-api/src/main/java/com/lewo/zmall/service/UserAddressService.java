@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface UserAddressService {
     List<UmsUserReceiveAddress> getUserAddress(String userId);
+    UmsUserReceiveAddress getById(String addrId);
 }

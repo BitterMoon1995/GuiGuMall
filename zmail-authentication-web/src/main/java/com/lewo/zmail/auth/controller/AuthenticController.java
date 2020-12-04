@@ -1,7 +1,7 @@
 package com.lewo.zmail.auth.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.lewo.unified.Constant;
+import com.lewo.common.Constant;
 import com.lewo.unified.VerifyRes;
 import com.lewo.zmail.auth.function.AuthFunction;
 import com.lewo.zmail.auth.utils.AuthUtils;
@@ -76,9 +76,10 @@ public class AuthenticController {
             //存入userService缓存一份
             userService.storeToken(token,String.valueOf(user.getId()));
 
-            /*★★采用服务并行策略，在用户登录后尝试同步购物车数据
-            需要调用的其实还有可能的短信服务、其他服务等等......
-            但是用户登录服务是决不可串行调用(依赖)其他服务的
+            /*用户登录后故事才刚刚开始
+            其实后续可能必须要调用同步购物车数据、日志服务、短信服务、邮箱服务、平台通知服务、平台消息服务等等......
+            但是用户登录服务是绝不可串行调用这一系列服务的，不然挂一个服务整个应用连登陆都没法登了
+            所以需要采取服务并行策略，用MQ来实现分布式事务
              */
             return token;
         }
@@ -131,7 +132,7 @@ public class AuthenticController {
         //根据用户对象，生成token
         String token = AuthUtils.encodeUser(umsUser, IPUtils.getCurrIP(request));
         //(第三方)登陆成功，携带token重定向至首页
-        return "redirect:http://localhost:1989/toApiCenter?token="+token;
+        return "redirect:http://localhost:1989/apiCenter?token="+token;
     }
 
     @RequestMapping("success")

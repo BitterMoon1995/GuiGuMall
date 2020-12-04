@@ -17,12 +17,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @CrossOrigin
@@ -44,7 +42,7 @@ public class CartController {
     @CheckLogin(mustLogin = false)
     @RequestMapping("addToCart")
     public iResult addToCart(String skuId, Integer quantity,
-        HttpServletRequest request, HttpServletResponse response) throws InterruptedException {
+                             HttpServletRequest request, HttpServletResponse response) throws InterruptedException {
         //从拦截器的请求域里薅到userID
         String userId = request.getAttribute("userId").toString();
         //薅到了就说明已登录
@@ -52,7 +50,7 @@ public class CartController {
         //调用商品服务查询要加入到购物车的商品信息
         PmsSkuInfo skuInfo = skuService.getById(skuId);
         //将商品信息封装成购物车信息
-        OmsCartItem cartItem = function.convert(skuInfo, quantity);
+        OmsCartItem cartItem = function.skuToCartItem(skuInfo, quantity);
 
         //判断用户是否登录，如果登录走DB
         if (isLogin){

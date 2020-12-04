@@ -4,12 +4,30 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<style>
+    .black-button{
+        width: 200px;
+        height: 100px;
+        font-size: 30px;
+        color: white;
+        background-color: deepskyblue;
+    }
+    .black-button :hover{
+        color: deepskyblue;
+        background-color: white;
+    }
+</style>
 <body>
-<button onclick="toTrade()" type="button">去结算</button>
+<button onclick="toTrade()" type="button" class="black-button">去结算</button>
+<button onclick="toPay()" type="button" class="black-button">去支付</button>
+
 </body>
 <script>
     function toTrade(){
         window.location.href="http://localhost:2060/toTrade";
+    }
+    function toPay() {
+        window.location.href="http://www.zmail.com:2070/index.html?totalAmount=1&outTradeNum=tsmeiyaoweier19950602"
     }
 </script>
 </html>

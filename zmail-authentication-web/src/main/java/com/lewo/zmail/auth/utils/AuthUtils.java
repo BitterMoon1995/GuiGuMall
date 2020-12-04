@@ -1,6 +1,6 @@
 package com.lewo.zmail.auth.utils;
 
-import com.lewo.unified.Constant;
+import com.lewo.common.Constant;
 import com.lewo.zmail.web.utils.JwtUtil;
 import com.lewo.zmall.model.UmsUser;
 

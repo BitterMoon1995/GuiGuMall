@@ -13,7 +13,7 @@
         <!-- jdbc配置 -->
         <jdbcConnection
                 driverClass="com.mysql.jdbc.Driver"
-                connectionURL="jdbc:mysql://localhost:3306/gulimail?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC"
+                connectionURL="jdbc:mysql://localhost:3306/gulimail?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT%2B8"
                 userId="root"
                 password="root">
         </jdbcConnection>

@@ -1,54 +1,37 @@
 package com.lewo.unified;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
-@NoArgsConstructor
 public class iResult implements Serializable {
-    private Status status;
     private Object data;
-    private long total;//分页必用
+    private Integer code;
+    private Long total;
+    private String msg;
 
-    //私有静态对象，用于仅传输请求状态信息
-    //采用饿汉式，类加载时只创建一次，天生线程安全，且代码简洁
-    public static iResult success = new iResult(Status.success);
-    public static iResult serverDown = new iResult(Status.serverDown);
-    public static iResult illegalParam = new iResult(Status.illegalParam);
-    public static iResult emptyParam = new iResult(Status.emptyParam);
-    /*演示懒汉式，注意要考虑线程安全：
-    1.volatile实例保证内存可见性、有序性（不保证原子性）
-    2.实例化时，要双校验
-    */
-    public static volatile iResult invalidAuth = new iResult(Status.invalidAuth);
+    public static iResult success = new iResult(200,"操作成功");
+    public static iResult serverDown = new iResult(520,"服务器开小差了ε=(´ο｀*)))");
+    public static iResult illegalParam = new iResult(400,"非法参数");
+    public static iResult emptyParam = new iResult(404,"空参数");
+    public static iResult invalidAuth = new iResult(403,"无效权限");
+    public static iResult dbException = new iResult(549,"持久层异常");
+    public static iResult rpcException = new iResult(556,"远程调用异常");
 
-    public iResult(Status status, Object data, long total) {
-        this.status = status;
+    public iResult(Integer code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    public iResult(Object data, Integer code, Long total, String msg) {
         this.data = data;
+        this.code = code;
         this.total = total;
+        this.msg = msg;
     }
 
-    public iResult(Status status, Object data) {
-        this.status = status;
-        this.data = data;
-    }
-
-    public iResult(Status status) {
-        this.status = status;
-    }
-
-    public static iResult invalidAuth(){
-        //判空
-        if (invalidAuth == null){
-            //类锁
-            synchronized (iResult.class) {
-                //二次校验
-                if (invalidAuth == null)
-                    invalidAuth = new iResult(Status.invalidAuth);
-            }
-        }
-        return invalidAuth;
+    public static void main(String[] args) {
+        System.out.println(new iResult(400,"sima"));
     }
 }

@@ -1,6 +1,6 @@
 package com.lewo.zmail.web.utils;
 
-import com.lewo.unified.Constant;
+import com.lewo.common.Constant;
 import org.csource.common.MyException;
 import org.csource.fastdfs.*;
 import org.springframework.web.multipart.MultipartFile;

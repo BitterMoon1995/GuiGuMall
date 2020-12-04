@@ -1,6 +1,5 @@
 package com.lewo.zmail.manage.service;
 
-import com.lewo.zmail.config.LuaConfig;
 import com.lewo.zmail.manage.dao.PmsSkuAttrValueMapper;
 import com.lewo.zmail.manage.dao.PmsSkuImageMapper;
 import com.lewo.zmail.manage.dao.PmsSkuInfoMapper;
@@ -114,20 +113,17 @@ public class SkuServiceImpl implements SkuService {
                     System.out.println("释放锁");
                     /*对于问题一，对于统一商品，要确保锁的唯一性，拿到锁的线程要校验Redis锁值
                     如果和该锁创建时生成的随机串uniqueLock不相等，那么他没有资格对锁进行删除操作
+                    同时引申出问题二：在锁值判断的时候锁过期了怎么办？（卧槽，恶俗啊）
+                    那么这个判断-删除的操作必须是一个原子操作
                     Java方式：（不保证原子性）*/
 //                    String thisLock = (String) op.get(skuId+"_mutex");
 //                    if (StringUtils.isNotBlank(thisLock) && thisLock.equals(uniqueLock))
 //                    redisTemplate.delete(skuId+"_mutex");
 
-                    //★小问题二：在锁值判断的时候锁过期了（卧槽，恶俗啊）
-                    //高雅之lua脚本（保证原子性、速度）
+                    //高雅之lua脚本方式：保证原子性、速度
                     List<String> keys = Collections.singletonList(skuId + "_mutex");
-                    Long scriptRes = redisTemplate.execute(skuLock, keys, uniqueLock);
-                    assert scriptRes != null;
-                    ResponseEntity
-                            .ok(scriptRes);
+                    Long scriptRes = redisTemplate.execute(skuLock, keys, uniqueLock);//注意这个锁可能是另一个线程的，是待校验的锁
                     System.out.println(scriptRes);
-
                     return skuInfo;
                 }
             }

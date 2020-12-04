@@ -12,7 +12,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 @Component
 public class CartFunction {
-    public OmsCartItem convert(PmsSkuInfo skuInfo,Integer quantity){
+    //convert类型的方法一律用 X To Y
+    public OmsCartItem skuToCartItem(PmsSkuInfo skuInfo, Integer quantity){
         OmsCartItem cartItem = new OmsCartItem();
         cartItem.setCreateDate(new Date());
         cartItem.setModifyDate(new Date());
@@ -24,7 +25,7 @@ public class CartFunction {
         cartItem.setProductSkuId(skuInfo.getId());
         cartItem.setQuantity(quantity);
         cartItem.setProductSubTitle(skuInfo.getSkuDesc());
-        cartItem.setIsChecked(false);
+        cartItem.setIsChecked(true);
         return cartItem;
     }
     //突然高雅！

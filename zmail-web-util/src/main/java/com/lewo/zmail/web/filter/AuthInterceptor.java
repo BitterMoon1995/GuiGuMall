@@ -1,7 +1,8 @@
 package com.lewo.zmail.web.filter;
 
 import com.alibaba.fastjson.JSON;
-import com.lewo.unified.Constant;
+import com.lewo.common.Constant;
+import com.lewo.unified.Code;
 import com.lewo.zmail.web.utils.HttpClientUtil;
 import com.lewo.unified.VerifyRes;
 import com.lewo.zmail.web.utils.CookieUtil;
@@ -30,7 +31,6 @@ public class AuthInterceptor implements HandlerInterceptor {
         "再使用RequestMappingHandlerMapping中的该映射关系表找到相应的控制器方法去处理该请求。" +
         "在RequestMappingHandlerMapping中保存的每个”<请求匹配条件,控制器方法>"映射关系对儿中,
         "请求匹配条件"通过RequestMappingInfo包装和表示，而"控制器方法"则通过HandlerMethod来包装和表示。*/
-
 
         HandlerMethod handlerMethod;
         try {
@@ -123,7 +123,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         //mustLogin==false表示需要获取登录信息，但不要求必须登录成功，而是根据登录状态走不同的业务分支的模块，比如购物车
         else {
             //用户成功登录，将用户token携带的用户信息写入
-            if (verifyRes.getCode()==VerifyRes.successCode){
+            if (verifyRes.getCode() == Code.success){
                 request.setAttribute("userId",verifyRes.getUserId());
                 request.setAttribute("nickname",verifyRes.getNickname());
                 //验证通过，覆盖cookie中的token

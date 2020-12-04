@@ -9,13 +9,18 @@ dubbo:
     address: 192.168.156.128:2181
     protocol: zookeeper
   scan:
-    base-packages: com.lewo.zmail.manage.service
+    base-packages: com.lewo.zmail.test.service
 
 spring:
+  thymeleaf:
+    #开发时关闭缓存,不然没法看到实时页面
+    cache: false
+    #设置非严格模式
+    mode: LEGACYHTML5
   datasource:
     username: root
     password: root
-    url: jdbc:mysql://localhost/zmail?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://localhost/zmail?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
   main:
     allow-bean-definition-overriding: true

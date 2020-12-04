@@ -18,4 +18,6 @@ public interface CartService {
     List<OmsCartItem> getUsersCart(String userId);
 
     void checkCart(String userId, Boolean isChecked, String productSkuId);
+
+    void delItems(List<OmsCartItem> checkedCartItems);
 }

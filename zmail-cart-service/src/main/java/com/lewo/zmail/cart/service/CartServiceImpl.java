@@ -1,6 +1,7 @@
 package com.lewo.zmail.cart.service;
 
 import com.alibaba.fastjson.JSON;
+import com.lewo.exception.DbException;
 import com.lewo.zmail.cart.db.CartMapper;
 import com.lewo.zmall.model.OmsCartItem;
 import com.lewo.zmall.service.CartService;
@@ -106,5 +107,18 @@ public class CartServiceImpl implements CartService {
         mapper.updateByExampleSelective(item,e);
         //同步缓存
         flushCache(userId);
+    }
+
+    @Override
+    public void delItems(List<OmsCartItem> checkedCartItems) {
+        try {
+            checkedCartItems.forEach(omsCartItem -> {
+                omsCartItem.setDeleteStatus(1);
+                mapper.updateByPrimaryKeySelective(omsCartItem);
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new DbException();
+        }
     }
 }
