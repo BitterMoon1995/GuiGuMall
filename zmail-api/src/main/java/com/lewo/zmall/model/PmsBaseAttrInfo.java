@@ -1,6 +1,7 @@
 package com.lewo.zmall.model;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +12,7 @@ import java.util.List;
  * @return
  */
 @Data
+@Accessors(chain = true)
 public class PmsBaseAttrInfo implements Serializable {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)

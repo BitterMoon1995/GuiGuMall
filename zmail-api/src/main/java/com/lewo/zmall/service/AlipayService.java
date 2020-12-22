@@ -1,12 +1,13 @@
 package com.lewo.zmall.service;
 
-import com.lewo.unified.iResult;
+import com.lewo.zmall.unified.iResult;
+import com.lewo.zmall.model.Payment;
 
-import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 
 public interface AlipayService {
-    void newPayment(String outTradeNum, BigDecimal totalAmount, String subject);
+    void genPayment(String outTradeNum, BigDecimal totalAmount, String subject);
 
-    iResult paySuccess(HttpServletRequest request);
+    iResult sucPaid(Payment payment);
+
 }

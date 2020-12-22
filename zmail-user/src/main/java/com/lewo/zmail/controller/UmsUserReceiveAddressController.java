@@ -10,12 +10,12 @@ import java.util.List;
 
 @RestController
 public class UmsUserReceiveAddressController {
-    @Autowired
-    UserAddressService userAddressService;
-    @PostMapping("address/getById")
-    public List<UmsUserReceiveAddress> getAddressById(Long id){
-        System.out.println(id);
-        List<UmsUserReceiveAddress> userAddresses=userAddressService.getAddressById(id);
-        return userAddresses;
-    }
+//    @Autowired
+//    UserAddressService userAddressService;
+//    @PostMapping("address/getById")
+//    public List<UmsUserReceiveAddress> getAddressById(Long id){
+//        System.out.println(id);
+//        List<UmsUserReceiveAddress> userAddresses=userAddressService.getAddressById(id);
+//        return userAddresses;
+//    }
 }

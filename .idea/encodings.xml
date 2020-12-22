@@ -4,11 +4,13 @@
     <file url="file://$PROJECT_DIR$/fastdfs-client-java/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/fastdfs-client-java/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zmail-alipay/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zmail-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zmail-authentication-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zmail-cart-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zmail-cart-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zmail-common-util/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zmail-item-web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zmail-log/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zmail-manage-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zmail-manage-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/zmail-order-service/src/main/java" charset="UTF-8" />

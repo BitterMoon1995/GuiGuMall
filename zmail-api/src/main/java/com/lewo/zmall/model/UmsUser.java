@@ -1,6 +1,7 @@
 package com.lewo.zmall.model;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
+@Accessors(chain = true)
 public class UmsUser implements Serializable {
     //通用mapper注解，表示这个是主键
     @Id

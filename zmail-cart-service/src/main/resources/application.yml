@@ -10,7 +10,7 @@ dubbo:
     protocol: zookeeper
   protocol:
     #20880是默认端口，被ManageService占了
-    port: 20888
+    port: 20884
     #protocol name属性必须配置
     name: dubbo
 

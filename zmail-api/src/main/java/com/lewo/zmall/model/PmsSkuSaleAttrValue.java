@@ -1,6 +1,7 @@
 package com.lewo.zmall.model;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import java.io.Serializable;
  * @return
  */
 @Data
+@Accessors(chain = true)
 public class PmsSkuSaleAttrValue implements Serializable {
 
     @Id

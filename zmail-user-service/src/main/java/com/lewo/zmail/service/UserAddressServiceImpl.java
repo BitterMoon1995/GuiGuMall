@@ -26,7 +26,7 @@ public class UserAddressServiceImpl implements UserAddressService {
         try {
             receiveAddress = addressMapper.selectByPrimaryKey(addrId);
         } catch (Exception e) {
-            throw new DbException();
+            throw new DbException("额额");
         }
         return receiveAddress;
     }

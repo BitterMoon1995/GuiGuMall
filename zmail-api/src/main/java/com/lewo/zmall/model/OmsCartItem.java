@@ -1,6 +1,7 @@
 package com.lewo.zmall.model;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.Id;
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
+@Accessors(chain = true)
 public class OmsCartItem implements Serializable{
 
     @Id

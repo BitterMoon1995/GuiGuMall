@@ -2,7 +2,7 @@ package com.lewo.zmail.auth.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.lewo.common.Constant;
-import com.lewo.unified.VerifyRes;
+import com.lewo.zmall.unified.VerifyRes;
 import com.lewo.zmail.auth.function.AuthFunction;
 import com.lewo.zmail.auth.utils.AuthUtils;
 import com.lewo.zmail.web.utils.HttpClientUtil;

@@ -1,7 +1,7 @@
 package com.lewo.zmail.cart.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.lewo.unified.iResult;
+import com.lewo.zmall.unified.iResult;
 import com.lewo.zmail.cart.function.CartFunction;
 import com.lewo.zmail.web.annotation.Entrance;
 import com.lewo.zmail.web.filter.CheckLogin;

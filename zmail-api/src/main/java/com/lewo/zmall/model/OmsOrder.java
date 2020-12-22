@@ -1,6 +1,7 @@
 package com.lewo.zmall.model;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +17,7 @@ import java.util.List;
  */
 
 @Data
+@Accessors(chain = true)//链式访问
 public class OmsOrder implements Serializable {
 
 

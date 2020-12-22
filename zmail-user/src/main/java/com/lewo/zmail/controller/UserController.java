@@ -9,14 +9,14 @@ import java.util.List;
 
 @RestController
 public class UserController {
-    @Autowired
-    UserService userService;
-    @GetMapping("/index")
-    public String index(){
-        return "小气残忍";
-    }
-    @GetMapping("/allUsers")
-    public List<User> getAllUsers(){
-        return userService.getAllUsers();
-    }
+//    @Autowired
+//    UserService userService;
+//    @GetMapping("/index")
+//    public String index(){
+//        return "小气残忍";
+//    }
+//    @GetMapping("/allUsers")
+//    public List<User> getAllUsers(){
+//        return userService.getAllUsers();
+//    }
 }

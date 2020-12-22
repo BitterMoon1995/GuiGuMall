@@ -18,6 +18,30 @@ dubbo:
     name: dubbo
 
 spring:
+  # 默认P2P模式，开启事务，确认模式为自动确认
+  activemq:
+    broker-url: tcp://192.168.156.128:61616
+    user: admin
+    password: admin
+    close-timeout: 15s   # 在考虑结束之前等待的时间
+    in-memory: true      # 默认代理URL是否应该在内存中。如果指定了显式代理，则忽略此值。
+    non-blocking-redelivery: false  # 是否在回滚回滚消息之前停止消息传递。这意味着当启用此命令时，消息顺序不会被保留。
+    # 等待消费者调用acknowledge()进行响应的时间。
+    # 如果超过该时间provider还没收到consumer的告知，
+    # 发送消息的方法将报requestTimeOut异常，而且消息还要入死信。
+    # 最好设置为0，即永远等待，这样就不害怕p-c之间的网络阻塞了。
+    send-timeout: 0
+    pool:
+      enabled: true
+      max-connections: 10   #连接池最大连接数
+      idle-timeout: 30000   #空闲的连接过期时间，默认为30秒
+    packages:
+      trust-all: true
+#  所有消费者切换为pub-sub模式
+#  jms:
+#    pub-sub-domain: true
+
+
   datasource:
     username: root
     password: root

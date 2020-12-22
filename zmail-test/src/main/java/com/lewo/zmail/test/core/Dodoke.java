@@ -1,9 +1,7 @@
 package com.lewo.zmail.test.core;
 
 import com.lewo.zmail.test.diamond.Klee;
-import com.lewo.zmall.service.CartService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.function.Consumer;
 import java.util.function.Function;

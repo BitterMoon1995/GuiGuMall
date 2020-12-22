@@ -1,10 +1,12 @@
 package com.lewo.zmall.model;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 @Data
+@Accessors(chain = true)
 public class OmsOrderItem implements Serializable {
 
     private String id;

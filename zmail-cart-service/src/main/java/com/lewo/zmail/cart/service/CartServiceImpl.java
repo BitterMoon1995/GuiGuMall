@@ -118,7 +118,7 @@ public class CartServiceImpl implements CartService {
             });
         } catch (Exception e) {
             e.printStackTrace();
-            throw new DbException();
+            throw new DbException("麻了");
         }
     }
 }

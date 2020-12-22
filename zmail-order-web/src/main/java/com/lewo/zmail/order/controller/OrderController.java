@@ -1,7 +1,7 @@
 package com.lewo.zmail.order.controller;
 
 import com.lewo.exception.DbException;
-import com.lewo.unified.iResult;
+import com.lewo.zmall.unified.iResult;
 import com.lewo.utils.Predicate;
 import com.lewo.zmail.order.function.OrderFunction;
 import com.lewo.zmail.web.annotation.Entrance;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -98,6 +99,8 @@ public class OrderController {
 
         //生成订单
         OmsOrder order = function.genOrder(orderItems, userId, nickname, recAddr);
+        /*    测试代码：测试总价     */
+        order.setTotalAmount(new BigDecimal(8));
         //把订单写入DB，之后把本次提交的订单条目与之关联，也写入DB
         service.insertOrder(order,orderItems);
 
@@ -105,7 +108,7 @@ public class OrderController {
         cartService.delItems(checkedCartItems);
 
         //重定向至支付系统
-        return "redirect:http://localhost:2070/index.html?orderNum="
-                +order.getOrderSn()+"&totalPrice="+order.getTotalAmount();
+        return "redirect:http://localhost:2070/index.html?orderSn="
+                +order.getOrderSn()+"&totalAmount="+order.getTotalAmount();
     }
 }

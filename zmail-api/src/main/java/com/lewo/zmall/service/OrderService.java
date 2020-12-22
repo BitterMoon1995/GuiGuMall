@@ -1,7 +1,6 @@
 package com.lewo.zmall.service;
 
-import com.lewo.unified.iResult;
-import com.lewo.zmall.model.OmsCartItem;
+import com.lewo.zmall.unified.iResult;
 import com.lewo.zmall.model.OmsOrder;
 import com.lewo.zmall.model.OmsOrderItem;
 
@@ -14,4 +13,6 @@ public interface OrderService {
     iResult checkTradeCode(String userId, String tradeCode);
 
     void insertOrder(OmsOrder order, List<OmsOrderItem> orderItems);
+
+    iResult orderSucPayStatusUpdate(String orderSn);
 }

@@ -2,8 +2,8 @@ package com.lewo.zmail.web.global;
 
 import com.lewo.exception.AuthException;
 import com.lewo.exception.DbException;
-import com.lewo.unified.Code;
-import com.lewo.unified.iResult;
+import com.lewo.zmall.unified.Code;
+import com.lewo.zmall.unified.iResult;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

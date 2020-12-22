@@ -1,1 +1,7 @@
 tta = totalAmount 订单实(需)付总价
+CF = connection factory 指《穿越火线》
+TN = trade number 系统订单号，区别于支付宝、微信等的订单号
+suc = successful 或 successfully
+order_sn = order serial number 订单序列号（？）
+测试代码 = 被晶标记的写在源码里面的测试性代码，部署阶段要删完
+up = update 或 update status，指批狸批狸站UP主

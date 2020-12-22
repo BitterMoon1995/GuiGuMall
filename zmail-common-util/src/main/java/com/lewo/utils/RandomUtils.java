@@ -1,8 +1,5 @@
 package com.lewo.utils;
 
-import com.lewo.unified.Code;
-import com.lewo.unified.iResult;
-
 import java.security.SecureRandom;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;

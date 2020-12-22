@@ -1,6 +1,5 @@
 package com.lewo.zmail.manage.controller;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.lewo.zmall.model.PmsBaseAttrInfo;
 import com.lewo.zmall.model.PmsBaseAttrValue;
 import com.lewo.zmall.service.PmsBaseService;

@@ -1,11 +1,11 @@
 package com.lewo.exception;
 
+import lombok.Data;
+
 /**
  * 自定义异常之持久层数据库炸了
  */
 public class DbException extends RuntimeException{
-    public DbException() {
-    }
 
     public DbException(String message) {
         super(message);

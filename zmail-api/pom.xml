@@ -3,7 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    <!--架构：dubbo服务模块
+        依赖web/service util，
+        依赖common util，
+        依赖api。
+        并由zmail-parent管理版本、营造spring环境-->
     <groupId>com.lewo</groupId>
     <artifactId>zmail-api</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -27,11 +31,6 @@
             <artifactId>lombok</artifactId>
             <version>1.18.12</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.lewo</groupId>
-            <artifactId>zmail-common-util</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
 
     </dependencies>

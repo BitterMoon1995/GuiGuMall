@@ -52,16 +52,18 @@ public class OrderFunction {
         return totalPrice;
     }
 
+    //★初始化订单★
     public OmsOrder genOrder(List<OmsOrderItem> orderItems
         , String userId, String nickname, UmsUserReceiveAddress receiveAddr) {
         OmsOrder order = new OmsOrder();
-        String outOrderNum = System.currentTimeMillis() + RandomUtils.randomNum(6);
+        //订单序列号生成策略：当前毫秒时间戳+随机6位数字
+        String orderSn = System.currentTimeMillis() + RandomUtils.randomNum(6);
         //核心
         order.setUserId(userId);
         order.setUsername(nickname);
         order.setTotalAmount(orderTotalPrice(orderItems));//总价，以后把折扣算进去
         order.setOmsOrderItems(orderItems);
-        order.setOrderSn(outOrderNum);//外部订单号
+        order.setOrderSn(orderSn);//外部订单号
         order.setCreateTime(TimeUtils.curTime());
         //收货这块
         order.setAutoConfirmDay(7);//七天自动收货
@@ -74,6 +76,7 @@ public class OrderFunction {
         order.setOrderType(0);//0正常订单，1秒杀订单
         order.setSourceType(0);//0.PC 1.APP
         order.setStatus(0);//0->待付款；1->待发货；2->已发货；3->已完成；4->已关闭；5->无效订单
+        order.setPayType(0);//支付方式：0->未支付；1->支付宝；2->微信
 
         return order;
     }

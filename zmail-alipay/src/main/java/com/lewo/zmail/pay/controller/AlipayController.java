@@ -2,13 +2,18 @@ package com.lewo.zmail.pay.controller;
 
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
-import com.lewo.unified.iResult;
+import com.lewo.zmail.pay.msg.MsgProvider;
+import com.lewo.zmall.service.ErrorLogService;
+import com.lewo.zmall.unified.iResult;
 import com.lewo.utils.Predicate;
 import com.lewo.utils.RandomUtils;
 import com.lewo.zmail.pay.function.AlipayFunction;
 import com.lewo.zmail.web.annotation.Entrance;
 import com.lewo.zmail.web.filter.CheckLogin;
+import com.lewo.zmall.model.Payment;
 import com.lewo.zmall.service.AlipayService;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -30,14 +35,20 @@ public class AlipayController {
     AlipayFunction function;
     @Autowired
     AlipayService service;
+    @Autowired
+    MsgProvider msgProvider;
+    @DubboReference
+    ErrorLogService errLogService;
 
     @Entrance
     @CheckLogin
     @RequestMapping("index.html")
-    public String index(String outTradeNum, BigDecimal totalAmount,
+    /*订单金额不能为0，不然马云报‘错误码：TOTAL_FEE_EXCEED’*/
+    public String index(String orderSn, BigDecimal totalAmount,
                         HttpServletRequest request, ModelMap modelMap){
+        System.out.println(orderSn+totalAmount);
         modelMap.put("totalAmount",totalAmount);
-        modelMap.put("outTradeNum",outTradeNum);
+        modelMap.put("outTradeNum",orderSn);
         return "index";
     }
 
@@ -47,7 +58,9 @@ public class AlipayController {
     public String submit(String outTradeNum, BigDecimal totalAmount){
         String form;
         String subject = "可莉小乖宝";
-        outTradeNum = RandomUtils.genNonceStr();
+        if (StringUtils.isBlank(outTradeNum))
+            //测试代码
+            outTradeNum = RandomUtils.genNonceStr();
         try {
             form = alipayClient.pageExecute(function.genPagePayRequest(outTradeNum,totalAmount.longValue(),subject)).getBody();
             System.out.println(form);
@@ -55,16 +68,27 @@ public class AlipayController {
             e.printStackTrace();
             return null;
         }
-        service.newPayment(outTradeNum,totalAmount,subject);
+        service.genPayment(outTradeNum,totalAmount,subject);
+
         return form;
     }
 
     @RequestMapping("alipay/callback")
     public String sucPay(HttpServletRequest request, HttpServletResponse response) {
-        iResult res = service.paySuccess(request);
-        if (!Predicate.suc(res))
-            System.out.println("麻了，给钱没办了事");
-        //再通知支付宝一次，形式为返回"success"字符串（？）
+
+        Payment payment = function.validateSignature(request);
+        if (payment == null)//验签失败
+            return "error";
+        String orderSn = payment.getOrderSn();
+        /*支付成功，调MQ，通知订单系统*/
+        iResult mqRes = msgProvider.afterSucPay(orderSn);
+        if (Predicate.fail(mqRes))
+            errLogService.newError("MQ","支付成功消息队列挂了","orderSn",orderSn);
+        /*调MySQL，修改支付单状态*/
+        iResult res = service.sucPaid(payment);
+        if (Predicate.fail(res))
+            errLogService.newError("DB","支付成功后尝试改支付单状态，持久层挂了","orderSn",orderSn);
+        /*再通知支付宝一次，形式为返回"success"字符串（？）*/
         try {
             response.getWriter().println("success");//看不懂（流汗黄豆）
         } catch (IOException e) {

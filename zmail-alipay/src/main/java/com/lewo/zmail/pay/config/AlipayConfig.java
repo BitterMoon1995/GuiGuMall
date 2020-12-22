@@ -13,6 +13,7 @@ import org.springframework.context.annotation.PropertySource;
  * @return
  */
 @Data
+@Accessors(chain = true)
 @Configuration
 @PropertySource("classpath:alipay.properties")
 public class AlipayConfig {

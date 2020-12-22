@@ -1,6 +1,7 @@
 package com.lewo.zmall.model;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -8,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Data
+@Accessors(chain = true)
 public class PmsSearchSkuInfo implements Serializable{
 
     @Id
