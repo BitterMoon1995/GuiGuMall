@@ -1,8 +1,10 @@
 package com.lewo.zmail.pay.msg;
 
+import com.lewo.zmall.service.AlipayService;
 import org.apache.activemq.command.ActiveMQMapMessage;
 import org.apache.activemq.command.ActiveMQMessage;
 import org.apache.activemq.command.ActiveMQTextMessage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,8 @@ import java.util.Map;
  */
 @Component
 public class MsgConsumer {
+    @Autowired
+    AlipayService service;
     /*一个listener一个线程（SimpleAsyncTaskExecutor）*/
     @JmsListener(destination = "drink")
     public void queueReceiver(String msg,Session session){
@@ -53,11 +57,6 @@ public class MsgConsumer {
 //        System.out.println("当场抓获尼哥：\n"+orderSn);
 //    }
 
-    /*
-    方法参数能别那么弱支么？
-
-
-     */
     @JmsListener(destination = "miHoYo")
     public void queueConsume(ActiveMQMessage message, Session session) throws JMSException {
         System.out.println("额额");
@@ -78,6 +77,19 @@ public class MsgConsumer {
             Map<String, Object> map = mapMessage.getContentMap();
             String nigger = map.get("nigger").toString();
             System.out.println(nigger);
+        }
+    }
+
+    @JmsListener(destination = "PAYMENT_CHECK_QUEUE")
+    public void consumeCheckPayStatus(Map<String, String> mapMessage,Session session){
+        String orderSn = mapMessage.get("orderSn");
+        String tradeStatus = service.checkTradeStatus(orderSn);
+        System.out.println(tradeStatus);
+
+        try {
+            session.commit();
+        } catch (JMSException e) {
+            e.printStackTrace();
         }
     }
 }

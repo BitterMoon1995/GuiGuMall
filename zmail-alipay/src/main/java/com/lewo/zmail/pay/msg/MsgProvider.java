@@ -31,7 +31,7 @@ public class MsgProvider {
     }
 
     /*延迟队列，检查用户支付状态
-    * 在哪儿调？*/
+    * 在哪儿调？   消息中间件统一在服务层调！*/
     public iResult checkPayStatus(String orderSn){
         HashMap<String, Object> headers = new HashMap<>();
         headers.put(ScheduledMessage.AMQ_SCHEDULED_DELAY,1000*5);

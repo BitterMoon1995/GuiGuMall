@@ -2,6 +2,7 @@ package com.lewo.zmail.pay.function;
 
 import com.alibaba.fastjson.JSON;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.alipay.api.request.AlipayTradeQueryRequest;
 import com.lewo.zmail.pay.config.AlipayConfig;
 import com.lewo.zmall.model.Payment;
 import org.apache.commons.lang3.StringUtils;
@@ -25,6 +26,17 @@ public class AlipayFunction {
         paramMap.put("product_code","FAST_INSTANT_TRADE_PAY");
         paramMap.put("total_amount",tta);
         paramMap.put("subject",subject);
+
+        String paramStr = JSON.toJSONString(paramMap);
+        request.setBizContent(paramStr);
+        return request;
+    }
+
+    public AlipayTradeQueryRequest genTradeQueryRequest(String orderSn){
+        AlipayTradeQueryRequest request = new AlipayTradeQueryRequest();
+
+        HashMap<String, Object> paramMap = new HashMap<>();
+        paramMap.put("out_trade_no", orderSn);
 
         String paramStr = JSON.toJSONString(paramMap);
         request.setBizContent(paramStr);

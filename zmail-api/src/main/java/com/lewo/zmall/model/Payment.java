@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Date;
 
-/**（支付宝）支付单
+/**（支付宝）支付单/交易单
  * @param
  * @return
  */
