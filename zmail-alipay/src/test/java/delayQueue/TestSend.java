@@ -12,6 +12,6 @@ public class TestSend {
     MsgProvider msgProvider;
     @Test
     public void test() {
-        msgProvider.checkPayStatus("nigger");
+        msgProvider.sendCheckPayStatusMsg("nigger", 1);
     }
 }

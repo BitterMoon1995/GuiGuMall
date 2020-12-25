@@ -18,7 +18,7 @@ public class MsgProvider {
     private JmsMessagingTemplate jmsTemplate;
 
     /*用户付款后，向支付成功队列发送该订单已支付消息，由订单服务消费*/
-    public iResult afterSucPay(String orderSn){
+    public iResult sendPaidMsg(String orderSn){
         HashMap<String, String> map = new HashMap<>();
         map.put("orderSn",orderSn);
         try {
@@ -30,13 +30,17 @@ public class MsgProvider {
         return iResult.success;
     }
 
-    /*延迟队列，检查用户支付状态
-    * 在哪儿调？   消息中间件统一在服务层调！*/
-    public iResult checkPayStatus(String orderSn){
+    /*发送消息到延迟队列，检查用户支付状态*/
+    public iResult sendCheckPayStatusMsg(String orderSn, Integer count){
+        /*checkMsg在service-provider-consumer间循环的阀门*/
+        if (count <= 0)
+            return iResult.success;
+
         HashMap<String, Object> headers = new HashMap<>();
         headers.put(ScheduledMessage.AMQ_SCHEDULED_DELAY,1000*5);
-        HashMap<String, String> mapMessage = new HashMap<>();
+        HashMap<String, Object> mapMessage = new HashMap<>();
         mapMessage.put("orderSn",orderSn);
+        mapMessage.put("count",count);
 
         try {
             jmsTemplate.convertAndSend("PAYMENT_CHECK_QUEUE",mapMessage,headers);

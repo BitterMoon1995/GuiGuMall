@@ -13,7 +13,6 @@ public class Predicate {
         return result.getCode() == Code.success;
     }
     public static boolean fail(iResult result){
-        System.out.println(result);
         return result.getCode() != Code.success;
     }
 }

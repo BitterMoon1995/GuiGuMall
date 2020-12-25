@@ -4,6 +4,7 @@ import com.lewo.zmall.service.AlipayService;
 import org.apache.activemq.command.ActiveMQMapMessage;
 import org.apache.activemq.command.ActiveMQMessage;
 import org.apache.activemq.command.ActiveMQTextMessage;
+import org.apache.http.client.HttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,8 @@ import java.util.Map;
 public class MsgConsumer {
     @Autowired
     AlipayService service;
+    @Autowired
+    MsgProvider msgProvider;
     /*一个listener一个线程（SimpleAsyncTaskExecutor）*/
     @JmsListener(destination = "drink")
     public void queueReceiver(String msg,Session session){
@@ -81,10 +84,23 @@ public class MsgConsumer {
     }
 
     @JmsListener(destination = "PAYMENT_CHECK_QUEUE")
-    public void consumeCheckPayStatus(Map<String, String> mapMessage,Session session){
-        String orderSn = mapMessage.get("orderSn");
-        String tradeStatus = service.checkTradeStatus(orderSn);
+    public void consumeCheckPayStatus(Map<String, Object> mapMessage,Session session){
+        String orderSn = (String) mapMessage.get("orderSn");
+        Integer count = (Integer) mapMessage.get("count");
+
+        Map<String, Object> resultMap = service.checkTradeStatus(orderSn);
+        String tradeStatus = resultMap.get("tradeStatus").toString();
         System.out.println(tradeStatus);
+
+        if (tradeStatus.equals("TRADE_SUCCESS")){
+            String tradeNo = resultMap.get("tradeNo").toString();
+            System.out.println("订单号："+tradeNo+"已经支付成功，走后续流程");
+            service.updatePaidPayment(tradeNo,orderSn);
+        }
+        else {
+            System.out.println("付款未成功，继续发送消息至延迟队列");
+            msgProvider.sendCheckPayStatusMsg(orderSn, --count);//精致
+        }
 
         try {
             session.commit();

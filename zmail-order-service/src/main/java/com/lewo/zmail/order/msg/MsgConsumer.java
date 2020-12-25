@@ -58,6 +58,8 @@ public class MsgConsumer {
 
 
     @JmsListener(destination = "ORDER_PAID_QUEUE")
+    /*订单已支付，通知库存
+    应该是库存系统来消费，这里简单打印一下，库存系统明年再说吧*/
     public void testInventoryReceive(String orderStr, Session session){
         OmsOrder order = JSON.parseObject(orderStr, OmsOrder.class);
         System.out.println(order);

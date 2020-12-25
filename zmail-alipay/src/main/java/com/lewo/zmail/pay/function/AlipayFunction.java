@@ -43,7 +43,11 @@ public class AlipayFunction {
         return request;
     }
 
-    public Payment validateSignature(HttpServletRequest request){
+    /*
+    装作是一个(对支付成功回调请求体进行)验签的方法的样子。
+    验签就验签，不要和支付成功后续的一系列payment.set耦合在一起
+     */
+    public boolean validateSignature(HttpServletRequest request){
         String sign = request.getParameter("sign");
 
         String trade_no = request.getParameter("trade_no");
@@ -61,13 +65,9 @@ public class AlipayFunction {
 
         /*走阿里流程验签！疑似沙箱环境参数不全，就先糊弄一下了，下次再说。。。。。。
         AlipaySignature.certVerifyV1(......)*/
-        if (StringUtils.isBlank(out_trade_no))
-            return null;
-        Payment payment = new Payment();
-        payment.setOrderSn(out_trade_no);
-        payment.setAlipayTradeNo(trade_no);
-        payment.setCallbackContent(callbackContent);
-        return payment;
+        if (StringUtils.isBlank(trade_no))
+            return false;
+        return true;
     }
 
 

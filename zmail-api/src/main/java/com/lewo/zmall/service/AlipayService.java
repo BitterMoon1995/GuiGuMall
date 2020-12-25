@@ -9,7 +9,7 @@ import java.util.Map;
 public interface AlipayService {
     void newPayment(String outTradeNum, BigDecimal totalAmount, String subject);
 
-    iResult sucPaid(Payment payment);
+    iResult updatePaidPayment(String aliTradeNum, String orderSn);
 
     Map<String,Object> checkTradeStatus(String orderSn);
 }

@@ -2,7 +2,6 @@ package com.lewo.zmail.pay.controller;
 
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
-import com.lewo.zmail.pay.msg.MsgProvider;
 import com.lewo.zmall.service.ErrorLogService;
 import com.lewo.zmall.unified.iResult;
 import com.lewo.utils.Predicate;
@@ -10,7 +9,6 @@ import com.lewo.utils.RandomUtils;
 import com.lewo.zmail.pay.function.AlipayFunction;
 import com.lewo.zmail.web.annotation.Entrance;
 import com.lewo.zmail.web.filter.CheckLogin;
-import com.lewo.zmall.model.Payment;
 import com.lewo.zmall.service.AlipayService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.DubboReference;
@@ -52,9 +50,9 @@ public class AlipayController {
     @RequestMapping("alipay/submit")
     @CheckLogin
     @ResponseBody
-    public String submit(String outTradeNum, BigDecimal totalAmount){
+    public String submit(String outTradeNum, BigDecimal totalAmount,Integer count){
         String form;
-        String subject = "可莉小乖宝";
+        String subject = "可莉小乖宝宝";
         if (StringUtils.isBlank(outTradeNum))
             //测试代码
             outTradeNum = RandomUtils.genNonceStr();
@@ -70,16 +68,18 @@ public class AlipayController {
     }
 
     @RequestMapping("alipay/callback")
-    public String sucPay(HttpServletRequest request, HttpServletResponse response) {
+    public String paySuccessCallback(HttpServletRequest request, HttpServletResponse response) {
 
-        Payment payment = function.validateSignature(request);
-        if (payment == null)//验签失败
+        boolean passValidation = function.validateSignature(request);
+        if (!passValidation)//验签失败
             return "error";
 
+        String orderSn = request.getParameter("out_trade_no");
         /*调Service，发送sucPay消息、修改支付单状态*/
-        iResult res = service.sucPaid(payment);
+        iResult res = service.updatePaidPayment(request.getParameter("trade_no")
+                ,orderSn);
         if (Predicate.fail(res))
-            errLogService.newError("DB","支付成功后尝试改支付单状态，持久层挂了","orderSn",payment.getOrderSn());
+            errLogService.newError("DB","支付成功后尝试改支付单状态，持久层挂了","orderSn",orderSn);
         /*再通知支付宝一次，形式为返回"success"字符串（？）*/
         try {
             response.getWriter().println("success");//看不懂（流汗黄豆）
