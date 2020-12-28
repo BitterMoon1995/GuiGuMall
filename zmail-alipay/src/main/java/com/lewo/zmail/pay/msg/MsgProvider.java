@@ -32,8 +32,9 @@ public class MsgProvider {
 
     /*发送消息到延迟队列，检查用户支付状态*/
     public iResult sendCheckPayStatusMsg(String orderSn, Integer count){
-        /*checkMsg在service-provider-consumer间循环的阀门*/
+        /*checkMsg在provider-consumer间【内循环】的阀门*/
         if (count <= 0)
+//            除此之外就没梗了吗？比如关闭交易之类的？
             return iResult.success;
 
         HashMap<String, Object> headers = new HashMap<>();
